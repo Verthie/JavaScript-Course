@@ -1,7 +1,7 @@
-//Assignment #1
+//Assignment #1 & #3
 
-let country = "Poland";
-let continent = "Europe";
+const country = "Poland";
+const continent = "Europe";
 let population = 37.75;
 
 /*
@@ -10,10 +10,10 @@ console.log(continent);
 console.log(population + " millions");
 */
 
-//Assignment #2
+//Assignment #2 & #3
 
-let isIsland = false;
-let language;
+const isIsland = false;
+const language = "polish";
 
 console.log(isIsland);
 console.log(population + " millions");
