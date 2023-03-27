@@ -25,6 +25,7 @@ let job2 = "teacher";
 console.log(myFirstJob);
 */
 
+/*
 let javascriptIsFun = true;
 console.log(javascriptIsFun);
 
@@ -44,3 +45,4 @@ year = 1991;
 console.log(typeof year);
 
 console.log(typeof null); //returns object - but null's not an object (that's a bug)
+*/
