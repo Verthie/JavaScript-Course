@@ -47,6 +47,7 @@ console.log(typeof year);
 console.log(typeof null); //returns object - but null's not an object (that's a bug)
 */
 
+/*
 let age = 30;
 age = 31; //mutating the variable -> changing it
 
@@ -55,3 +56,4 @@ const birthYear = 1991;
 
 var lastName = "Jonas";
 console.log(lastName);
+*/
