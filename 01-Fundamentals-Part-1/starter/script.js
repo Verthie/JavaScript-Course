@@ -121,6 +121,7 @@ Data 2: Marks weights 95 kg and is 1.88 m tall. John weights 85 kg and is 1.76 m
 GOOD LUCK 😀
 */
 
+/*
 const massMark = 95,
   massJohn = 85,
   heightMark = 1.88,
@@ -130,3 +131,31 @@ const bmiJohn = massJohn / (heightJohn * heightJohn);
 const markHigherBMI = bmiMark > bmiJohn;
 
 console.log(bmiMark, bmiJohn, markHigherBMI);
+*/
+
+const firstName = "Jonas";
+const job = "teacher";
+const birthYear = 1991;
+const year = 2037;
+
+const jonas =
+  "I'm " + firstName + ", a " + (year - birthYear) + " years old " + job + "!";
+console.log(jonas);
+
+const jonasNew = `I'm ${firstName}, a ${year - birthYear} years old ${job}!`; // using `` rather than "" allows us to insert paramters without having to connect everything by +
+console.log(jonasNew);
+
+console.log(`Just a regular string...`);
+
+console.log(
+  "String with \n\
+multiple \n\
+lines"
+);
+
+console.log(
+  `String with
+multiple
+lines using
+backticks`
+);
