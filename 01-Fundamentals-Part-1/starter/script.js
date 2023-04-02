@@ -133,6 +133,7 @@ const markHigherBMI = bmiMark > bmiJohn;
 console.log(bmiMark, bmiJohn, markHigherBMI);
 */
 
+/*
 const firstName = "Jonas";
 const job = "teacher";
 const birthYear = 1991;
@@ -159,3 +160,23 @@ multiple
 lines using
 backticks`
 );
+*/
+
+const age = 16;
+
+if (age >= 18) {
+  console.log("Sarah can start driving license 🚗");
+} else {
+  const yearsLeft = 18 - age;
+  console.log(`Sarah is to young. Wait another ${yearsLeft} years :)`);
+}
+
+const birthYear = 1991;
+let century;
+
+if (birthYear <= 2000) {
+  let century = 20;
+} else {
+  let century = 21;
+}
+console.log(century);
