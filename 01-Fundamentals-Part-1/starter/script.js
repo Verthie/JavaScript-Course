@@ -330,6 +330,7 @@ Test data:
 GOOD LUCK 😀
 */
 
+/*
 const avgScoreDolphins = (97 + 112 + 101) / 3;
 const avgScoreKoalas = (109 + 95 + 106) / 3;
 
@@ -346,4 +347,46 @@ if (avgScoreDolphins > avgScoreKoalas && enoughScore) {
   console.log("Koalas win!");
 } else if (avgScoreDolphins === avgScoreDolphins && enoughScore) {
   console.log("It's a draw!");
+}
+*/
+
+const day = "monday";
+
+switch (day) {
+  case "monday": // if day === 'monday'
+    console.log("Plan course structure");
+    console.log("Go to coding meetup");
+    break;
+  case "tuesday":
+    console.log("Prepare theory videos");
+    break;
+  case "wednesday":
+  case "thursday":
+    console.log("Write code examples");
+    break;
+  case "friday":
+    console.log("Record videos");
+    break;
+  case "saturday":
+  case "sunday":
+    console.log("Enjoy the weekend :D");
+    break;
+  default:
+    console.log("Not a valid day!");
+}
+
+// writing the above example with if
+if (day === "monday") {
+  console.log("Plan course structure");
+  console.log("Go to coding meetup");
+} else if (day === "tuesday") {
+  console.log("Prepare theory videos");
+} else if (day === "wednesday" || day === "thursday") {
+  console.log("Write code examples");
+} else if (day === "friday") {
+  console.log("Record videos");
+} else if (day === "saturday" || day === "sunday") {
+  console.log("Enjoy the weekend :D");
+} else {
+  console.log("Not a valid day!");
 }
