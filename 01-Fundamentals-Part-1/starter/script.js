@@ -112,7 +112,7 @@ BMI = mass / height ** 2 = mass / (height * height) (mass in kg and height in me
 RRE
 Your tasks:
 1. Store Mark's and John's mass and height in variables
-2. Calculate both their BMIs using the formula (you can even implement both versions)RRRRRRRRR
+2. Calculate both their BMIs using the formula (you can even implement both versions)
 3. Create a Boolean variable 'markHigherBMI' containing information about whether Mark has a higher BMI than John.
 
 Test data:
@@ -162,10 +162,11 @@ backticks`
 );
 */
 
+/*
 const age = 16;
 
 if (age >= 18) {
-  console.log("Sarah can start driving license 🚗");
+  console.log("Sarah can start driving license 🚗"); // windows + . for emoji 👍
 } else {
   const yearsLeft = 18 - age;
   console.log(`Sarah is to young. Wait another ${yearsLeft} years :)`);
@@ -180,3 +181,28 @@ if (birthYear <= 2000) {
   let century = 21;
 }
 console.log(century);
+*/
+
+/////////////////////////////////////////
+// Coding Challenge #2
+
+/*
+Use the BMI example from Challenge #1, and the code you already wrote, and improve it.
+Your tasks:
+1. Print a nice output to the console, saying who has the higher BMI. The message
+is either "Mark's BMI is higher than John's!" or "John's BMI is higher than Mark's!"
+2. Use a template literal to include the BMI values in the outputs. 
+Example: "Mark's BMI (28.3) is higher than John's (23.9)!"
+Hint: Use an if/else statement 😉
+GOOD LUCK 😀
+*/
+
+const massMark = 95,
+  massJohn = 85,
+  heightMark = 1.88,
+  heightJohn = 1.76;
+const bmiMark = massMark / heightMark ** 2;
+const bmiJohn = massJohn / (heightJohn * heightJohn);
+const markHigherBMI = bmiMark > bmiJohn;
+
+console.log(bmiMark, bmiJohn, markHigherBMI);
