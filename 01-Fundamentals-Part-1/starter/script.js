@@ -197,6 +197,7 @@ Hint: Use an if/else statement 😉
 GOOD LUCK 😀
 */
 
+/*
 const massMark = 95,
   massJohn = 85,
   heightMark = 1.88,
@@ -206,3 +207,27 @@ const bmiJohn = massJohn / (heightJohn * heightJohn);
 const markHigherBMI = bmiMark > bmiJohn;
 
 console.log(bmiMark, bmiJohn, markHigherBMI);
+*/
+
+//type conversion
+const inputYear = "1991";
+console.log(Number(inputYear), inputYear); // converting a string to a number
+console.log(Number(inputYear) + 18);
+
+console.log(Number("Jonas")); // results in a NaN (Not a Number)
+console.log(typeof NaN);
+
+console.log(String(23), 23); // converting a number to a string
+
+//type coercion
+console.log("I am" + 23 + "years old"); // javascript automatically converts the number to string because of a '+' sign
+console.log("I am" + "23" + "years old");
+console.log("23" - "10" - 3); // whenever there is a '-' sign it converts strings to numbers
+console.log("23" + "10" + 3); // this is a string "23103" because of a '+' sign
+console.log("23" * "2");
+console.log("23" / "2");
+
+let n = "1" + 1; // '11'
+n = n - 1; // 11 - 1 = 10
+console.log(n);
+
