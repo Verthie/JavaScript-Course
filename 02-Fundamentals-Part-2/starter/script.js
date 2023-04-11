@@ -503,6 +503,7 @@ for (let i = 0; i < jonasArray.length; i++) {
 }
 */
 
+/*
 const jonasArray = [
   "Jonas",
   "Schmedtmann",
@@ -524,4 +525,17 @@ for (let exercise = 1; exercise < 4; exercise++) {
   for (let rep = 1; rep < 6; rep++) {
     console.log(`Exercise ${exercise}: Lifting weight repetition ${rep} 🏋️‍♂️`);
   }
+}
+*/
+
+let rep = 1;
+while (rep <= 10) {
+  // console.log(`WHILE: Lifting weights repetition ${rep} 🏋️‍♂️`);
+  rep++;
+}
+
+let roll = 0;
+while (roll !== 6) {
+  roll = Math.trunc(Math.random() * 6) + 1;
+  console.log(`You rolled a ${roll}`);
 }
