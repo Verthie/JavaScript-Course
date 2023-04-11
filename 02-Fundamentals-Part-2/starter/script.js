@@ -361,11 +361,9 @@ const jonas = {
   },
 
   getSummary: function () {
-    return `${
-      this.firstName
-    } is a ${this.calcAge()} year old teacher and he has ${
-      this.hasDriverslicense ? "a" : "no"
-    } driver's licence`;
+    return `${this.firstName} is a ${this.calcAge()} year old ${
+      this.job
+    } and he has ${this.hasDriverslicense ? "a" : "no"} driver's licence`;
   },
 };
 
