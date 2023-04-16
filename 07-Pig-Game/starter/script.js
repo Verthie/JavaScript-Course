@@ -1,150 +1,97 @@
 "use strict";
 
-//Selecting elements
-const diceImage = document.querySelector(".dice");
-const player1El = document.querySelector(".player--0");
-const player2El = document.querySelector(".player--1");
-const p1ScoreEl = document.querySelector("#score--0");
-const p2ScoreEl = document.querySelector("#score--1");
-// const p2Score2Display = document.getElementById("score--1").textContent; //? Another way of selecting specifically for id
+// Selecting elements
+const player0El = document.querySelector(".player--0");
+const player1El = document.querySelector(".player--1");
+const score0El = document.querySelector("#score--0");
+const score1El = document.getElementById("score--1");
+const current0El = document.getElementById("current--0");
+const current1El = document.getElementById("current--1");
 
-//Buttons
-const newGameButton = document.querySelector(".btn--new");
-const rollButton = document.querySelector(".btn--roll");
-const holdButton = document.querySelector(".btn--hold");
+const diceEl = document.querySelector(".dice");
+const btnNew = document.querySelector(".btn--new");
+const btnRoll = document.querySelector(".btn--roll");
+const btnHold = document.querySelector(".btn--hold");
 
-//Starting conditions
-let beginTurn = 0;
+let scores, currentScore, activePlayer, playing;
 
-let currentScore = 0;
-let p1Score = 0;
-let p2Score = 0;
+// Starting conditions
+const init = function () {
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
 
-diceImage.classList.add("hidden");
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
 
-//Roll button functionality
-const rollAction = function () {
-  //1. Generating a random dice roll
-  let roll = Math.trunc(Math.random() * 6 + 1);
-  // console.log(`Player ${checkTurn() ? 1 : 2} rolled: ${roll}.`);
+  diceEl.classList.add("hidden");
+  player0El.classList.remove("player--winner");
+  player1El.classList.remove("player--winner");
+  player0El.classList.add("player--active");
+  player1El.classList.remove("player--active");
+};
+init();
 
-  //2. Display dice
-  diceImage.classList.remove("hidden");
-  diceImage.src = `dice-${roll}.png`;
+const switchPlayer = function () {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  player0El.classList.toggle("player--active");
+  player1El.classList.toggle("player--active");
+};
 
-  //3. Check if not rolled 1: true => add points, false => switch to the next player
-  if (roll !== 1) {
-    checkTurn()
-      ? changeCurrent("p1", (currentScore += roll))
-      : changeCurrent("p2", (currentScore += roll));
-  } else {
-    changeTurn();
+// Rolling dice functionality
+btnRoll.addEventListener("click", function () {
+  if (playing) {
+    // 1. Generating a random dice roll
+    const dice = Math.trunc(Math.random() * 6) + 1;
+
+    // 2. Display dice
+    diceEl.classList.remove("hidden");
+    diceEl.src = `dice-${dice}.png`;
+
+    // 3. Check for rolled 1
+    if (dice !== 1) {
+      // Add dice to current score
+      currentScore += dice;
+      document.getElementById(`current--${activePlayer}`).textContent =
+        currentScore;
+    } else {
+      // Switch to next player
+      switchPlayer();
+    }
   }
-};
+});
 
-//Hold button functionality
-const holdAction = function () {
-  // console.log(`Player ${checkTurn() ? 1 : 2} holds.`);
+btnHold.addEventListener("click", function () {
+  if (playing) {
+    // 1. Add current score to active player's score
+    scores[activePlayer] += currentScore;
+    // scores[1] = scores[1] + currentScore
 
-  //1. Sum player's current points
-  checkTurn() ? sumTotal("p1") : sumTotal("p2");
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
 
-  //2. Check whether player wins: true => finish the game, false => switch to the next player
-  if (p1Score >= 100) endGame("p1");
-  else if (p2Score >= 100) endGame("p2");
-  else changeTurn();
-};
+    // 2. Check if player's score is >= 100
+    if (scores[activePlayer] >= 100) {
+      // Finish the game
+      playing = false;
+      diceEl.classList.add("hidden");
 
-//New game button functionality
-const newAction = function () {
-  //Reset everything to the starting phase
-  if (checkTurn()) {
-    player1El.classList.remove("player--active");
-    player1El.classList.remove("player--winner");
-  } else {
-    player2El.classList.remove("player--active");
-    player2El.classList.remove("player--winner");
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add("player--winner");
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove("player--active");
+    } else {
+      // Switch to the next player
+      switchPlayer();
+    }
   }
+});
 
-  changeCurrent("p1", 0);
-  changeCurrent("p2", 0);
-  changeTotal("p1", 0);
-  changeTotal("p2", 0);
-
-  rollButton.addEventListener("click", rollAction);
-  holdButton.addEventListener("click", holdAction);
-
-  //Change the starting player
-  beginTurn === 0
-    ? player2El.classList.add("player--active")
-    : player1El.classList.add("player--active");
-
-  //Choose the future starting player
-  beginTurn === 0 ? (beginTurn += 1) : (beginTurn -= 1);
-};
-
-//Checking if it's player 1's turn
-const checkTurn = function () {
-  if (player1El.classList.contains("player--active")) return true;
-  else return false;
-};
-
-//Switching to another player
-const changeTurn = function () {
-  if (checkTurn()) {
-    changeCurrent("p1", 0);
-    player1El.classList.remove("player--active");
-    player2El.classList.add("player--active");
-  } else {
-    changeCurrent("p2", 0);
-    player2El.classList.remove("player--active");
-    player1El.classList.add("player--active");
-  }
-};
-
-//Changing the amount of current points
-const changeCurrent = function (player, score) {
-  if (player === "p1") {
-    document.querySelector("#current--0").textContent = score;
-  } else {
-    document.querySelector("#current--1").textContent = score;
-  }
-  currentScore = score;
-};
-
-//Changing the amount of total points
-const changeTotal = function (player, score) {
-  if (player === "p1") {
-    p1Score = score;
-    p1ScoreEl.textContent = score;
-  } else {
-    p2Score = score;
-    p2ScoreEl.textContent = score;
-  }
-};
-
-//Adding points to the total amount
-const sumTotal = function (player) {
-  if (player === "p1") {
-    p1Score += currentScore;
-    p1ScoreEl.textContent = p1Score;
-  } else {
-    p2Score += currentScore;
-    p2ScoreEl.textContent = p2Score;
-  }
-};
-
-//Choosing winner and disabling button functionality
-const endGame = function (winner) {
-  // console.log(`Player ${checkTurn() ? 1 : 2} WINS!`);
-  checkTurn()
-    ? player1El.classList.add("player--winner")
-    : player2El.classList.add("player--winner");
-
-  rollButton.removeEventListener("click", rollAction);
-  holdButton.removeEventListener("click", holdAction);
-};
-
-rollButton.addEventListener("click", rollAction);
-holdButton.addEventListener("click", holdAction);
-newGameButton.addEventListener("click", newAction);
+btnNew.addEventListener("click", init);
