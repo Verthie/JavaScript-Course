@@ -13,12 +13,29 @@ document.querySelector(".guess").value = 23; //? changing a value
 console.log(document.querySelector(".guess").value);
 */
 
-let secretNumber = Math.trunc(Math.random() * 20 + 1);
+let secretNumber;
 let score = 20;
 let highscore = 0;
-document.querySelector(".number").textContent = "?";
-document.querySelector(".guess").value = "";
 
+function displayMessage(message) {
+  document.querySelector(".message").textContent = message;
+}
+
+const changeStyle = function (bgc, width) {
+  document.querySelector("body").style.backgroundColor = bgc;
+  document.querySelector(".number").style.width = width;
+};
+
+const changeScore = (score) =>
+  (document.querySelector(".score").textContent = score);
+
+const generateSecretNumber = () =>
+  (secretNumber = Math.trunc(Math.random() * 20 + 1));
+
+const displaySecretNumber = (parameter) =>
+  (document.querySelector(".number").textContent = parameter);
+
+generateSecretNumber();
 // Check button functionality
 document.querySelector(".check").addEventListener("click", function () {
   const guess = Number(document.querySelector(".guess").value); //? using Number() to convert a string type to a number type
@@ -26,61 +43,45 @@ document.querySelector(".check").addEventListener("click", function () {
 
   // When there is no input
   if (!guess) {
-    document.querySelector(".message").textContent = "⛔ No number!";
+    displayMessage("⛔ No number!");
 
     // When player wins
   } else if (guess === secretNumber) {
-    // Own addition
-    document.querySelector(".number").textContent = secretNumber;
+    displaySecretNumber(secretNumber);
     if (highscore < score) {
-      document.querySelector(".message").textContent =
-        "🎉 Correct number! New Highscore!";
+      displayMessage("🎉 Correct number! New Highscore!");
       highscore = score;
       document.querySelector(".highscore").textContent = highscore;
     } else {
-      document.querySelector(".message").textContent = "🎉 Correct number!";
+      displayMessage("🎉 Correct number!");
     }
 
-    document.querySelector("body").style.backgroundColor = "#60b347";
-    document.querySelector(".number").style.width = "30rem";
-
+    changeStyle("#60b347", "30rem");
     // When guess is out of range
   } else if (guess > 20 || guess < 1) {
-    document.querySelector(".message").textContent = "❗Out of range!"; // Own addition
+    displayMessage("❗Out of range!");
 
-    // When guess is too high
-  } else if (guess > secretNumber) {
+    // When guess is wrong
+  } else if (guess !== secretNumber) {
     if (score > 1) {
-      document.querySelector(".message").textContent = "Too high! 📉";
-      score--;
-      document.querySelector(".score").textContent = score;
-    } else {
-      document.querySelector(".message").textContent = "💥 You Lost!";
-      document.querySelector(".score").textContent = 0;
+      displayMessage(guess > secretNumber ? "Too high! 📈" : "Too low! 📉");
     }
-
-    // When guess is too low
-  } else if (guess < secretNumber) {
-    if (score > 1) {
-      document.querySelector(".message").textContent = "Too low! 📈";
-      score--;
-      document.querySelector(".score").textContent = score;
-    } else {
-      document.querySelector(".message").textContent = "💥 You Lost!";
-      document.querySelector(".score").textContent = 0;
-    }
+    score--;
+    changeScore(score);
+  } else {
+    displayMessage("💥 You Lost!");
+    changeScore(0);
   }
 });
 
 // Again button functionality
 document.querySelector(".again").addEventListener("click", function () {
   score = 20;
-  document.querySelector(".score").textContent = score;
-  secretNumber = Math.trunc(Math.random() * 20 + 1);
-  document.querySelector(".number").textContent = "?";
+  changeScore(score);
+  generateSecretNumber();
+  displaySecretNumber("?");
   document.querySelector(".guess").value = "";
 
-  document.querySelector("body").style.backgroundColor = "#222";
-  document.querySelector(".number").style.width = "15rem";
-  document.querySelector(".message").textContent = "Start guessing...";
+  changeStyle("#222", "15rem");
+  displayMessage("Start guessing...");
 });
