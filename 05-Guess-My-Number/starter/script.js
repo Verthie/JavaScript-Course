@@ -78,4 +78,5 @@ document.querySelector(".again").addEventListener("click", function () {
   document.querySelector(".number").textContent = secretNumber;
   document.querySelector("body").style.backgroundColor = "#222";
   document.querySelector(".number").style.width = "15rem";
+  document.querySelector(".message").textContent = "Start guessing...";
 });
