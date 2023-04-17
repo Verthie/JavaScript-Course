@@ -10,10 +10,10 @@ function calcAge(birthYear) {
 
     if (birthYear >= 1981 && birthYear <= 1996) {
       var millenial = true;
-      //Creating NEW variable with same name as outer scope's variable
+      // Creating NEW variable with same name as outer scope's variable
       const firstName = "Steven";
 
-      //Reassigning outer scope's variable
+      // Reassigning outer scope's variable
       output = "NEW OUTPUT!";
 
       const str = `Oh, and you're a millenial, ${firstName}`;
@@ -41,7 +41,7 @@ calcAge(1991);
 //////////////////////////////
 
 // Variables
-console.log(me);
+console.log(me); //:? works because var is stored globally and can be accessed from anywhere, that's why it should be avoided
 // console.log(job); //:? error
 // console.log(year); //:? error
 
@@ -50,9 +50,9 @@ let job = "teacher";
 const year = 1991;
 
 // Functions
-console.log(addDecl(2, 3)); 
-// console.log(addExpr(2, 3));
-console.log(addArrow);
+console.log(addDecl(2, 3)); //:? declared function can be accessed from anywhere
+// console.log(addExpr(2, 3)); //:? function expression needs to be defined before use
+console.log(addArrow); //:? arrow function also needs to be defined before use
 console.log(addArrow(2, 3));
 
 function addDecl(a, b) {
@@ -65,9 +65,9 @@ const addExpr = function (a, b) {
 
 const addArrow = (a, b) => a + b;
 
-// Example
-console.log(numproducts); //:? undefined
-if (!numProducts) deleteShoppingCart(); //:? true
+// Example //:! of what shouldn't be done
+console.log(numproducts); //:? undefined - when accessing var variable before definition they're labeled as undefined
+if (!numProducts) deleteShoppingCart(); //:? if (!undefined) => true -- undefined is a falsy value
 
 var numProducts = 10;
 
@@ -79,7 +79,7 @@ var x = 1;
 let y = 2;
 const z = 3;
 
-console.log(x === window.x); //:? true - var is stored in window object
+console.log(x === window.x); //:? true -- var is stored in window object (global)
 console.log(y === window.y); //:? false
 console.log(z === window.z); //:? false
 
@@ -95,7 +95,7 @@ calcAge(1991);
 
 const calcAgeArrow = (birthYear) => {
   console.log(2037 - birthYear);
-  console.log(this); //:? this === window {}
+  console.log(this); //:? this === global (window object) -- this in arrow function inherits the object of its parent
 };
 calcAgeArrow(1980);
 
@@ -121,35 +121,36 @@ f();
 
 /////////////////////////////
 
-// var FirstName = 'Matilda';
+//:! var firstName = 'Matilda'; //don't do that, it assigns the variable firstName globally
 
 const jonas = {
   firstName: "Jonas",
   year: 1991,
   calcAge: function () {
     // console.log(this);
-    console.log(2037 - this.year);
+    console.log(2037 - this.year); //:? this === jonas -- the calcAge function's object is jonas
 
     // Solution 1
-    // const self = this; // self or that
+    // const self = this; // self or that //:? in order to call the object in lower level we assign variable to it within calcAge function
     // const isMillenial = function () {
-    //   console.log(self);
+    //   console.log(self); //:? self === jonas
     //   console.log(self.year >= 1981 && self.year <= 1996);
-    //   // console.log(this.year >= 1981 && this.year <= 1996);
+    //   // console.log(this.year >= 1981 && this.year <= 1996); //:? this === undefined -- this only responds to the object in the same level
     // };
     // isMillenial();
 
     // Solution 2
     const isMillenial = () => {
-      console.log(this);
+      console.log(this); //:? this === jonas -- arrow function inherits the parent's object (1 level above)
       console.log(this.year >= 1981 && this.year <= 1996);
     };
     isMillenial();
   },
 
   greet: () => {
-    console.log(this);
-    console.log(`Hey ${this.firstName}`);
+    console.log(this); //:? this === global -- arrow function is within jonas object, but it inherits the object 1 level above (window object)
+    console.log(`Hey ${this.firstName}`); //:? global.firstname === undefined
+    //:! if there was a var firstName = 'Matilda' it wouldn't be 'undefined' in global, its value would be 'Matilda'
   },
 };
 jonas.greet();
@@ -157,7 +158,7 @@ jonas.calcAge();
 
 // arguments keyword
 const addExpr = function (a, b) {
-  console.log(arguments);
+  console.log(arguments); //:? arguments keyword allows to add more parameters than specified in the brackets of the function
   return a + b;
 };
 addExpr(2, 5);
@@ -165,6 +166,6 @@ addExpr(2, 5, 8, 12);
 
 var addArrow = (a, b) => {
   console.log(arguments);
-  return a + b
-}
-addArrow(2,5,8)
+  return a + b;
+};
+addArrow(2, 5, 8);
