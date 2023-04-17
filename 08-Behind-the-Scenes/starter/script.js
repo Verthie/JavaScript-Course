@@ -38,19 +38,19 @@ calcAge(1991);
 // console.log(age);
 // printAge();
 
-*/
+//////////////////////////////
 
 // Variables
 console.log(me);
-// console.log(job);
-// console.log(year);
+// console.log(job); //:? error
+// console.log(year); //:? error
 
 var me = "Jonas";
 let job = "teacher";
 const year = 1991;
 
 // Functions
-console.log(addDecl(2, 3));
+console.log(addDecl(2, 3)); 
 // console.log(addExpr(2, 3));
 console.log(addArrow);
 console.log(addArrow(2, 3));
@@ -66,8 +66,8 @@ const addExpr = function (a, b) {
 const addArrow = (a, b) => a + b;
 
 // Example
-console.log(undefined);
-if (!numProducts) deleteShoppingCart();
+console.log(numproducts); //:? undefined
+if (!numProducts) deleteShoppingCart(); //:? true
 
 var numProducts = 10;
 
@@ -79,6 +79,40 @@ var x = 1;
 let y = 2;
 const z = 3;
 
-console.log(x === window.x);
-console.log(y === window.y);
-console.log(z === window.z);
+console.log(x === window.x); //:? true - var is stored in window object
+console.log(y === window.y); //:? false
+console.log(z === window.z); //:? false
+
+*/
+
+console.log(this); //:? this === undefined
+
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+calcAge(1991);
+
+const calcAgeArrow = (birthYear) => {
+  console.log(2037 - birthYear);
+  console.log(this); //:? this === window {}
+};
+calcAgeArrow(1980);
+
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this); //:? this === jonas
+    console.log(2037 - this.year); //:? this.year === jonas.year
+  },
+};
+jonas.calcAge();
+
+const matilda = {
+  year: 2017,
+};
+matilda.calcAge = jonas.calcAge; //:? method borrowing => taking method from one object and adding to another
+matilda.calcAge();
+
+const f = jonas.calcAge;
+f();
