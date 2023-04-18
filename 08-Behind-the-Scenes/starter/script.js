@@ -10,7 +10,7 @@ function calcAge(birthYear) {
 
     if (birthYear >= 1981 && birthYear <= 1996) {
       var millenial = true;
-      // Creating NEW variable with same name as outer scope's variable
+      // Creating NEW variable with the same name as outer scope's variable (local variable)
       const firstName = "Steven";
 
       // Reassigning outer scope's variable
@@ -24,8 +24,8 @@ function calcAge(birthYear) {
       }
     }
     // console.log(str);
-    console.log(millenial);
-    // console.log(add(2, 3)); //:? only works when strict mode is disabled, but it shouldn't work based on the scope
+    console.log(millenial); //:? can be accessed outside of the function because 'var' was used to define it - that's why we should avoid it
+    // console.log(add(2, 3)); //:? works when strict mode is disabled, it shouldn't work based on the scope - strict mode should always be enabled
     console.log(output);
   }
 
@@ -35,7 +35,7 @@ function calcAge(birthYear) {
 
 const firstName = "Jonas";
 calcAge(1991);
-// console.log(age);
+// console.log(age); //:? there's no access to the age variable since it's a local variable defined in the calcAge() function
 // printAge();
 
 //////////////////////////////
@@ -117,11 +117,9 @@ matilda.calcAge();
 const f = jonas.calcAge;
 f();
 
-*/
-
 /////////////////////////////
 
-//:! var firstName = 'Matilda'; //don't do that, it assigns the variable firstName globally
+// var firstName = 'Matilda'; //:! don't do that, it assigns the variable firstName globally
 
 const jonas = {
   firstName: "Jonas",
@@ -169,3 +167,47 @@ var addArrow = (a, b) => {
   return a + b;
 };
 addArrow(2, 5, 8);
+
+*/
+
+// Primitive types
+let lastName = "Williams";
+let oldLastName = lastName; //:? both variables refer to the same address with value "Williams"
+lastName = "Davis"; //:? now variable lastName refers to a different address with value "Davis"
+console.log(lastName, oldLastName); //:? both variables refer to different addresses which refer to different values
+
+// Reference types //:! important
+const jessica = {
+  firstName: "Jessica",
+  lastName: "Williams",
+  age: 27,
+};
+
+const marriedJessica = jessica; //:? Both variables refer to the same address, the address points to the reference for the object, we don't create new object just pass the reference
+marriedJessica.lastName = "Davis"; //:? The value is passed to the reference, not directly to the object - because of that change of value happens in the same object for both variables
+
+console.log("Before marriage:", jessica);
+console.log("After marriage:", marriedJessica);
+
+// marriedJessica = {};
+
+// Copying objects
+const jessica2 = {
+  firstName: "Jessica",
+  lastName: "Williams",
+  age: 27,
+  family: ["Alice", "Bob"],
+};
+
+const jessicaCopy = Object.assign({}, jessica2); //:? assigning the jessica2 object to the new empty object, then applying it to the jessicaCopy variable
+jessicaCopy.lastName = "Davis"; //:? change happens only in the jessicaCopy object
+
+jessicaCopy.family.push("Mary");
+jessicaCopy.family.push("John");
+
+console.log("Before marriage: ", jessica2);
+console.log("After marriage: ", jessicaCopy); //:? The array is the same in both objects since assigning works only for first-level parameters
+
+//:? array is simmilar to object, it is a reference type so the changes were passed to the reference of the array and not directly to the array
+
+//:* Important: objects, arrays and functions are reference types
