@@ -119,7 +119,7 @@ f();
 
 /////////////////////////////
 
-// var firstName = 'Matilda'; //:! don't do that, it assigns the variable firstName globally
+// var firstName = 'Matilda'; //:! 1: don't do that, it assigns the variable firstName globally
 
 const jonas = {
   firstName: "Jonas",
@@ -139,16 +139,16 @@ const jonas = {
 
     // Solution 2
     const isMillenial = () => {
-      console.log(this); //:? this === jonas -- arrow function inherits the parent's object (1 level above)
+      console.log(this); //:? this === jonas -- arrow function inherits 'this' of the parent function (1 level above), 'this' acts as if it was called in calcAge()
       console.log(this.year >= 1981 && this.year <= 1996);
     };
     isMillenial();
   },
 
   greet: () => {
-    console.log(this); //:? this === global -- arrow function is within jonas object, but it inherits the object 1 level above (window object)
+    console.log(this); //:? this === global -- in this case the arrow function inherits 'this' outside the calcAge() function, so this refers to the window object
     console.log(`Hey ${this.firstName}`); //:? global.firstname === undefined
-    //:! if there was a var firstName = 'Matilda' it wouldn't be 'undefined' in global, its value would be 'Matilda'
+    //:! 1: if there was a var firstName = 'Matilda' it wouldn't be 'undefined' in global, its value would be 'Matilda'
   },
 };
 jonas.greet();
@@ -176,7 +176,7 @@ let oldLastName = lastName; //:? both variables refer to the same address with v
 lastName = "Davis"; //:? now variable lastName refers to a different address with value "Davis"
 console.log(lastName, oldLastName); //:? both variables refer to different addresses which refer to different values
 
-// Reference types //:! important
+// Reference types //:* important
 const jessica = {
   firstName: "Jessica",
   lastName: "Williams",
