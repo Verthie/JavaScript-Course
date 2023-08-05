@@ -3,13 +3,13 @@
 /*
 console.log(document.querySelector(".message").textContent);
 
-document.querySelector(".message").textContent = "🎉 Correct Number!"; //:? changing the text content 
+document.querySelector(".message").textContent = "🎉 Correct Number!"; // changing the text content 
 // console.log(document.querySelector(".message").textContent);
 
 document.querySelector(".number").textContent = 13;
 document.querySelector(".score").textContent = 10;
 
-document.querySelector(".guess").value = 23; //:? changing a value
+document.querySelector(".guess").value = 23; // changing a value
 console.log(document.querySelector(".guess").value);
 */
 
@@ -38,7 +38,8 @@ const displaySecretNumber = (parameter) =>
 generateSecretNumber();
 // Check button functionality
 document.querySelector(".check").addEventListener("click", function () {
-  const guess = Number(document.querySelector(".guess").value); //:? using Number() to convert a string type to a number type
+  // using Number() to convert a string type to a number type
+  const guess = Number(document.querySelector(".guess").value);
   console.log(guess, typeof guess);
 
   // When there is no input

@@ -1,5 +1,7 @@
 "use strict";
 
+//:* Basically about how scope, functions, primitives and objects operate in JS
+
 /*
 function calcAge(birthYear) {
   const age = 2037 - birthYear;
@@ -25,7 +27,7 @@ function calcAge(birthYear) {
     }
     // console.log(str);
     console.log(millenial); //:? can be accessed outside of the function because 'var' was used to define it - that's why we should avoid it
-    // console.log(add(2, 3)); //:? works when strict mode is disabled, it shouldn't work based on the scope - strict mode should always be enabled
+    // console.log(add(2, 3)); //:? works when strict mode is disabled, it shouldn't work based on the scope - that's why strict mode should always be enabled
     console.log(output);
   }
 
@@ -35,21 +37,22 @@ function calcAge(birthYear) {
 
 const firstName = "Jonas";
 calcAge(1991);
-// console.log(age); //:? there's no access to the age variable since it's a local variable defined in the calcAge() function
+// console.log(age); 
+//:? there's no access to the age variable since it's a local variable defined in the calcAge() function
 // printAge();
 
 //////////////////////////////
 
-// Variables
+//:2 Variables
 console.log(me); //:? works because var is stored globally and can be accessed from anywhere, that's why it should be avoided
-// console.log(job); //:? error
-// console.log(year); //:? error
+// console.log(job); // error - job can't be accessed before initialization
+// console.log(year); // error - year can't be accessed before initialization
 
 var me = "Jonas";
 let job = "teacher";
 const year = 1991;
 
-// Functions
+//:2 Functions
 console.log(addDecl(2, 3)); //:? declared function can be accessed from anywhere
 // console.log(addExpr(2, 3)); //:? function expression needs to be defined before use
 console.log(addArrow); //:? arrow function also needs to be defined before use
@@ -65,7 +68,7 @@ const addExpr = function (a, b) {
 
 const addArrow = (a, b) => a + b;
 
-// Example //:! of what shouldn't be done
+//:! Example (of what shouldn't be done)
 console.log(numproducts); //:? undefined - when accessing var variable before definition they're labeled as undefined
 if (!numProducts) deleteShoppingCart(); //:? if (!undefined) => true -- undefined is a falsy value
 

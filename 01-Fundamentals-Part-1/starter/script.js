@@ -1,4 +1,4 @@
-/*
+
 let js = "amazing";
 console.log(40 + 8 + 23 - 10);
 
@@ -23,7 +23,7 @@ let job1 = "programmer"; //don't name variables like that
 let job2 = "teacher";
 
 console.log(myFirstJob);
-*/
+
 
 /*
 let javascriptIsFun = true;
