@@ -773,7 +773,7 @@ const gameEvents = new Map([
 ]);
 
 // Task 1
-const events = new Set([...gameEvents.values()]);
+const events = [...new Set(gameEvents.values())];
 console.log(events);
 
 // Task 2
@@ -781,20 +781,18 @@ gameEvents.delete(64);
 console.log(gameEvents);
 
 // Task 3
-// console.log([...gameEvents.keys()]);
-const minuteArray = [...gameEvents.keys()];
-let sum = 0;
+console.log(
+  `An event happened, on average, every ${90 / gameEvents.size} minutes`
+);
 
-for (let i = 0; i < minuteArray.length - 1; i++) {
-  let roz = minuteArray[i + 1] - minuteArray[i];
-  sum += roz;
-}
-
-const average = sum / minuteArray.length;
-
-console.log(`An event happened, on average, every ${average} minutes`);
+// Bonus using the 92 minute value from gameEvents
+const time = [...gameEvents.keys()].pop();
+console.log(time);
+console.log(
+  `An event happened, on average, every ${time / gameEvents.size} minutes`
+);
 
 // Task 4
-for (const [key, value] of gameEvents) {
-  console.log(`[${key <= 45 ? "FIRST HALF" : "SECOND HALF"}] ${key}: ${value}`);
+for (const [min, event] of gameEvents) {
+  console.log(`[${min <= 45 ? "FIRST" : "SECOND"} HALF] ${min}: ${event}`);
 }
