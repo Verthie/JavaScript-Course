@@ -5,7 +5,7 @@ const flights =
   "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
 ////////////////////////////////////////
-//:1 Enchanced Objects literals
+//: Enchanced Objects literals
 const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
 const openingHours = {
@@ -66,10 +66,49 @@ const ordersSet = new Set([
 ]);
 
 ////////////////////////////////////////
-//:1 Maps Iteration
+//: Maps Iteration
+
+const question = new Map([
+  ["question", "What is the best programming language in the world?"],
+  [1, "C"],
+  [2, "Java"],
+  [3, "JavaScript"],
+  ["correct", 3],
+  [true, "Correct 🎉"],
+  [false, "Try again!"],
+]);
+// console.log(question);
+
+// Convert object to map
+// console.log(Object.entries(openingHours));
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
+
+console.log(question.get("question"));
+for (const [key, value] of question) {
+  if (typeof key === "number") console.log(`Answer ${key}: ${value}`);
+}
+// const answer = Number(prompt("Your answer: "));
+const answer = 3;
+console.log(answer);
+
+// console.log(
+//   answer === question.get("correct") ? question.get(true) : question.get(false)
+// );
+
+console.log(question.get(question.get("correct") === answer));
+// question.get("correct") === answer returns 'false' or 'true' based on user's answer
+// question.get(question.get("correct") === answer) returns the value of provided key (Correct or Try again!)
+
+// Convert map to array
+console.log([...question]);
+
+console.log(question.entries());
+console.log(...question.keys());
+console.log(...question.values());
 
 ////////////////////////////////////////
-//:1 Maps Fundamentals
+//: Maps Fundamentals
 /*
 
 const rest = new Map();
@@ -107,7 +146,7 @@ console.log(rest.get(arr));
 */
 
 ////////////////////////////////////////
-//:1 Sets
+//: Sets
 /*
 
 console.log(ordersSet);
@@ -138,12 +177,12 @@ console.log(new Set("jonasschmedtmann").size);
 */
 
 ////////////////////////////////////////
-//:1 Looping Objects: Object Keys, Values, and Entries
+//: Looping Objects: Object Keys, Values and Entries
 /*
 
 //:? Basically konwertujemy obiekt lub właściwości obiektu na tablice i iterujemy po nich za pomocą for-of loop
 
-//:2 Property NAMES
+//:. Property NAMES
 const properties = Object.keys(openingHours);
 console.log(properties);
 
@@ -154,11 +193,11 @@ for (const day of properties) {
 }
 console.log(openStr);
 
-//:2 Property VALUES
+//:. Property VALUES
 const values = Object.values(openingHours);
 console.log(values);
 
-// :2 Entire object
+//:. Entire object
 const entries = Object.entries(openingHours);
 console.log(entries);
 
@@ -172,7 +211,7 @@ for (const [day, { open, close }] of entries) {
 */
 
 ////////////////////////////////////////
-//:1 Optional Chaining (?.)
+//: Optional Chaining (?.)
 /*
 
 //:@ WITHOUT optional chaining
@@ -193,11 +232,11 @@ for (const day of days) {
   console.log(`On ${day}, we open at ${open}`);
 }
 
-//:2 Methods
+//:. Methods
 console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
 console.log(restaurant.orderRisotto?.(0, 1) ?? "Method does not exist");
 
-//:2 Arrays
+//:. Arrays
 const users = [{ name: "Jonas", email: "hello@jonas" }];
 // const users = [];
 
@@ -209,7 +248,7 @@ else console.log("user array empty");
 */
 
 ////////////////////////////////////////
-//:1 Looping Arrays: The for-of Loop
+//: Looping Arrays: The for-of Loop
 /*
 
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
@@ -230,7 +269,7 @@ for (const item of menu) console.log(item);
 */
 
 ////////////////////////////////////////
-//:1 Logical Assignment Operators
+//: Logical Assignment Operators
 /*
 
 const rest1 = {
@@ -244,17 +283,17 @@ const rest2 = {
   owner: "Giovanni Rossi",
 };
 
-//:2 OR assignment operator
+//:. OR assignment operator
 // rest1.numGuests = rest1.numGuests || 10;
 // rest2.numGuests = rest2.numGuests || 10;
 // rest1.numGuests ||= 10; // The same as the above examples, but written differently
 // rest2.numGuests ||= 10;
 
-//:2 nullish assignment operator (null or undefined)
+//:. nullish assignment operator (null or undefined)
 rest1.numGuests ??= 10;
 rest2.numGuests ??= 10;
 
-//:2 AND assignment operator
+//:. AND assignment operator
 // rest1.owner = rest1.owner && "<ANONYMOUS>";
 // rest2.owner = rest2.owner && "<ANONYMOUS>";
 rest1.owner &&= "<ANONYMOUS>";
@@ -265,14 +304,14 @@ console.log(rest2);
 */
 
 ////////////////////////////////////////
-//:1 The Nullish Coalescing Operator (??)
+//: The Nullish Coalescing Operator (??)
 /*
 
 restaurant.numGuests = 0;
 const guests = restaurant.numGuests || 10;
 console.log(guests);
 
-//:2 Nullish: null and undefined (NOT 0 or '')
+//:. Nullish: null and undefined (NOT 0 or '')
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
 
@@ -280,7 +319,7 @@ console.log(guestCorrect);
 */
 
 ////////////////////////////////////////
-//:1 Short Circuiting (&& and ||)
+//: Short Circuiting (&& and ||)
 /*
 
 console.log("---- OR ----");
@@ -318,14 +357,14 @@ restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
 */
 
 ////////////////////////////////////////
-//:1 Rest Pattern and Parameters
+//: Rest Pattern and Parameters
 /*
 
 // 1) Destructuring
-//:2 SPREAD, because on RIGHT side of '='
+//:. SPREAD, because on RIGHT side of '='
 const arr = [1, 2, ...[3, 4]];
 
-//:2 REST, because on LEFT side of '='
+//:. REST, because on LEFT side of '='
 const [a, b, ...others] = [1, 2, 3, 4, 5];
 console.log(a, b, others);
 //:? REST operator - zbiera pozostałe elementy tablicy do nowej tablicy (REST operator musi być ostatni - "it collects the REST of the elements")
@@ -338,7 +377,7 @@ const [pizza, , risotto, ...otherFood] = [
 ];
 console.log(pizza, risotto, otherFood);
 
-//:2 Objects
+//:. Objects
 const { sat, ...weekdays } = restaurant.openingHours;
 console.log(weekdays);
 
@@ -360,8 +399,8 @@ restaurant.orderPizza("mushrooms");
 */
 
 //////////////////////////////////////
-//:1 The Spread Operator (...)
-/*
+//: The Spread Operator (...)
+/* 
 
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]]; //:@ old way
@@ -378,21 +417,21 @@ console.log(newMenu);
 
 //:? Spread Operator - rozpakowuje całą zawartość tablicy
 
-//:2 Copy array
+//:. Copy array
 const mainMenuCopy = [...restaurant.mainMenu];
 
-//:2 Join 2 arrays
+//:. Join 2 arrays
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 console.log(menu);
 
-//:2 Iterables: arrays, strings, maps, sets. NOT objects
+//:. Iterables: arrays, strings, maps, sets. NOT objects
 const str = "Jonas";
 const letters = [...str, " ", "S."]; //:? ...str rozpakowuje stringa na pojedyncze znaki
 console.log(letters);
 console.log(...str);
 // console.log(`${...str} Schmedtmann`);
 
-//:2 Real-world example
+//:. Real-world example
 const ingredients = [
   prompt("Let's make pasta! Ingredient 1?"),
   prompt("Ingredient 2?"),
@@ -403,7 +442,7 @@ console.log(ingredients);
 restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]); //:@ old way
 restaurant.orderPasta(...ingredients); //:& new way
 
-//:2 Objects
+//:. Objects
 const newRestaurant = { foundedIn: 1998, ...restaurant, founder: "Guiseppe" };
 console.log(newRestaurant);
 
@@ -411,10 +450,10 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = "Ristorante Roma";
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
-*/
+ */
 
 ////////////////////////////////////
-//:1 Destructuring Objects
+//: Destructuring Objects
 /*
 
 restaurant.orderDelivery({
@@ -444,7 +483,7 @@ console.log(menu, starters);
 
 //:? Destrukturyzacja Obiektu - przypisanie wartości z obiektu do zmiennych
 
-//:2 Mutating variables
+//:. Mutating variables
 let a = 111;
 let b = 999;
 const obj = { a: 23, b: 7, c: 14 };
@@ -452,7 +491,7 @@ const obj = { a: 23, b: 7, c: 14 };
 console.log(a, b);
 //:? zamiana wartosci zmiennych
 
-//:2 Nested objects
+//:. Nested objects
 const {
   fri: { open: o, close: c },
 } = openingHours;
@@ -461,7 +500,7 @@ console.log(o, c);
 */
 
 ///////////////////////////////////////
-//:1 Destructuring Arrays
+//: Destructuring Arrays
 /*
 
 //:@ old-fashioned way of getting 3 variables from an array
@@ -485,7 +524,7 @@ console.log(firsto, thirdo);
 let [main, , secondary] = restaurant.categories;
 console.log(main, secondary);
 
-//:2 Switching vaiables
+//:. Switching vaiables
 const temp = main;
 main = secondary;
 secondary = temp;
@@ -494,24 +533,24 @@ console.log(main, secondary);
 [main, secondary] = [secondary, main];
 console.log(main, secondary);
 
-//:2 Receive 2 return values from a function
+//:. Receive 2 return values from a function
 const [starter, mainCourse] = restaurant.order(2, 0);
 console.log(starter, mainCourse);
 
-//:2 Nested destructuring
+//:. Nested destructuring
 const nested = [2, 4, [5, 6]];
 // const [i, , j] = nested;
 // console.log(i, j);
 const [i, , [j, k]] = nested;
 console.log(i, j, k);
 
-//:2 Default values
+//:. Default values
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r);
 */
 
 ///////////////////////////////////////
-//:1 Coding Challenge #1
+//: Coding Challenge #1
 /*
 We're building a football betting app (soccer for my American friends 😅)!
 Suppose we get data from a web service about a certain game ('game' variable on
@@ -616,7 +655,7 @@ team1 > team2 && console.log("Team 2 is more likely to win");
 */
 
 ///////////////////////////////////////
-//:1 Coding Challenge #2
+//: Coding Challenge #2
 /*
 Let's continue with our football betting app! Keep using the 'game' variable from
 before.

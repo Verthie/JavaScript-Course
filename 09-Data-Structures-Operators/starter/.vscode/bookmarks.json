@@ -1,0 +1,84 @@
+{
+	"files": [
+		{
+			"path": "script.js",
+			"bookmarks": [
+				{
+					"line": 7,
+					"column": 30,
+					"label": "Enchanced Objects literals"
+				},
+				{
+					"line": 68,
+					"column": 18,
+					"label": "Maps Iteration"
+				},
+				{
+					"line": 110,
+					"column": 21,
+					"label": "Maps Fundamentals"
+				},
+				{
+					"line": 148,
+					"column": 8,
+					"label": "Sets"
+				},
+				{
+					"line": 179,
+					"column": 45,
+					"label": "Looping Objects: Object Keys, Values and Entries"
+				},
+				{
+					"line": 213,
+					"column": 26,
+					"label": "Optional Chaining (?.)"
+				},
+				{
+					"line": 250,
+					"column": 35,
+					"label": "Looping Arrays: The for-of Loop"
+				},
+				{
+					"line": 271,
+					"column": 32,
+					"label": "Logical Assignment Operators"
+				},
+				{
+					"line": 306,
+					"column": 39,
+					"label": "The Nullish Coalescing Operator (??)"
+				},
+				{
+					"line": 321,
+					"column": 27,
+					"label": "Short Circuiting (&& and ||)"
+				},
+				{
+					"line": 359,
+					"column": 23,
+					"label": "Rest Pattern and Parameters"
+				},
+				{
+					"line": 401,
+					"column": 2,
+					"label": "The Spread Operator"
+				},
+				{
+					"line": 455,
+					"column": 2,
+					"label": "Destructuring Objects"
+				},
+				{
+					"line": 552,
+					"column": 23,
+					"label": "Coding Challenge #1"
+				},
+				{
+					"line": 657,
+					"column": 23,
+					"label": "Coding Challenge #2"
+				}
+			]
+		}
+	]
+}
