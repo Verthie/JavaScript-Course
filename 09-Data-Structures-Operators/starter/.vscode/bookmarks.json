@@ -9,74 +9,79 @@
 					"label": "Enchanced Objects literals"
 				},
 				{
-					"line": 68,
+					"line": 59,
 					"column": 18,
 					"label": "Maps Iteration"
 				},
 				{
-					"line": 110,
+					"line": 103,
 					"column": 21,
 					"label": "Maps Fundamentals"
 				},
 				{
-					"line": 148,
+					"line": 141,
 					"column": 8,
 					"label": "Sets"
 				},
 				{
-					"line": 179,
+					"line": 180,
 					"column": 45,
 					"label": "Looping Objects: Object Keys, Values and Entries"
 				},
 				{
-					"line": 213,
+					"line": 214,
 					"column": 26,
 					"label": "Optional Chaining (?.)"
 				},
 				{
-					"line": 250,
+					"line": 251,
 					"column": 35,
 					"label": "Looping Arrays: The for-of Loop"
 				},
 				{
-					"line": 271,
+					"line": 272,
 					"column": 32,
 					"label": "Logical Assignment Operators"
 				},
 				{
-					"line": 306,
+					"line": 307,
 					"column": 39,
 					"label": "The Nullish Coalescing Operator (??)"
 				},
 				{
-					"line": 321,
+					"line": 322,
 					"column": 27,
 					"label": "Short Circuiting (&& and ||)"
 				},
 				{
-					"line": 359,
+					"line": 360,
 					"column": 23,
 					"label": "Rest Pattern and Parameters"
 				},
 				{
-					"line": 401,
+					"line": 402,
 					"column": 2,
 					"label": "The Spread Operator"
 				},
 				{
-					"line": 455,
+					"line": 456,
 					"column": 2,
 					"label": "Destructuring Objects"
 				},
 				{
-					"line": 552,
+					"line": 553,
 					"column": 23,
 					"label": "Coding Challenge #1"
 				},
 				{
-					"line": 657,
+					"line": 658,
 					"column": 23,
 					"label": "Coding Challenge #2"
+				},
+				{
+					"line": 739,
+					"column": 4,
+					"label": "Coding Challenge #3"
 				}
 			]
 		}
