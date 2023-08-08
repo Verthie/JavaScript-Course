@@ -57,6 +57,49 @@ const restaurant = {
 };
 
 ////////////////////////////////////////
+//: Working With Strings - Part 1
+
+const airline = "TAP Air Portugal";
+const plane = "A320";
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log("B737"[0]);
+
+console.log(airline.length);
+console.log("B737".length);
+
+console.log(airline.indexOf("r")); // Returns 6
+console.log(airline.lastIndexOf("r")); // Returns 10
+console.log(airline.indexOf("Portugal"));
+console.log(airline.indexOf("portugal")); // returns -1 because the function is case sensitive
+
+console.log(airline.slice(4)); // Returns 'Air Portugal'
+console.log(airline.slice(4, 7)); // Returns 'Air'
+
+console.log(airline.slice(0, airline.indexOf(" "))); // Returns 'TAP'
+console.log(airline.slice(airline.lastIndexOf(" ") + 1)); // Returns 'Portugal'
+
+console.log(airline.slice(-2)); // Returns 'al'
+console.log(airline.slice(1, -1)); // Returns 'AP Air Portuga'
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === "B" || s === "E") console.log("You got the middle seat 😬");
+  else console.log("You got lucky 😎");
+};
+
+checkMiddleSeat("11B");
+checkMiddleSeat("23C");
+checkMiddleSeat("3E");
+
+//:? indexOf() - returns the index of an element by looking from start to end
+//:? lastIndexOf() - returns the index of an element by looking from end to start
+//:? slice() - returns a part of a string using the start and end index
+
+////////////////////////////////////////
 //: Maps Iteration
 /* 
 
@@ -136,6 +179,7 @@ console.log(rest.size);
 console.log(rest.get(arr));
 
 //:? Maps - kolekcje klucz-wartość (key-value pairs) - podobne do obiektów, ale kluczem może być dowolna wartość
+
 */
 
 ////////////////////////////////////////
@@ -175,6 +219,7 @@ console.log(
 console.log(new Set("jonasschmedtmann").size);
 
 //:? Sets - kolekcje unikalnych wartości (nie ma duplikatów)
+
 */
 
 ////////////////////////////////////////
@@ -206,9 +251,10 @@ for (const [day, { open, close }] of entries) {
   console.log(`On ${day} we open at ${open} and close at ${close}`);
 }
 
-//:? Object.keys() - zwraca tablicę z nazwami właściwości obiektu
-//:? Object.values() - zwraca tablicę z wartościami właściwości obiektu
-//:? Object.entries() - zwraca tablicę z tablicami zawierającymi nazwę i wartość właściwości obiektu
+//:? Object.keys() - zwraca tablicę z kluczami obiektu
+//:? Object.values() - zwraca tablicę z wartościami obiektu
+//:? Object.entries() - zwraca tablicę z tablicami zawierającymi klucz i wartość obiektu
+
 */
 
 ////////////////////////////////////////
@@ -223,7 +269,7 @@ if (restaurant.openingHours && restaurant.openingHours.mon)
 console.log(restaurant.openingHours.mon?.open); // sprawdzanie czy istnieje dana właściwość (mon) w obiekcie
 console.log(restaurant.openingHours?.mon?.open);
 
-//:? Optional Chaining - jeśli sprawdzana właściwość nie istnieje (jest undefined), to zwraca undefined, a dalsza część wyrażenia nie jest wykonywana
+//:? Optional Chaining (?.) - jeśli sprawdzana właściwość nie istnieje (jest undefined), to zwraca undefined, a dalsza część wyrażenia nie jest wykonywana
 
 // Example
 const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
@@ -246,6 +292,7 @@ console.log(users[0]?.name ?? "User arrays empty");
 //:@ the old way of acheiving the above
 if (users.length > 0) console.log(users[0].name);
 else console.log("user array empty");
+
 */
 
 ////////////////////////////////////////
@@ -267,6 +314,7 @@ for (const item of menu) console.log(item);
 // console.log([...menu.entries()]);
 
 //:? for-of loop - iteruje po elementach tablicy
+
 */
 
 ////////////////////////////////////////
@@ -302,6 +350,7 @@ rest2.owner &&= "<ANONYMOUS>";
 
 console.log(rest1);
 console.log(rest2);
+
 */
 
 ////////////////////////////////////////
@@ -316,7 +365,8 @@ console.log(guests);
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
 
-//:? Nullish Coalescing Operator - zwraca pierwszą wartość, która nie jest ani null ani undefined
+//:? Nullish Coalescing Operator (??) - zwraca pierwszą wartość, która nie jest ani null ani undefined
+
 */
 
 ////////////////////////////////////////
@@ -332,7 +382,7 @@ console.log(undefined || null);
 
 console.log(undefined || 0 || "" || "Hello" || 23 || null);
 
-//:? OR operator - zwraca pierwszą prawdę lub ostatni fałsz
+//:? OR operator (||) - zwraca pierwszą prawdę lub ostatni fałsz
 
 restaurant.numGuests = 23;
 const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
@@ -347,7 +397,7 @@ console.log(7 && "Jonas");
 
 console.log("Hello" && 23 && null && "jonas");
 
-//:? AND operator - zwraca pierwszy fałsz lub ostatnią prawdę
+//:? AND operator (&&) - zwraca pierwszy fałsz lub ostatnią prawdę
 
 // Practical example
 if (restaurant.orderPizza) {
@@ -355,6 +405,7 @@ if (restaurant.orderPizza) {
 }
 
 restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
+
 */
 
 ////////////////////////////////////////
@@ -368,9 +419,8 @@ const arr = [1, 2, ...[3, 4]];
 //:. REST, because on LEFT side of '='
 const [a, b, ...others] = [1, 2, 3, 4, 5];
 console.log(a, b, others);
-//:? REST operator - zbiera pozostałe elementy tablicy do nowej tablicy (REST operator musi być ostatni - "it collects the REST of the elements")
 
-//:? SPREAD rozpakowuje tablice, a REST pakuje do tablicy
+//:? REST operator - zbiera pozostałe elementy tablicy do nowej tablicy (REST operator musi być ostatni - "it collects the REST of the elements")
 
 const [pizza, , risotto, ...otherFood] = [
   ...restaurant.mainMenu,
@@ -397,6 +447,9 @@ add(...x);
 
 restaurant.orderPizza("mushrooms", "onion", "olives", "spinach");
 restaurant.orderPizza("mushrooms");
+
+//:? SPREAD rozpakowuje tablice, a REST pakuje do tablicy
+
 */
 
 //////////////////////////////////////
@@ -451,6 +504,7 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = "Ristorante Roma";
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
+
  */
 
 ////////////////////////////////////
@@ -490,6 +544,7 @@ let b = 999;
 const obj = { a: 23, b: 7, c: 14 };
 ({ a, b } = obj);
 console.log(a, b);
+
 //:? zamiana wartosci zmiennych
 
 //:. Nested objects
@@ -497,7 +552,9 @@ const {
   fri: { open: o, close: c },
 } = openingHours;
 console.log(o, c);
+
 //:? destrukturyzacja zagnieżdżonych obiektów
+
 */
 
 ///////////////////////////////////////
@@ -548,6 +605,7 @@ console.log(i, j, k);
 //:. Default values
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r);
+
 */
 
 ///////////////////////////////////////
@@ -772,6 +830,7 @@ const gameEvents = new Map([
   [92, "🔶 Yellow card"],
 ]);
 
+/*
 // Task 1
 const events = [...new Set(gameEvents.values())];
 console.log(events);
@@ -796,3 +855,4 @@ console.log(
 for (const [min, event] of gameEvents) {
   console.log(`[${min <= 45 ? "FIRST" : "SECOND"} HALF] ${min}: ${event}`);
 }
+ */
