@@ -57,7 +57,94 @@ const restaurant = {
 };
 
 ////////////////////////////////////////
+//: Working With Strings - Part 2
+
+/* 
+
+const airline = "TAP Air Portugal";
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalization in name
+const passenger = "JOnAS"; // Jonas
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+const nameUppercase = function (name) {
+  const nameLower = name.toLowerCase();
+  return nameLower[0].toUpperCase() + nameLower.slice(1);
+};
+
+// const passengerName = String(prompt("Podaj imie pasażera: "));
+const passengerName = "staSIU";
+console.log(nameUppercase(passengerName));
+
+// Comparing emails
+const email = "hello@jonas.io";
+const loginEmail = "  Hello@Jonas.Io \n";
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+// Replacing
+const priceGB = "288,97£";
+const priceUS = priceGB.replace("£", "$").replace(",", ".");
+console.log(priceUS);
+
+const announcement =
+  "All passengers come to barding door 23. Boarding door 23!";
+
+// console.log(announcement.replace("door", "gate")); // Replaces only the first occurance
+console.log(announcement.replaceAll("door", "gate")); //:& Replacing all 'door' words with 'gate'
+
+console.log(announcement.replace(/door/g, "gate")); //:@ Regular expression was used before replaceAll function
+
+// Booleans
+const plane = "Airbus A320neo";
+console.log(plane.includes("A320"));
+console.log(plane.includes("Boeing"));
+console.log(plane.includes("Airb"));
+
+if (plane.startsWith("Airbus") && plane.endsWith("neo")) {
+  console.log("Part of the NEW Airbus family");
+}
+
+// Practice exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes("knife") || baggage.includes("gun")) {
+    console.log("You are NOT allowed on board");
+  } else {
+    console.log("Welcome aboard");
+  }
+};
+
+checkBaggage("I have a laptop, some Food and a pocket Knife");
+checkBaggage("Socks and camera");
+checkBaggage("Got some snacks and a gun for protection");
+
+//:? toLowerCase() - zamienia wszystkie znaki na małe litery
+//:? toUpperCase() - zamienia wszystkie znaki na duże litery
+//:? trim() - usuwa białe znaki z początku i końca stringa
+//:? replace() - zamienia pierwsze wystąpienie podanego stringa na inny string
+//:? replaceAll() - zamienia wszystkie wystąpienia podanego stringa na inny string
+//:? includes() - sprawdza czy dany string zawiera podany string
+//:? startsWith() - sprawdza czy dany string zaczyna się od podanego stringa
+//:? endsWith() - sprawdza czy dany string kończy się podanym stringiem
+
+*/
+
+////////////////////////////////////////
 //: Working With Strings - Part 1
+
+/* 
 
 const airline = "TAP Air Portugal";
 const plane = "A320";
@@ -97,10 +184,13 @@ checkMiddleSeat("3E");
 
 //:? indexOf() - returns the index of an element by looking from start to end
 //:? lastIndexOf() - returns the index of an element by looking from end to start
-//:? slice() - returns a part of a string using the start and end index
+//:? slice() - returns a part of a string using the start and end index 
+
+*/
 
 ////////////////////////////////////////
 //: Maps Iteration
+
 /* 
 
 const question = new Map([
@@ -145,6 +235,7 @@ console.log(...question.values());
 
 ////////////////////////////////////////
 //: Maps Fundamentals
+
 /*
 
 const rest = new Map();
@@ -180,10 +271,17 @@ console.log(rest.get(arr));
 
 //:? Maps - kolekcje klucz-wartość (key-value pairs) - podobne do obiektów, ale kluczem może być dowolna wartość
 
+//:? set() - dodaje nowy klucz-wartość do mapy
+//:? get() - zwraca wartość dla podanego klucza
+//:? has() - sprawdza czy podany klucz istnieje w mapie
+//:? delete() - usuwa klucz-wartość z mapy
+//:? clear() - usuwa wszystkie klucze-wartości z mapy
+
 */
 
 ////////////////////////////////////////
 //: Sets
+
 /*
 const ordersSet = new Set([
   "Pasta",
@@ -224,6 +322,7 @@ console.log(new Set("jonasschmedtmann").size);
 
 ////////////////////////////////////////
 //: Looping Objects: Object Keys, Values and Entries
+
 /*
 
 //:? Basically konwertujemy obiekt lub właściwości obiektu na tablice i iterujemy po nich za pomocą for-of loop
@@ -259,6 +358,7 @@ for (const [day, { open, close }] of entries) {
 
 ////////////////////////////////////////
 //: Optional Chaining (?.)
+
 /*
 
 //:@ WITHOUT optional chaining
@@ -297,6 +397,7 @@ else console.log("user array empty");
 
 ////////////////////////////////////////
 //: Looping Arrays: The for-of Loop
+
 /*
 
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
@@ -319,6 +420,7 @@ for (const item of menu) console.log(item);
 
 ////////////////////////////////////////
 //: Logical Assignment Operators
+
 /*
 
 const rest1 = {
@@ -355,6 +457,7 @@ console.log(rest2);
 
 ////////////////////////////////////////
 //: The Nullish Coalescing Operator (??)
+
 /*
 
 restaurant.numGuests = 0;
@@ -371,6 +474,7 @@ console.log(guestCorrect);
 
 ////////////////////////////////////////
 //: Short Circuiting (&& and ||)
+
 /*
 
 console.log("---- OR ----");
@@ -410,6 +514,7 @@ restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
 
 ////////////////////////////////////////
 //: Rest Pattern and Parameters
+
 /*
 
 // 1) Destructuring
@@ -454,6 +559,7 @@ restaurant.orderPizza("mushrooms");
 
 //////////////////////////////////////
 //: The Spread Operator (...)
+
 /* 
 
 const arr = [7, 8, 9];
@@ -480,10 +586,12 @@ console.log(menu);
 
 //:. Iterables: arrays, strings, maps, sets. NOT objects
 const str = "Jonas";
-const letters = [...str, " ", "S."]; //:? ...str rozpakowuje stringa na pojedyncze znaki
+const letters = [...str, " ", "S."];
 console.log(letters);
 console.log(...str);
 // console.log(`${...str} Schmedtmann`);
+
+//:? ...str rozpakowuje stringa na pojedyncze znaki
 
 //:. Real-world example
 const ingredients = [
@@ -509,6 +617,7 @@ console.log(restaurant.name);
 
 ////////////////////////////////////
 //: Destructuring Objects
+
 /*
 
 restaurant.orderDelivery({
@@ -545,15 +654,13 @@ const obj = { a: 23, b: 7, c: 14 };
 ({ a, b } = obj);
 console.log(a, b);
 
-//:? zamiana wartosci zmiennych
+//:? zamiana wartosci zmiennych za pomocą destrukturyzacji
 
 //:. Nested objects
 const {
   fri: { open: o, close: c },
 } = openingHours;
 console.log(o, c);
-
-//:? destrukturyzacja zagnieżdżonych obiektów
 
 */
 
@@ -610,6 +717,7 @@ console.log(p, q, r);
 
 ///////////////////////////////////////
 //: Coding Challenge #1
+
 /*
 We're building a football betting app (soccer for my American friends 😅)!
 Suppose we get data from a web service about a certain game ('game' variable on
@@ -715,6 +823,7 @@ team1 > team2 && console.log("Team 2 is more likely to win");
 
 ///////////////////////////////////////
 //: Coding Challenge #2
+
 /*
 Let's continue with our football betting app! Keep using the 'game' variable from
 before.
