@@ -1038,9 +1038,9 @@ insert the elements), and conversion will happen when the button is pressed.
 
 Test data (pasted to textarea, including spaces):
 underscore_case
-first_name
+ first_name
 Some_Variable
-calculate_AGE
+  calculate_AGE
 delayed_departure
 
 Should produce this output (5 separate console.log outputs):
@@ -1069,7 +1069,7 @@ const variableList = function (list) {
 
 const camelCaseConverter = function (variableName, checkCount) {
   // console.log(checkCount);
-  const words = variableName.toLowerCase().split("_");
+  const words = variableName.toLowerCase().trim().split("_");
   // console.log(words);
   const secondWord = words[1];
   const done = secondWord.replace(secondWord[0], secondWord[0].toUpperCase());
