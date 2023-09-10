@@ -59,6 +59,8 @@ const restaurant = {
 ////////////////////////////////////////
 //: Working With Strings - Part 3
 
+/* 
+
 // Split and join
 console.log("a+very+nice+string".split("+"));
 console.log("Jonas Schmedtmann".split(" "));
@@ -112,6 +114,8 @@ planesInLine(12);
 //:? padStart() - wypełnia string do wskazanej długości podanym stringiem zaczynając od początku stringa
 //:? padEnd() - wypełnia string do wskazanej długości podanym stringiem zaczynając od końca stringa
 //:? repeat() - powtarza stringa podaną ilość razy
+
+/*
 
 ////////////////////////////////////////
 //: Working With Strings - Part 2
@@ -243,8 +247,6 @@ checkMiddleSeat("3E");
 //:? lastIndexOf() - returns the index of an element by looking from end to start
 //:? slice() - returns a part of a string using the start and end index
 
-
-
 */
 
 ////////////////////////////////////////
@@ -342,6 +344,7 @@ console.log(rest.get(arr));
 //: Sets
 
 /*
+
 const ordersSet = new Set([
   "Pasta",
   "Pizza",
@@ -1024,3 +1027,66 @@ for (const [min, event] of gameEvents) {
   console.log(`[${min <= 45 ? "FIRST" : "SECOND"} HALF] ${min}: ${event}`);
 }
  */
+
+///////////////////////////////////////
+//: Coding Challenge #4
+/* 
+Write a program that receives a list of variable names written in underscore_case
+and convert them to camelCase.
+The input will come from a textarea inserted into the DOM (see code below to
+insert the elements), and conversion will happen when the button is pressed.
+
+Test data (pasted to textarea, including spaces):
+underscore_case
+first_name
+Some_Variable
+calculate_AGE
+delayed_departure
+
+Should produce this output (5 separate console.log outputs):
+underscoreCase ✅
+firstName ✅✅
+someVariable ✅✅✅
+calculateAge ✅✅✅✅
+delayedDeparture ✅✅✅✅✅
+
+Hints:
+§ Remember which character defines a new line in the textarea 😉
+§ The solution only needs to work for a variable made out of 2 words, like a_b
+§ Start without worrying about the ✅. Tackle that only after you have the variable
+name conversion working 😉
+§ This challenge is difficult on purpose, so start watching the solution in case
+you're stuck. Then pause and continue!
+*/
+
+const variableList = function (list) {
+  const variableNames = list.split("\n");
+  let i = 1;
+  for (const n of variableNames) {
+    camelCaseConverter(n, i++);
+  }
+};
+
+const camelCaseConverter = function (variableName, checkCount) {
+  // console.log(checkCount);
+  const words = variableName.toLowerCase().split("_");
+  // console.log(words);
+  const secondWord = words[1];
+  const done = secondWord.replace(secondWord[0], secondWord[0].toUpperCase());
+  console.log(`${words[0]}${done} ${"✅".repeat(checkCount)}`);
+};
+
+// const list =
+//   "underscore_case\nfirst_name\nSome_Variable\ncalculate_AGE\ndelayed_departure";
+
+// variableList(list);
+
+// camelCaseConverter("underscore_case");
+
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
+
+document.querySelector("button").addEventListener("click", function () {
+  const list = document.querySelector("textarea").value;
+  variableList(list);
+});
