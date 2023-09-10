@@ -4,92 +4,97 @@
 			"path": "script.js",
 			"bookmarks": [
 				{
-					"line": 7,
+					"line": 3,
 					"column": 30,
 					"label": "Enchanced Objects literals"
 				},
 				{
-					"line": 59,
+					"line": 55,
+					"column": 4,
+					"label": "String Methods Practice"
+				},
+				{
+					"line": 72,
 					"column": 33,
 					"label": "Working With Strings - Parts 1-3"
 				},
 				{
-					"line": 252,
+					"line": 265,
 					"column": 18,
 					"label": "Maps Iteration"
 				},
 				{
-					"line": 297,
+					"line": 310,
 					"column": 21,
 					"label": "Maps Fundamentals"
 				},
 				{
-					"line": 343,
+					"line": 356,
 					"column": 8,
 					"label": "Sets"
 				},
 				{
-					"line": 385,
+					"line": 398,
 					"column": 45,
 					"label": "Looping Objects: Object Keys, Values and Entries"
 				},
 				{
-					"line": 421,
+					"line": 434,
 					"column": 26,
 					"label": "Optional Chaining (?.)"
 				},
 				{
-					"line": 460,
+					"line": 473,
 					"column": 35,
 					"label": "Looping Arrays: The for-of Loop"
 				},
 				{
-					"line": 483,
+					"line": 496,
 					"column": 32,
 					"label": "Logical Assignment Operators"
 				},
 				{
-					"line": 520,
+					"line": 533,
 					"column": 39,
 					"label": "The Nullish Coalescing Operator (??)"
 				},
 				{
-					"line": 537,
+					"line": 550,
 					"column": 27,
 					"label": "Short Circuiting (&& and ||)"
 				},
 				{
-					"line": 577,
+					"line": 590,
 					"column": 23,
 					"label": "Rest Pattern and Parameters"
 				},
 				{
-					"line": 622,
+					"line": 635,
 					"column": 2,
 					"label": "The Spread Operator"
 				},
 				{
-					"line": 680,
+					"line": 693,
 					"column": 2,
 					"label": "Destructuring Objects"
 				},
 				{
-					"line": 780,
+					"line": 793,
 					"column": 23,
 					"label": "Coding Challenge #1"
 				},
 				{
-					"line": 886,
+					"line": 899,
 					"column": 23,
 					"label": "Coding Challenge #2"
 				},
 				{
-					"line": 968,
+					"line": 981,
 					"column": 4,
 					"label": "Coding Challenge #3"
 				},
 				{
-					"line": 1031,
+					"line": 1044,
 					"column": 4,
 					"label": "Coding Challenge #4"
 				}
