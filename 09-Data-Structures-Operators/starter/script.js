@@ -1059,6 +1059,8 @@ name conversion working 😉
 you're stuck. Then pause and continue!
 */
 
+//: My Solution
+/* 
 const variableList = function (list) {
   const variableNames = list.split("\n");
   let i = 1;
@@ -1072,8 +1074,9 @@ const camelCaseConverter = function (variableName, checkCount) {
   const words = variableName.toLowerCase().trim().split("_");
   // console.log(words);
   const secondWord = words[1];
-  const done = secondWord.replace(secondWord[0], secondWord[0].toUpperCase());
-  console.log(`${words[0]}${done} ${"✅".repeat(checkCount)}`);
+  const done =
+    words[0] + secondWord.replace(secondWord[0], secondWord[0].toUpperCase());
+  console.log(`${done.padEnd(20, " ")} ${"✅".repeat(checkCount)}`);
 };
 
 // const list =
@@ -1089,4 +1092,24 @@ document.body.append(document.createElement("button"));
 document.querySelector("button").addEventListener("click", function () {
   const list = document.querySelector("textarea").value;
   variableList(list);
+});
+*/
+
+//: Guys Solution
+
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
+
+document.querySelector("button").addEventListener("click", function () {
+  const text = document.querySelector("textarea").value;
+  const rows = text.split("\n");
+
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split("_");
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`${output.padEnd(20)}${"✅".repeat(i + 1)}`);
+  }
 });
