@@ -14,87 +14,87 @@
 					"label": "String Methods Practice"
 				},
 				{
-					"line": 72,
-					"column": 33,
-					"label": "Working With Strings - Parts 1-3"
+					"line": 73,
+					"column": 4,
+					"label": "Working With Strings"
 				},
 				{
-					"line": 265,
-					"column": 18,
+					"line": 254,
+					"column": 4,
 					"label": "Maps Iteration"
 				},
 				{
-					"line": 310,
-					"column": 21,
+					"line": 296,
+					"column": 4,
 					"label": "Maps Fundamentals"
 				},
 				{
-					"line": 356,
-					"column": 8,
+					"line": 338,
+					"column": 4,
 					"label": "Sets"
 				},
 				{
-					"line": 398,
-					"column": 45,
+					"line": 376,
+					"column": 4,
 					"label": "Looping Objects: Object Keys, Values and Entries"
 				},
 				{
-					"line": 434,
-					"column": 26,
+					"line": 408,
+					"column": 4,
 					"label": "Optional Chaining (?.)"
 				},
 				{
-					"line": 473,
-					"column": 35,
+					"line": 443,
+					"column": 4,
 					"label": "Looping Arrays: The for-of Loop"
 				},
 				{
-					"line": 496,
-					"column": 32,
+					"line": 462,
+					"column": 4,
 					"label": "Logical Assignment Operators"
 				},
 				{
-					"line": 533,
-					"column": 39,
+					"line": 495,
+					"column": 4,
 					"label": "The Nullish Coalescing Operator (??)"
 				},
 				{
-					"line": 550,
-					"column": 27,
+					"line": 508,
+					"column": 4,
 					"label": "Short Circuiting (&& and ||)"
 				},
 				{
-					"line": 590,
-					"column": 23,
+					"line": 544,
+					"column": 4,
 					"label": "Rest Pattern and Parameters"
 				},
 				{
-					"line": 635,
-					"column": 2,
-					"label": "The Spread Operator"
+					"line": 585,
+					"column": 4,
+					"label": "The Spread Operator (...)"
 				},
 				{
-					"line": 693,
+					"line": 639,
 					"column": 2,
 					"label": "Destructuring Objects"
 				},
 				{
-					"line": 793,
+					"line": 735,
 					"column": 23,
 					"label": "Coding Challenge #1"
 				},
 				{
-					"line": 899,
+					"line": 839,
 					"column": 23,
 					"label": "Coding Challenge #2"
 				},
 				{
-					"line": 981,
+					"line": 919,
 					"column": 4,
 					"label": "Coding Challenge #3"
 				},
 				{
-					"line": 1044,
+					"line": 980,
 					"column": 4,
 					"label": "Coding Challenge #4"
 				}

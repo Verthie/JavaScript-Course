@@ -54,6 +54,7 @@ const restaurant = {
 
 ////////////////////////////////////////
 //: String Methods Practice
+/* 
 const flights =
   "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
@@ -68,12 +69,10 @@ for (const flight of list) {
   )} to ${getCode(to)} (${time.replace(":", "h")})`.padStart(45);
   console.log(output);
 }
-
+*/
 ////////////////////////////////////////
 //: Working With Strings - Part 3
-
 /* 
-
 // Split and join
 console.log("a+very+nice+string".split("+"));
 console.log("Jonas Schmedtmann".split(" "));
@@ -127,14 +126,10 @@ planesInLine(12);
 //:? padStart() - wypełnia string do wskazanej długości podanym stringiem zaczynając od początku stringa
 //:? padEnd() - wypełnia string do wskazanej długości podanym stringiem zaczynając od końca stringa
 //:? repeat() - powtarza stringa podaną ilość razy
-
 /*
-
 ////////////////////////////////////////
 //: Working With Strings - Part 2
-
 /* 
-
 const airline = "TAP Air Portugal";
 
 console.log(airline.toLowerCase());
@@ -212,14 +207,10 @@ checkBaggage("Got some snacks and a gun for protection");
 //:? includes() - sprawdza czy dany string zawiera podany string
 //:? startsWith() - sprawdza czy dany string zaczyna się od podanego stringa
 //:? endsWith() - sprawdza czy dany string kończy się podanym stringiem
-
 */
-
 ////////////////////////////////////////
 //: Working With Strings - Part 1
-
 /* 
-
 const airline = "TAP Air Portugal";
 const plane = "A320";
 
@@ -259,14 +250,10 @@ checkMiddleSeat("3E");
 //:? indexOf() - returns the index of an element by looking from start to end
 //:? lastIndexOf() - returns the index of an element by looking from end to start
 //:? slice() - returns a part of a string using the start and end index
-
 */
-
 ////////////////////////////////////////
 //: Maps Iteration
-
 /* 
-
 const question = new Map([
   ["question", "What is the best programming language in the world?"],
   [1, "C"],
@@ -306,12 +293,9 @@ console.log(question.entries());
 console.log(...question.keys());
 console.log(...question.values());
 */
-
 ////////////////////////////////////////
 //: Maps Fundamentals
-
 /*
-
 const rest = new Map();
 rest.set("name", "Classico Italiano"); // rest.get("name") - Returns: Classico Italiano
 rest.set(1, "Firenze, Italy");
@@ -350,14 +334,10 @@ console.log(rest.get(arr));
 //:? has() - sprawdza czy podany klucz istnieje w mapie
 //:? delete() - usuwa klucz-wartość z mapy
 //:? clear() - usuwa wszystkie klucze-wartości z mapy
-
 */
-
 ////////////////////////////////////////
 //: Sets
-
 /*
-
 const ordersSet = new Set([
   "Pasta",
   "Pizza",
@@ -392,14 +372,10 @@ console.log(
 console.log(new Set("jonasschmedtmann").size);
 
 //:? Sets - kolekcje unikalnych wartości (nie ma duplikatów)
-
 */
-
 ////////////////////////////////////////
 //: Looping Objects: Object Keys, Values and Entries
-
 /*
-
 //:? Basically konwertujemy obiekt lub właściwości obiektu na tablice i iterujemy po nich za pomocą for-of loop
 
 //:. Property NAMES
@@ -428,14 +404,10 @@ for (const [day, { open, close }] of entries) {
 //:? Object.keys() - zwraca tablicę z kluczami obiektu
 //:? Object.values() - zwraca tablicę z wartościami obiektu
 //:? Object.entries() - zwraca tablicę z tablicami zawierającymi klucz i wartość obiektu
-
 */
-
 ////////////////////////////////////////
 //: Optional Chaining (?.)
-
 /*
-
 //:@ WITHOUT optional chaining
 if (restaurant.openingHours && restaurant.openingHours.mon)
   console.log(restaurant.openingHours.mon.open);
@@ -467,14 +439,10 @@ console.log(users[0]?.name ?? "User arrays empty");
 //:@ the old way of acheiving the above
 if (users.length > 0) console.log(users[0].name);
 else console.log("user array empty");
-
 */
-
 ////////////////////////////////////////
 //: Looping Arrays: The for-of Loop
-
 /*
-
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
 for (const item of menu) console.log(item);
@@ -490,14 +458,10 @@ for (const item of menu) console.log(item);
 // console.log([...menu.entries()]);
 
 //:? for-of loop - iteruje po elementach tablicy
-
 */
-
 ////////////////////////////////////////
 //: Logical Assignment Operators
-
 /*
-
 const rest1 = {
   name: "Capri",
   // numGuests: 20,
@@ -527,14 +491,10 @@ rest2.owner &&= "<ANONYMOUS>";
 
 console.log(rest1);
 console.log(rest2);
-
 */
-
 ////////////////////////////////////////
 //: The Nullish Coalescing Operator (??)
-
 /*
-
 restaurant.numGuests = 0;
 const guests = restaurant.numGuests || 10;
 console.log(guests);
@@ -544,14 +504,10 @@ const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
 
 //:? Nullish Coalescing Operator (??) - zwraca pierwszą wartość, która nie jest ani null ani undefined
-
 */
-
 ////////////////////////////////////////
 //: Short Circuiting (&& and ||)
-
 /*
-
 console.log("---- OR ----");
 // Use ANY data type, return ANY data type, short-circuiting
 console.log(3 || "Jonas");
@@ -584,14 +540,10 @@ if (restaurant.orderPizza) {
 }
 
 restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
-
 */
-
 ////////////////////////////////////////
 //: Rest Pattern and Parameters
-
 /*
-
 // 1) Destructuring
 //:. SPREAD, because on RIGHT side of '='
 const arr = [1, 2, ...[3, 4]];
@@ -629,14 +581,10 @@ restaurant.orderPizza("mushrooms", "onion", "olives", "spinach");
 restaurant.orderPizza("mushrooms");
 
 //:? SPREAD rozpakowuje tablice, a REST pakuje do tablicy
-
 */
-
 //////////////////////////////////////
 //: The Spread Operator (...)
-
 /* 
-
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]]; //:@ old way
 console.log(badNewArr);
@@ -687,14 +635,10 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = "Ristorante Roma";
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
-
- */
-
+*/
 ////////////////////////////////////
 //: Destructuring Objects
-
 /*
-
 restaurant.orderDelivery({
   time: "22:30",
   address: "Via del Sole, 21",
@@ -787,12 +731,9 @@ console.log(i, j, k);
 //:. Default values
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r);
-
 */
-
 ///////////////////////////////////////
 //: Coding Challenge #1
-
 /*
 We're building a football betting app (soccer for my American friends 😅)!
 Suppose we get data from a web service about a certain game ('game' variable on
@@ -895,10 +836,8 @@ printGoals(...game.scored);
 team1 < team2 && console.log("Team 1 is more likely to win");
 team1 > team2 && console.log("Team 2 is more likely to win");
 */
-
 ///////////////////////////////////////
 //: Coding Challenge #2
-
 /*
 Let's continue with our football betting app! Keep using the 'game' variable from
 before.
@@ -977,10 +916,8 @@ for (const [team, value] of Object.entries(game.odds)) {
   console.log(`Odd of victory ${teamStr}: ${value}`);
 }
 */
-
 ///////////////////////////////////////
 //: Coding Challenge #3
-
 /* 
 Let's continue with our football betting app! This time, we have a map called
 'gameEvents' (see below) with a log of the events that happened during the
@@ -1039,8 +976,7 @@ console.log(
 for (const [min, event] of gameEvents) {
   console.log(`[${min <= 45 ? "FIRST" : "SECOND"} HALF] ${min}: ${event}`);
 }
- */
-
+*/
 ///////////////////////////////////////
 //: Coding Challenge #4
 /* 
