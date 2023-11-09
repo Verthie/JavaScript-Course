@@ -79,22 +79,27 @@
 					"label": "Destructuring Objects"
 				},
 				{
-					"line": 735,
+					"line": 685,
+					"column": 4,
+					"label": "Destructuring Arrays"
+				},
+				{
+					"line": 734,
 					"column": 23,
 					"label": "Coding Challenge #1"
 				},
 				{
-					"line": 839,
+					"line": 838,
 					"column": 23,
 					"label": "Coding Challenge #2"
 				},
 				{
-					"line": 919,
+					"line": 918,
 					"column": 4,
 					"label": "Coding Challenge #3"
 				},
 				{
-					"line": 980,
+					"line": 979,
 					"column": 4,
 					"label": "Coding Challenge #4"
 				}

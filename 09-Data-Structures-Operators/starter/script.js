@@ -682,7 +682,6 @@ const {
 console.log(o, c);
 
 */
-
 ///////////////////////////////////////
 //: Destructuring Arrays
 /*
