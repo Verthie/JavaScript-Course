@@ -75,7 +75,7 @@ checkIn(flight, jonas);
 */
 
 //: Functions Accepting Callback Functions
-
+/* 
 const oneWord = function (str) {
   return str.replace(/ /g, "").toLowerCase();
 };
@@ -108,3 +108,33 @@ document.body.addEventListener("click", high5);
 
 //:? Zarówno funkcja addEventListener jak i forEach są funkcjami wyższego rzędu.
 //:? high5 jest funkcją zwrotną.
+*/
+
+//: Functions Returning Functions
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greeterHey = greet("Hey");
+greeterHey("Jonas");
+greeterHey("Steven");
+
+greet("Hello")("Jonas");
+ 
+//Challenge - my attempt:
+// const greetArrow = (greeting) => (name) => console.log(`${greeting} ${name}`);
+// console.log(greetArrow("Hello")("Jakub"));
+//prints undefined at the end because of console log 
+
+//Challenge - jonas:
+const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
+greetArr("Hi")("Jonas");
+
+//:? W tym przypadku greet jest funkcją wyższego rzędu, a funkcja zwracana jest funkcją zwrotną.
+//:? Funkcja greet zwraca funkcję, która może być wywołana z parametrem name.
+//:? Funkcja zwrotna ma dostęp do zmiennej greeting, która została przekazana do funkcji wyższego rzędu. (closures)
+//:? Funkcja greet może być wywołana wielokrotnie, z różnymi parametrami, tak więc może być użyta do utworzenia wielu funkcji zwrotnych.
+

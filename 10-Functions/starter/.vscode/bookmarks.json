@@ -17,6 +17,11 @@
 					"line": 76,
 					"column": 4,
 					"label": "Functions Accepting Callback Functions"
+				},
+				{
+					"line": 112,
+					"column": 33,
+					"label": "Functions Returning Functions"
 				}
 			]
 		}
