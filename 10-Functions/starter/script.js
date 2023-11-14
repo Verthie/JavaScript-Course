@@ -34,7 +34,6 @@ createBooking('LH123', undefined, 1000)
 */
 
 //: How Passing Arguments Works: Value vs. Reference
-
 /*
 const flight = "LH234";
 const jonas = {
@@ -111,7 +110,7 @@ document.body.addEventListener("click", high5);
 */
 
 //: Functions Returning Functions
-
+/* 
 const greet = function (greeting) {
   return function (name) {
     console.log(`${greeting} ${name}`);
@@ -120,9 +119,11 @@ const greet = function (greeting) {
 
 const greeterHey = greet("Hey");
 greeterHey("Jonas");
-greeterHey("Steven");
+//:? Funkcja greet zwraca funkcje co powoduje przypisanie function (name) {...} do greeterHey: const greeterHey = function (name) {...}.
+//:? Funkcja zwrotna 'greeterHey' ma dostęp do zmiennej greeting, która została przekazana do funkcji wyższego rzędu 'greet', dlatego jest w stanie wyświetlić powitanie.
 
 greet("Hello")("Jonas");
+//:? W tym przypadku funkcja greet zwraca funkcję, która jest od razu wywoływana z parametrem name.
  
 //Challenge - my attempt:
 // const greetArrow = (greeting) => (name) => console.log(`${greeting} ${name}`);
@@ -133,8 +134,63 @@ greet("Hello")("Jonas");
 const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
 greetArr("Hi")("Jonas");
 
-//:? W tym przypadku greet jest funkcją wyższego rzędu, a funkcja zwracana jest funkcją zwrotną.
-//:? Funkcja greet zwraca funkcję, która może być wywołana z parametrem name.
-//:? Funkcja zwrotna ma dostęp do zmiennej greeting, która została przekazana do funkcji wyższego rzędu. (closures)
-//:? Funkcja greet może być wywołana wielokrotnie, z różnymi parametrami, tak więc może być użyta do utworzenia wielu funkcji zwrotnych.
+//:? W tym przypadku greet jest funkcją wyższego rzędu, a funkcja zwracana jest wywoływana z parametrem name.
+//:? Funkcja zwrotna ma dostęp do zmiennej greeting, która została przekazana do funkcji wyższego rzędu (closures).
+*/
 
+//: The call and apply Methods
+
+const lufthansa = {
+  airline: "Lufthansa",
+  iataCode: "LH",
+  bookings: [],
+  //:? W ES6 możemy pominąć słowo function, jeśli funkcja jest częścią obiektu (Section 9).
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, "Jonas Schmedtmann");
+lufthansa.book(635, "John Smith");
+
+const eurowings = {
+  airline: "Eurowings",
+  iataCode: "EW",
+  bookings: [],
+};
+
+const book = lufthansa.book;
+// przypisujemy do parametru book funkcję 'book' z obiektu lufthansa
+
+// book(23, "Sarah Williams");
+//:? takie wywołanie funkcji nie działa, ponieważ wskazuje ono aktualnie na obiekt 'undefined'. 'this' w funkcji nie jest przypisane do żadnego obiektu dla takiego wywołania.
+
+//:. Call method
+book.call(eurowings, 23, "Sarah Williams");
+console.log(eurowings);
+
+//:? funkcja 'call' wywołuje funkcję book, ale zmienia jej 'this' na obiekt eurowings za pomocą pierwszego parametru. W ten sposób możemy wykorzystać funkcję book, która jest częścią obiektu lufthansa, na obiekcie eurowings (bez potrzeby kopiowania całej funkcji do kolejnego obiektu).
+
+book.call(lufthansa, 239, "Mary Cooper");
+console.log(lufthansa);
+
+const swiss = {
+  airline: "Swiss Air Lines",
+  iataCode: "EW",
+  bookings: [],
+};
+
+book.call(swiss, 583, "Mary Cooper");
+console.log(swiss);
+
+//:. Apply method
+//:@ Not used that much anymore
+const flightData = [583, "George Cooper"];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+//:& because it's the same thing as
+book.call(swiss, ...flightData);

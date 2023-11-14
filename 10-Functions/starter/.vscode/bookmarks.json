@@ -14,14 +14,19 @@
 					"label": "How Passing Arguments Works: Value vs. Reference"
 				},
 				{
-					"line": 76,
+					"line": 75,
 					"column": 4,
 					"label": "Functions Accepting Callback Functions"
 				},
 				{
-					"line": 112,
+					"line": 111,
 					"column": 33,
 					"label": "Functions Returning Functions"
+				},
+				{
+					"line": 140,
+					"column": 4,
+					"label": "The call and apply Methods"
 				}
 			]
 		}
