@@ -9,9 +9,14 @@
 					"label": "Default Parameters"
 				},
 				{
-					"line": 33,
+					"line": 35,
 					"column": 4,
 					"label": "How Passing Arguments Works: Value vs. Reference"
+				},
+				{
+					"line": 76,
+					"column": 4,
+					"label": "Functions Accepting Callback Functions"
 				}
 			]
 		}
