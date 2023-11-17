@@ -24,9 +24,14 @@
 					"label": "Functions Returning Functions"
 				},
 				{
-					"line": 140,
+					"line": 137,
 					"column": 4,
 					"label": "The call and apply Methods"
+				},
+				{
+					"line": 194,
+					"column": 4,
+					"label": "The bind Method"
 				}
 			]
 		}

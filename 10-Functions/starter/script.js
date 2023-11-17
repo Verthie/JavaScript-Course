@@ -30,7 +30,7 @@ createBooking("LH123", 2);
 createBooking("LH123", 5);
 
 createBooking('LH123', undefined, 1000)
-//:? Wartości domyślne są przypisywane od lewej do prawej, tak więc jeśli chcemy pominąć argument (nie przypisywać żadnej wartości), musimy podać undefined.
+//:? Wartości domyślne są przypisywane od lewej do prawej, tak więc jeśli chcemy pominąć argument (nie przypisywać własnej wartości), musimy podać undefined.
 */
 
 //: How Passing Arguments Works: Value vs. Reference
@@ -56,7 +56,7 @@ checkIn(flight, jonas);
 console.log(flight);
 console.log(jonas);
 
-// Is the same as doing...
+//:@ Is the same as doing...
 const flightNum = flight;
 const passenger = jonas;
 
@@ -119,23 +119,20 @@ const greet = function (greeting) {
 
 const greeterHey = greet("Hey");
 greeterHey("Jonas");
-//:? Funkcja greet zwraca funkcje co powoduje przypisanie function (name) {...} do greeterHey: const greeterHey = function (name) {...}.
+//:? Funkcja greet zwraca funkcje co powoduje przypisanie function (name) {...} do greeterHey ==> const greeterHey = function (name) {...}.
 //:? Funkcja zwrotna 'greeterHey' ma dostęp do zmiennej greeting, która została przekazana do funkcji wyższego rzędu 'greet', dlatego jest w stanie wyświetlić powitanie.
 
 greet("Hello")("Jonas");
 //:? W tym przypadku funkcja greet zwraca funkcję, która jest od razu wywoływana z parametrem name.
  
-//Challenge - my attempt:
+//:. Challenge - my attempt:
 // const greetArrow = (greeting) => (name) => console.log(`${greeting} ${name}`);
 // console.log(greetArrow("Hello")("Jakub"));
-//prints undefined at the end because of console log 
+// prints undefined at the end because of console log 
 
-//Challenge - jonas:
+//:. Challenge - jonas:
 const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
 greetArr("Hi")("Jonas");
-
-//:? W tym przypadku greet jest funkcją wyższego rzędu, a funkcja zwracana jest wywoływana z parametrem name.
-//:? Funkcja zwrotna ma dostęp do zmiennej greeting, która została przekazana do funkcji wyższego rzędu (closures).
 */
 
 //: The call and apply Methods
@@ -194,3 +191,56 @@ console.log(swiss);
 
 //:& because it's the same thing as
 book.call(swiss, ...flightData);
+
+//: The bind Method
+
+// book.call(eurowings, 23, 'Sarah Williams');
+
+const bookEW = book.bind(eurowings);
+bookEW(23, "Steven Williams");
+
+//:? Funkcja 'bind' ZWRACA (nie wywołuje) nową funkcję, która jest kopią funkcji book, ale z przypisanym 'this' do obiektu eurowings. Funkcja bookEW jest teraz funkcją ZWROTNĄ, która może być wywoływana.
+//:? Funkcje call i apply są funkcjami natychmiastowymi, wywołują one funkcję odnosząc się do obiektu za pomocą podanego parametru, natomiast bind tworzy kopię funkcji z przypisanym obiektem.
+
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23("Jonas Schedtmann");
+bookEW23("Martha Cooper");
+//:? Funkcja bind może również przyjmować argumenty, które są przekazywane do funkcji zwrotnej.
+
+//:. With Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+// lufthansa.buyPlane();
+
+document
+  .querySelector(".buy")
+  .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+//:? W tym przypadku funkcja zwrotna jest wywoływana przez event listener odnoszącego się do obiektu querySelector(".buy"), dlatego 'this' wskazuje na element DOM (buy button), a nie na obiekt lufthansa. Musimy użyć funkcji bind, aby przypisać 'this' do obiektu lufthansa.
+
+//:. Partial  application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+//:@ addVat = value => value + value * 0.23;
+
+console.log(addVAT(100));
+console.log(addVAT(23));
+
+// Challenge attempt - creating the above function, using function returning function rather than bind
+const addTaxCh = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+
+const addVATCh = addTaxCh(0.23);
+console.log(addVATCh(100));
+console.log(addVATCh(23));
