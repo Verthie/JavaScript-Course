@@ -116,7 +116,7 @@ const greet = function (greeting) {
 const greeterHey = greet("Hey");
 greeterHey("Jonas");
 //:? Funkcja greet zwraca funkcje co powoduje przypisanie function (name) {...} do greeterHey ==> const greeterHey = function (name) {...}.
-//:? Funkcja zwrotna 'greeterHey' ma dostęp do zmiennej greeting, która została przekazana do funkcji wyższego rzędu 'greet', dlatego jest w stanie wyświetlić powitanie.
+//:? Funkcja zwrotna 'greeterHey' ma dostęp do zmiennej greeting, która została przekazana do funkcji wyższego rzędu 'greet', dlatego jest w stanie wyświetlić powitanie (closure).
 
 greet("Hello")("Jonas");
 //:? W tym przypadku funkcja greet zwraca funkcję, która jest od razu wywoływana z parametrem name.
@@ -395,11 +395,12 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
 */
 
 //: Immediately Invoked Function Expressions (IIFE)
+/* 
 const runOnce = function () {
   console.log("This will never run again");
 };
 runOnce();
-//:@ If we only call the function once then it will never run again, but we can still call this function later in the code so it's not what we want
+ //:@ Jeżeli wywołamy funkcję tylko raz to nie zostanie wykonana ponownie, ale nadal możemy ją wywołać później w kodzie, więc nie jest to, tym czego chcemy.
 
 //:. IIFE
 (function () {
@@ -411,6 +412,7 @@ runOnce();
 
 (() => console.log("This will ALSO never run again"))();
 
+//:& Jeżeli chcemy wywołać funkcję tylko raz, to nie musimy jej przypisywać do zmiennej, możemy po prostu ją wywołać.
 //:? IIFE jest funkcją, która jest wywoływana tylko raz i znika. Jest używana do tworzenia nowego zakresu (scope), dzięki czemu możemy bezpiecznie definiować zmienne wewnątrz niego, nie martwiąc się o kolizje nazw.
 
 {
@@ -418,7 +420,36 @@ runOnce();
   var notPrivate = 46;
 }
 
-//:? W ES6 mamy bloki, które tworzą nowy zakres, tak więc nie potrzebujemy już IIFE do tworzenia nowych zakresów. IIFE nadal może być wykorzystywane w celu tworzenia funkcji, które muszą być wywołane tylko raz.
+//:& W ES6 mamy bloki, które tworzą nowy zakres, tak więc nie potrzebujemy już IIFE do tworzenia nowych zakresów.
+//:? IIFE nadal może być wykorzystywane do tworzenia funkcji wywołanych jednorazowo.
 
 console.log(isPrivate);
 console.log(notPrivate);
+*/
+
+//: Closures
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+//:? Funkcja booker() utworzona i wywoływana w zakresie globalnym posiada dostęp do zmiennej 'passengerCount' utworzonej lokalnie w funkcji securebooking(). Jest to możliwe dzięki mechanizmowi 'domknięcia'.
+
+//:? Domknięcie (closure) jest zjawiskiem, które pozwala funkcji na dostęp do wszystkich zmiennych z zakresu, w którym została utworzona, nawet po tym jak funkcja nadrzędna zakończyła działanie. Funkcja przechowuje referencje do jej zewnętrznego zakresu, co pozwala na zachowanie łańcucha zakresu (scope chain) przez cały czas.
+
+//:3 Analogia: Domknięcie jest jak plecak z zmiennymi, który funkcja zabiera ze sobą gdziekolwiek idzie. Plecak zawiera wszystkie zmienne, które były dostępne w środowisku, w którym funkcja została utworzona.
+
+//:& Domknięcie jest bardzo ważnym mechanizmem w JS, ponieważ pozwala na tworzenie funkcji z prywatnymi zmiennymi, które są bezpieczne przed kolizją nazw. Jedynie funkcja domknięta ma do nich dostęp, globalnie są one nadal niewidoczne.
+
+console.dir(booker); // W konsoli możemy zobaczyć zmienną [[Scopes]] w której znajduje się zakres, w którym została utworzona funkcja booker.

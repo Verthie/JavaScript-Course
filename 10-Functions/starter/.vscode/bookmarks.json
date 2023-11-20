@@ -42,6 +42,11 @@
 					"line": 396,
 					"column": 4,
 					"label": "Immediately Invoked Function Expressions (IIFE)"
+				},
+				{
+					"line": 429,
+					"column": 4,
+					"label": "Closures"
 				}
 			]
 		}
