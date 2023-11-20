@@ -1,6 +1,5 @@
 "use strict";
 
-////////////////////////////////////////
 //: Enchanced Objects literals
 const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
@@ -52,7 +51,6 @@ const restaurant = {
   },
 };
 
-////////////////////////////////////////
 //: String Methods Practice
 /* 
 const flights =
@@ -70,7 +68,7 @@ for (const flight of list) {
   console.log(output);
 }
 */
-////////////////////////////////////////
+
 //: Working With Strings - Part 3
 /* 
 // Split and join
@@ -121,13 +119,13 @@ planesInLine(5);
 planesInLine(3);
 planesInLine(12);
 
-//:? split() - dzieli stringa na tablicę, elementy oddzielane są podanym znakiem
-//:? join() - łączy elementy tablicy w stringa, elementy oddzielane są podanym znakiem
-//:? padStart() - wypełnia string do wskazanej długości podanym stringiem zaczynając od początku stringa
-//:? padEnd() - wypełnia string do wskazanej długości podanym stringiem zaczynając od końca stringa
-//:? repeat() - powtarza stringa podaną ilość razy
+//:& split() - dzieli stringa na tablicę, elementy oddzielane są podanym znakiem
+//:& join() - łączy elementy tablicy w stringa, elementy oddzielane są podanym znakiem
+//:& padStart() - wypełnia string do wskazanej długości podanym stringiem zaczynając od początku stringa
+//:& padEnd() - wypełnia string do wskazanej długości podanym stringiem zaczynając od końca stringa
+//:& repeat() - powtarza stringa podaną ilość razy
 /*
-////////////////////////////////////////
+
 //: Working With Strings - Part 2
 /* 
 const airline = "TAP Air Portugal";
@@ -199,16 +197,16 @@ checkBaggage("I have a laptop, some Food and a pocket Knife");
 checkBaggage("Socks and camera");
 checkBaggage("Got some snacks and a gun for protection");
 
-//:? toLowerCase() - zamienia wszystkie znaki na małe litery
-//:? toUpperCase() - zamienia wszystkie znaki na duże litery
-//:? trim() - usuwa białe znaki z początku i końca stringa
-//:? replace() - zamienia pierwsze wystąpienie podanego stringa na inny string
-//:? replaceAll() - zamienia wszystkie wystąpienia podanego stringa na inny string
-//:? includes() - sprawdza czy dany string zawiera podany string
-//:? startsWith() - sprawdza czy dany string zaczyna się od podanego stringa
-//:? endsWith() - sprawdza czy dany string kończy się podanym stringiem
+//:& toLowerCase() - zamienia wszystkie znaki na małe litery
+//:& toUpperCase() - zamienia wszystkie znaki na duże litery
+//:& trim() - usuwa białe znaki z początku i końca stringa
+//:& replace() - zamienia pierwsze wystąpienie podanego stringa na inny string
+//:& replaceAll() - zamienia wszystkie wystąpienia podanego stringa na inny string
+//:& includes() - sprawdza czy dany string zawiera podany string
+//:& startsWith() - sprawdza czy dany string zaczyna się od podanego stringa
+//:& endsWith() - sprawdza czy dany string kończy się podanym stringiem
 */
-////////////////////////////////////////
+
 //: Working With Strings - Part 1
 /* 
 const airline = "TAP Air Portugal";
@@ -247,11 +245,11 @@ checkMiddleSeat("11B");
 checkMiddleSeat("23C");
 checkMiddleSeat("3E");
 
-//:? indexOf() - returns the index of an element by looking from start to end
-//:? lastIndexOf() - returns the index of an element by looking from end to start
-//:? slice() - returns a part of a string using the start and end index
+//:& indexOf() - returns the index of an element by looking from start to end
+//:& lastIndexOf() - returns the index of an element by looking from end to start
+//:& slice() - returns a part of a string using the start and end index
 */
-////////////////////////////////////////
+
 //: Maps Iteration
 /* 
 const question = new Map([
@@ -293,7 +291,7 @@ console.log(question.entries());
 console.log(...question.keys());
 console.log(...question.values());
 */
-////////////////////////////////////////
+
 //: Maps Fundamentals
 /*
 const rest = new Map();
@@ -327,15 +325,15 @@ console.log(rest.size);
 
 console.log(rest.get(arr));
 
-//:? Maps - kolekcje klucz-wartość (key-value pairs) - podobne do obiektów, ale kluczem może być dowolna wartość
+//:& Maps - kolekcje klucz-wartość (key-value pairs) - podobne do obiektów, ale kluczem może być dowolna wartość
 
-//:? set() - dodaje nowy klucz-wartość do mapy
-//:? get() - zwraca wartość dla podanego klucza
-//:? has() - sprawdza czy podany klucz istnieje w mapie
-//:? delete() - usuwa klucz-wartość z mapy
-//:? clear() - usuwa wszystkie klucze-wartości z mapy
+//:& set() - dodaje nowy klucz-wartość do mapy
+//:& get() - zwraca wartość dla podanego klucza
+//:& has() - sprawdza czy podany klucz istnieje w mapie
+//:& delete() - usuwa klucz-wartość z mapy
+//:& clear() - usuwa wszystkie klucze-wartości z mapy
 */
-////////////////////////////////////////
+
 //: Sets
 /*
 const ordersSet = new Set([
@@ -373,7 +371,7 @@ console.log(new Set("jonasschmedtmann").size);
 
 //:? Sets - kolekcje unikalnych wartości (nie ma duplikatów)
 */
-////////////////////////////////////////
+
 //: Looping Objects: Object Keys, Values and Entries
 /*
 //:? Basically konwertujemy obiekt lub właściwości obiektu na tablice i iterujemy po nich za pomocą for-of loop
@@ -405,7 +403,7 @@ for (const [day, { open, close }] of entries) {
 //:? Object.values() - zwraca tablicę z wartościami obiektu
 //:? Object.entries() - zwraca tablicę z tablicami zawierającymi klucz i wartość obiektu
 */
-////////////////////////////////////////
+
 //: Optional Chaining (?.)
 /*
 //:@ WITHOUT optional chaining
@@ -416,7 +414,7 @@ if (restaurant.openingHours && restaurant.openingHours.mon)
 console.log(restaurant.openingHours.mon?.open); // sprawdzanie czy istnieje dana właściwość (mon) w obiekcie
 console.log(restaurant.openingHours?.mon?.open);
 
-//:? Optional Chaining (?.) - jeśli sprawdzana właściwość nie istnieje (jest undefined), to zwraca undefined, a dalsza część wyrażenia nie jest wykonywana
+//:& Optional Chaining (?.) - jeśli sprawdzana właściwość nie istnieje (jest undefined), to zwraca undefined, a dalsza część wyrażenia nie jest wykonywana
 
 // Example
 const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
@@ -440,7 +438,7 @@ console.log(users[0]?.name ?? "User arrays empty");
 if (users.length > 0) console.log(users[0].name);
 else console.log("user array empty");
 */
-////////////////////////////////////////
+
 //: Looping Arrays: The for-of Loop
 /*
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
@@ -457,9 +455,9 @@ for (const item of menu) console.log(item);
 
 // console.log([...menu.entries()]);
 
-//:? for-of loop - iteruje po elementach tablicy
+//:& for-of loop - iteruje po elementach tablicy
 */
-////////////////////////////////////////
+
 //: Logical Assignment Operators
 /*
 const rest1 = {
@@ -494,7 +492,7 @@ rest2.owner &&= "<ANONYMOUS>";
 console.log(rest1);
 console.log(rest2);
 */
-////////////////////////////////////////
+
 //: The Nullish Coalescing Operator (??)
 /*
 restaurant.numGuests = 0;
@@ -505,9 +503,9 @@ console.log(guests);
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
 
-//:? Nullish Coalescing Operator (??) - zwraca pierwszą wartość, która nie jest ani null ani undefined
+//:& Nullish Coalescing Operator (??) - zwraca pierwszą wartość, która nie jest ani null ani undefined
 */
-////////////////////////////////////////
+
 //: Short Circuiting (&& and ||)
 /*
 console.log("---- OR ----");
@@ -519,7 +517,7 @@ console.log(undefined || null);
 
 console.log(undefined || 0 || "" || "Hello" || 23 || null);
 
-//:? OR operator (||) - zwraca pierwszą prawdę lub ostatni fałsz
+//:& OR operator (||) - zwraca pierwszą prawdę lub ostatni fałsz
 
 restaurant.numGuests = 23;
 const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
@@ -534,7 +532,7 @@ console.log(7 && "Jonas");
 
 console.log("Hello" && 23 && null && "jonas");
 
-//:? AND operator (&&) - zwraca pierwszy fałsz lub ostatnią prawdę
+//:& AND operator (&&) - zwraca pierwszy fałsz lub ostatnią prawdę
 
 // Practical example
 if (restaurant.orderPizza) {
@@ -543,7 +541,7 @@ if (restaurant.orderPizza) {
 
 restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
 */
-////////////////////////////////////////
+
 //: Rest Pattern and Parameters
 /*
 // 1) Destructuring
@@ -554,7 +552,7 @@ const arr = [1, 2, ...[3, 4]];
 const [a, b, ...others] = [1, 2, 3, 4, 5];
 console.log(a, b, others);
 
-//:? REST operator - zbiera pozostałe elementy tablicy do nowej tablicy (REST operator musi być ostatni - "it collects the REST of the elements")
+//:& REST operator - zbiera pozostałe elementy tablicy do nowej tablicy (REST operator musi być ostatni - "it collects the REST of the elements")
 
 const [pizza, , risotto, ...otherFood] = [
   ...restaurant.mainMenu,
@@ -584,7 +582,7 @@ restaurant.orderPizza("mushrooms");
 
 //:? SPREAD rozpakowuje tablice, a REST pakuje do tablicy
 */
-//////////////////////////////////////
+
 //: The Spread Operator (...)
 /* 
 const arr = [7, 8, 9];
@@ -600,7 +598,7 @@ console.log(1, 2, 7, 8, 9);
 const newMenu = [...restaurant.mainMenu, "Gnocci"];
 console.log(newMenu);
 
-//:? Spread Operator - rozpakowuje całą zawartość tablicy
+//:& Spread Operator - rozpakowuje całą zawartość tablicy
 
 //:. Copy array
 const mainMenuCopy = [...restaurant.mainMenu];
@@ -616,7 +614,7 @@ console.log(letters);
 console.log(...str);
 // console.log(`${...str} Schmedtmann`);
 
-//:? ...str rozpakowuje stringa na pojedyncze znaki
+//:& ...str rozpakowuje stringa na pojedyncze znaki
 
 //:. Real-world example
 const ingredients = [
@@ -638,7 +636,7 @@ restaurantCopy.name = "Ristorante Roma";
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
 */
-////////////////////////////////////
+
 //: Destructuring Objects
 /*
 restaurant.orderDelivery({
@@ -666,7 +664,7 @@ console.log(restaurantName, hours, tags);
 const { menu = [], starterMenu: starters = [] } = restaurant;
 console.log(menu, starters);
 
-//:? Destrukturyzacja Obiektu - przypisanie wartości z obiektu do zmiennych
+//:& Destrukturyzacja Obiektu - przypisanie wartości z obiektu do zmiennych
 
 //:. Mutating variables
 let a = 111;
@@ -675,7 +673,7 @@ const obj = { a: 23, b: 7, c: 14 };
 ({ a, b } = obj);
 console.log(a, b);
 
-//:? zamiana wartosci zmiennych za pomocą destrukturyzacji
+//:& zamiana wartosci zmiennych za pomocą destrukturyzacji
 
 //:. Nested objects
 const {
@@ -684,7 +682,7 @@ const {
 console.log(o, c);
 
 */
-///////////////////////////////////////
+
 //: Destructuring Arrays
 /*
 
@@ -698,7 +696,7 @@ const c = arr[2];
 const [x, y, z] = arr; // destructuring (unpacking) an array
 console.log(x, y, z);
 
-//:? Destrukturyzacja Tablicy - przypisanie wartości z tablicy do zmiennych
+//:& Destrukturyzacja Tablicy - przypisanie wartości z tablicy do zmiennych
 
 const [first, second] = restaurant.categories;
 console.log(first, second);
@@ -733,7 +731,7 @@ console.log(i, j, k);
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r);
 */
-///////////////////////////////////////
+
 //: Coding Challenge #1
 /*
 We're building a football betting app (soccer for my American friends 😅)!
@@ -837,7 +835,7 @@ printGoals(...game.scored);
 team1 < team2 && console.log("Team 1 is more likely to win");
 team1 > team2 && console.log("Team 2 is more likely to win");
 */
-///////////////////////////////////////
+
 //: Coding Challenge #2
 /*
 Let's continue with our football betting app! Keep using the 'game' variable from
@@ -917,7 +915,7 @@ for (const [team, value] of Object.entries(game.odds)) {
   console.log(`Odd of victory ${teamStr}: ${value}`);
 }
 */
-///////////////////////////////////////
+
 //: Coding Challenge #3
 /* 
 Let's continue with our football betting app! This time, we have a map called
@@ -978,7 +976,7 @@ for (const [min, event] of gameEvents) {
   console.log(`[${min <= 45 ? "FIRST" : "SECOND"} HALF] ${min}: ${event}`);
 }
 */
-///////////////////////////////////////
+
 //: Coding Challenge #4
 /* 
 Write a program that receives a list of variable names written in underscore_case

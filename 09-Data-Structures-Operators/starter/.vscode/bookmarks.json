@@ -4,7 +4,7 @@
 			"path": "script.js",
 			"bookmarks": [
 				{
-					"line": 3,
+					"line": 2,
 					"column": 30,
 					"label": "Enchanced Objects literals"
 				},
@@ -16,7 +16,17 @@
 				{
 					"line": 73,
 					"column": 4,
-					"label": "Working With Strings"
+					"label": "Working With Strings - Part 3"
+				},
+				{
+					"line": 130,
+					"column": 4,
+					"label": "Working With Strings - Part 2"
+				},
+				{
+					"line": 211,
+					"column": 4,
+					"label": "Working With Strings - Part 1"
 				},
 				{
 					"line": 254,
@@ -84,22 +94,22 @@
 					"label": "Destructuring Arrays"
 				},
 				{
-					"line": 736,
-					"column": 23,
+					"line": 734,
+					"column": 4,
 					"label": "Coding Challenge #1"
 				},
 				{
-					"line": 840,
-					"column": 23,
+					"line": 838,
+					"column": 4,
 					"label": "Coding Challenge #2"
 				},
 				{
-					"line": 920,
+					"line": 918,
 					"column": 4,
 					"label": "Coding Challenge #3"
 				},
 				{
-					"line": 981,
+					"line": 979,
 					"column": 4,
 					"label": "Coding Challenge #4"
 				}

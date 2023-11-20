@@ -22,7 +22,7 @@ const createBooking = function (
   console.log(booking);
   bookings.push(booking);
 };
-//:? W ES6 możemy przypisać wartości domyślne do argumentów funkcji. Wartości domyślne są przypisywane tylko wtedy, kiedy argument nie jest podany lub jest undefined.
+//:& W ES6 możemy przypisać wartości domyślne do argumentów funkcji. Wartości domyślne są przypisywane tylko wtedy, kiedy argument nie jest podany lub jest undefined.
 //:? Wartości domyślne mogą być wyrażeniami, tak jak w przypadku zmiennej price.
 createBooking("LH123");
 createBooking("LH123", 2, 800);
@@ -92,7 +92,7 @@ transformer("Javascript is the best!", upperFirstWord);
 transformer("Javascript is the best!", oneWord);
 
 //:? Funkcja transformująca dba tylko o wyświetlenie przekształconego ciągu znaków, w tym celu wywołuje inną funkcję, która wykonuje proces przekształcania (upperFirstWord, oneWord).
-//:? Kiedy istnieje funkcja, przyjmująca inne funkcje jako parametry, nazywana jest ona "funkcją wyższego rzędu"(higher - order function), funkcje wywoływane wewnątrz nich nazywane są "funkcjami zwrotnymi"(callback functions).
+//:& Kiedy istnieje funkcja, przyjmująca inne funkcje jako parametry, nazywana jest ona 'funkcją wyższego rzędu' (higher - order function), funkcje wywoływane wewnątrz nich nazywane są 'funkcjami zwrotnymi' (callback functions).
 
 //:* JS uses callbacks all the time
 const high5 = function () {
@@ -137,7 +137,7 @@ const lufthansa = {
   airline: "Lufthansa",
   iataCode: "LH",
   bookings: [],
-  //:? W ES6 możemy pominąć słowo function, jeśli funkcja jest częścią obiektu (Section 9).
+  //:& W ES6 możemy pominąć słowo function, jeśli funkcja jest częścią obiektu (Section 9).
   book(flightNum, name) {
     console.log(
       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
@@ -195,7 +195,7 @@ book.call(swiss, ...flightData);
 const bookEW = book.bind(eurowings);
 bookEW(23, "Steven Williams");
 
-//:? Funkcja 'bind' ZWRACA (nie wywołuje) nową funkcję, która jest kopią funkcji book, ale z przypisanym 'this' do obiektu eurowings. Funkcja bookEW jest teraz funkcją ZWROTNĄ, która może być wywoływana.
+//:& Funkcja 'bind' ZWRACA (nie wywołuje) nową funkcję, która jest kopią funkcji book, ale z przypisanym 'this' do obiektu eurowings. Funkcja bookEW jest teraz funkcją ZWROTNĄ, która może być wywoływana.
 //:? Funkcje call i apply są funkcjami natychmiastowymi, wywołują one funkcję odnosząc się do obiektu za pomocą podanego parametru, natomiast bind tworzy kopię funkcji z przypisanym obiektem.
 
 const bookLH = book.bind(lufthansa);
@@ -428,7 +428,7 @@ console.log(notPrivate);
 */
 
 //: Closures
-
+/* 
 const secureBooking = function () {
   let passengerCount = 0;
 
@@ -444,12 +444,62 @@ booker();
 booker();
 booker();
 
-//:? Funkcja booker() utworzona i wywoływana w zakresie globalnym posiada dostęp do zmiennej 'passengerCount' utworzonej lokalnie w funkcji securebooking(). Jest to możliwe dzięki mechanizmowi 'domknięcia'.
+//:? Funkcja booker() wywoływana w zakresie globalnym posiada dostęp do zmiennej 'passengerCount' utworzonej lokalnie w funkcji securebooking(). Jest to możliwe dzięki mechanizmowi 'domknięcia'.
 
-//:? Domknięcie (closure) jest zjawiskiem, które pozwala funkcji na dostęp do wszystkich zmiennych z zakresu, w którym została utworzona, nawet po tym jak funkcja nadrzędna zakończyła działanie. Funkcja przechowuje referencje do jej zewnętrznego zakresu, co pozwala na zachowanie łańcucha zakresu (scope chain) przez cały czas.
+//:& Domknięcie (closure) jest zjawiskiem, które pozwala funkcji na dostęp do wszystkich zmiennych z zakresu, w którym została utworzona, nawet po tym jak funkcja nadrzędna zakończyła działanie. Funkcja przechowuje referencje do jej zewnętrznego zakresu, co pozwala na zachowanie łańcucha zakresu (scope chain) przez cały czas.
 
 //:3 Analogia: Domknięcie jest jak plecak z zmiennymi, który funkcja zabiera ze sobą gdziekolwiek idzie. Plecak zawiera wszystkie zmienne, które były dostępne w środowisku, w którym funkcja została utworzona.
 
-//:& Domknięcie jest bardzo ważnym mechanizmem w JS, ponieważ pozwala na tworzenie funkcji z prywatnymi zmiennymi, które są bezpieczne przed kolizją nazw. Jedynie funkcja domknięta ma do nich dostęp, globalnie są one nadal niewidoczne.
+//:? Domknięcie jest bardzo ważnym mechanizmem w JS, ponieważ pozwala na tworzenie funkcji z prywatnymi zmiennymi, które są bezpieczne przed kolizją nazw. Jedynie funkcja domknięta ma do nich dostęp, globalnie są one nadal niewidoczne.
 
 console.dir(booker); // W konsoli możemy zobaczyć zmienną [[Scopes]] w której znajduje się zakres, w którym została utworzona funkcja booker.
+*/
+
+//: More Closure Examples
+
+//:. Example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+console.dir(f);
+
+//  Re-assigning f function
+h();
+f();
+console.dir(f);
+
+//:. Example 2
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+  //:? setTimeout() wywoła funkcję zwrotną po upływie określonego czasu, w celu ukończenia działania funkcji broadPassengers() przed rozpoczęciem funkcji zwrotnej.
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+boardPassengers(180, 3);
+
+//:? Funkcja zwrotna w funkcji setTimeout() zostaje wywołana w całości niezależnie od funkcji boardPassengers() (bez przypisania oraz po wykonaniu funkcji broadPassengers()), a mimo to ma dostęp do zmiennych tej funkcji i może je bez problemu wyświetlać.
+
+const perGroup = 1000;
+boardPassengers(180, 5);
+//:? Ta zmienna globalna nie ma wpływu na funkcję zwrotną, ponieważ funkcja zwrotna ma dostęp do zmiennej perGroup z funkcji boardPassengers(), a domknięcie ma większy priorytet niż łańcuch zakresu.

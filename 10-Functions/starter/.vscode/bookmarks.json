@@ -47,6 +47,11 @@
 					"line": 429,
 					"column": 4,
 					"label": "Closures"
+				},
+				{
+					"line": 457,
+					"column": 4,
+					"label": "More Closure Examples"
 				}
 			]
 		}
