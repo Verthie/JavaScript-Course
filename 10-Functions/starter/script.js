@@ -456,7 +456,7 @@ console.dir(booker); // W konsoli możemy zobaczyć zmienną [[Scopes]] w które
 */
 
 //: More Closure Examples
-
+/* 
 //:. Example 1
 let f;
 
@@ -491,7 +491,7 @@ const boardPassengers = function (n, wait) {
     console.log(`We are now boarding all ${n} passengers`);
     console.log(`There are 3 groups, each with ${perGroup} passengers`);
   }, wait * 1000);
-  //:? setTimeout() wywoła funkcję zwrotną po upływie określonego czasu, w celu ukończenia działania funkcji broadPassengers() przed rozpoczęciem funkcji zwrotnej.
+  //:? setTimeout() wywoła funkcję zwrotną po upływie określonego czasu. Ma to na celu zaprezentowanie przypadku w którym funkcja broadPassengers() zakończy działanie przed rozpoczęciem funkcji zwrotnej.
 
   console.log(`Will start boarding in ${wait} seconds`);
 };
@@ -503,3 +503,29 @@ boardPassengers(180, 3);
 const perGroup = 1000;
 boardPassengers(180, 5);
 //:? Ta zmienna globalna nie ma wpływu na funkcję zwrotną, ponieważ funkcja zwrotna ma dostęp do zmiennej perGroup z funkcji boardPassengers(), a domknięcie ma większy priorytet niż łańcuch zakresu.
+*/
+
+//: Coding Challenge #2
+/*
+This is more of a thinking challenge than a coding challenge 🤓
+Your tasks:
+
+1. Take the IIFE below and at the end of the function, attach an event listener that
+changes the color of the selected h1 element ('header') to blue, each time
+the body element is clicked. Do not select the h1 element again!
+2. And now explain to yourself (or someone around you) why this worked! Take all
+the time you need. Think about when exactly the callback function is executed,
+and what that means for the variables involved in this example.
+*/
+/* 
+(function () {
+  const header = document.querySelector("h1");
+  header.style.color = "red";
+
+  document.querySelector("body").addEventListener("click", function () {
+    header.style.color = "blue";
+  });
+})();
+
+//:? Wyjaśnienie dlaczego to działa to domknięcie. Wszystko wytłumaczone jest powyżej tutaj jest po prostu inny przykład, ale działanie dalej takie same
+*/
