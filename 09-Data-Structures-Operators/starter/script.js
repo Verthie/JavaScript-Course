@@ -474,9 +474,11 @@ const rest2 = {
 };
 
 //:. OR assignment operator
+//:@ Standard way:
 // rest1.numGuests = rest1.numGuests || 10;
 // rest2.numGuests = rest2.numGuests || 10;
-// rest1.numGuests ||= 10; // The same as the above examples, but written differently
+//:& New way:
+// rest1.numGuests ||= 10;
 // rest2.numGuests ||= 10;
 
 //:. nullish assignment operator (null or undefined)
@@ -1007,7 +1009,7 @@ name conversion working 😉
 you're stuck. Then pause and continue!
 */
 
-//: My Solution
+//:. My Solution
 /* 
 const variableList = function (list) {
   const variableNames = list.split("\n");
@@ -1043,7 +1045,7 @@ document.querySelector("button").addEventListener("click", function () {
 });
 */
 
-//: Guys Solution
+//:. Guys Solution
 /* 
 document.body.append(document.createElement("textarea"));
 document.body.append(document.createElement("button"));

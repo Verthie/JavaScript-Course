@@ -9,9 +9,9 @@ const createBooking = function (
   numPassengers = 1,
   price = 199 * numPassengers
 ) {
-  //:@ ES5
-  // numPassengers = numPassengers || 1;
-  // price = price || 199;
+  //:@ ES5:
+  //:@ numPassengers = numPassengers || 1;
+  //:@ price = price || 199;
 
   const booking = {
     flightNum,
@@ -52,16 +52,12 @@ const checkIn = function (flightNum, passenger) {
   }
 };
 
-checkIn(flight, jonas);
-console.log(flight);
-console.log(jonas);
+checkIn(flight, jonas); // const flightNum = flight; const passenger = jonas;
+console.log(flight); // returns the original value - "LH234"
+console.log(jonas); // returns jonas object with changed values, as in function
 
-//:@ Is the same as doing...
-const flightNum = flight;
-const passenger = jonas;
-
-//:? Kiedy przesyłamy zmienną do funkcji tworzymy kopię jej wartości. Zmieniając wartość tej zmiennej nie wpływamy na oryginalną zmienną.
-//:? Przy modyfikacji obiektu w funkcji referencja odnosi się do oryginalnego obiektu, tak więc zmiana wartości powoduje zmianę globalną. Tak więc, w przypadku obiektów nie kopiujemy całego obiektu, tylko jego referencje.
+//:? Kiedy przesyłamy zmienną do funkcji tworzymy kopię jej wartości. Zmieniając wartość skopiowanej zmiennej nie wpływamy na oryginalną zmienną.
+//:? Przy modyfikacji obiektu w funkcji referencja odnosi się do oryginalnego obiektu, tak więc zmiana wartości powoduje zmianę globalną. Co za tym idzie, w przypadku obiektów nie klonujemy obiektu, tylko uzyskujemy jego referencje.
 
 const newPassport = function (person) {
   person.passport = Math.trunc(Math.random() * 1000000000000);
@@ -84,7 +80,7 @@ const upperFirstWord = function (str) {
   return [first.toUpperCase(), ...others].join(" ");
 };
 
-// Higher-order function
+//:. Higher-order function
 const transformer = function (str, fn) {
   console.log(`Original string: ${str}`);
   console.log(`Transformed string: ${fn(str)}`);
@@ -98,7 +94,7 @@ transformer("Javascript is the best!", oneWord);
 //:? Funkcja transformująca dba tylko o wyświetlenie przekształconego ciągu znaków, w tym celu wywołuje inną funkcję, która wykonuje proces przekształcania (upperFirstWord, oneWord).
 //:? Kiedy istnieje funkcja, przyjmująca inne funkcje jako parametry, nazywana jest ona "funkcją wyższego rzędu"(higher - order function), funkcje wywoływane wewnątrz nich nazywane są "funkcjami zwrotnymi"(callback functions).
 
-// JS uses callbacks all the time
+//:* JS uses callbacks all the time
 const high5 = function () {
   console.log("🖐️");
 };
@@ -136,7 +132,7 @@ greetArr("Hi")("Jonas");
 */
 
 //: The call and apply Methods
-
+/* 
 const lufthansa = {
   airline: "Lufthansa",
   iataCode: "LH",
@@ -184,17 +180,17 @@ book.call(swiss, 583, "Mary Cooper");
 console.log(swiss);
 
 //:. Apply method
-//:@ Not used that much anymore
+//:@ Not used that much anymore:
 const flightData = [583, "George Cooper"];
 book.apply(swiss, flightData);
 console.log(swiss);
 
-//:& because it's the same thing as
+//:& Because it's the same thing as:
 book.call(swiss, ...flightData);
-
+*/
 //: The bind Method
-
-// book.call(eurowings, 23, 'Sarah Williams');
+/* 
+//:@ book.call(eurowings, 23, 'Sarah Williams');
 
 const bookEW = book.bind(eurowings);
 bookEW(23, "Steven Williams");
@@ -217,7 +213,7 @@ lufthansa.buyPlane = function () {
   this.planes++;
   console.log(this.planes);
 };
-// lufthansa.buyPlane();
+//:# lufthansa.buyPlane();
 
 document
   .querySelector(".buy")
@@ -244,3 +240,154 @@ const addTaxCh = function (rate) {
 const addVATCh = addTaxCh(0.23);
 console.log(addVATCh(100));
 console.log(addVATCh(23));
+*/
+
+//: Coding Challenge #1
+/*
+Let's build a simple poll app!
+A poll has a question, an array of options from which people can choose, and an
+array with the number of replies for each option. This data is stored in the starter
+'poll' object below.
+
+Your tasks:
+1. Create a method called 'registerNewAnswer' on the 'poll' object. The
+method does 2 things:
+  1.1. Display a prompt window for the user to input the number of the
+  selected option. The prompt should look like this:
+      What is your favourite programming language?
+      0: JavaScript
+      1: Python
+      2: Rust
+      3: C++
+      (Write option number)
+
+  1.2. Based on the input number, update the 'answers' array property. For
+  example, if the option is 3, increase the value at position 3 of the array by 1
+1. Make sure to check if the input is a number and if the number makes
+sense (e.g. answer 52 wouldn't make sense, right?)
+2. Call this method whenever the user clicks the "Answer poll" button.
+3. Create a method 'displayResults' which displays the poll results. The
+method takes a string as an input (called 'type'), which can be either 'string'
+or 'array'. If type is 'array', simply display the results array as it is, using
+console.log(). This should be the default option. If type is 'string', display a
+string like "Poll results are 13, 2, 4, 1".
+4. Run the 'displayResults' method at the end of each
+'registerNewAnswer' method call.
+5. Bonus: Use the 'displayResults' method to display the 2 arrays in the test
+data. Use both the 'array' and the 'string' option. Do not put the arrays in the poll
+object! So what should the this keyword look like in this situation?
+The Complete JavaScript Course 21
+
+Test data for bonus:
+§ Data 1: [5, 2, 3]
+§ Data 2: [1, 5, 3, 9, 6, 1]
+
+Hints: Use many of the tools you learned about in this and the last section 😉
+GOOD LUCK 😀
+*/
+
+/* 
+const poll = {
+  question: "What is your favourite programming language?",
+  options: ["0: JavaScript", "1: Python", "2: Rust", "3:C++"],
+  // This generates [0, 0, 0, 0]. More in the next section!
+  answers: new Array(4).fill(0),
+};
+*/
+
+//:. My attempt
+/* 
+const poll = {
+  question: "What is your favourite programming language?",
+  options: ["0: JavaScript", "1: Python", "2: Rust", "3:C++"],
+  // This generates [0, 0, 0, 0]. More in the next section!
+  answers: new Array(4).fill(0),
+  registerNewAnswer() {
+    let favlang = prompt(`${this.question}\n${this.options[0]}\n${this.options[1]}\n${this.options[2]}\n${this.options[3]}\n(Write option number)`);
+
+    // let [js, python, rust, cpp] = [...this.answers];
+
+    switch (favlang) {
+      case "0":
+        js++;
+        break;
+      case "1":
+        python++;
+        break;
+      case "2":
+        rust++;
+        break;
+      case "3":
+        cpp++;
+        break;
+      default:
+        return;
+    }
+    this.answers = [js, python, rust, cpp];
+    // console.log(this.answers);
+    // console.log(`js: ${js}, python: ${python}, rust: ${rust}, cpp: ${cpp}`);
+    displayResults.call(this, undefined);
+  },
+};
+
+let [js, python, rust, cpp] = [...poll.answers];
+
+document
+  .querySelector(".poll")
+  .addEventListener("click", poll.registerNewAnswer.bind(poll));
+
+const displayResults = function (type = "array") {
+  if (type === "array") console.log(poll.answers);
+  else if (type === "string") {
+    console.log(`Poll results are ${js}, ${python}, ${rust}, ${cpp}`);
+  }
+};
+
+arr1 = [5, 2, 3];
+arr2 = [1, 5, 3, 9, 6, 1];
+// How the fuck am I supposed to do that with this function???
+*/
+
+//:. Jonas attempt
+const poll = {
+  question: "What is your favourite programming language?",
+  options: ["0: JavaScript", "1: Python", "2: Rust", "3:C++"],
+  // This generates [0, 0, 0, 0]. More in the next section!
+  answers: new Array(4).fill(0),
+  registerNewAnswer() {
+    // Get answer
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+      )
+    );
+    console.log(answer);
+
+    // Register answer
+    typeof answer === "number" &&
+      answer < this.answers.length &&
+      this.answers[answer]++;
+
+    console.log(this.answers);
+  },
+  displayResults(type = "array") {
+    if (type === "array") {
+      console.log(this.answers);
+    } else if (type === "string") {
+      // Poll results are 13, 2, 4, 1
+      console.log(`Poll results are ${this.answers.join(", ")}`);
+    }
+  },
+};
+
+// poll.registerNewAnswer();
+
+document
+  .querySelector(".poll")
+  .addEventListener("click", poll.registerNewAnswer.bind(poll));
+
+poll.displayResults.call({ answers: [5, 2, 3] });
+poll.displayResults.call({ answers: [5, 2, 3] }, "string");
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
+// [5, 2, 3]
+// [1, 5, 3, 9, 6, 1]

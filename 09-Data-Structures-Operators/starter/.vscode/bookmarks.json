@@ -54,52 +54,52 @@
 					"label": "Logical Assignment Operators"
 				},
 				{
-					"line": 495,
+					"line": 497,
 					"column": 4,
 					"label": "The Nullish Coalescing Operator (??)"
 				},
 				{
-					"line": 508,
+					"line": 510,
 					"column": 4,
 					"label": "Short Circuiting (&& and ||)"
 				},
 				{
-					"line": 544,
+					"line": 546,
 					"column": 4,
 					"label": "Rest Pattern and Parameters"
 				},
 				{
-					"line": 585,
+					"line": 587,
 					"column": 4,
 					"label": "The Spread Operator (...)"
 				},
 				{
-					"line": 639,
+					"line": 641,
 					"column": 2,
 					"label": "Destructuring Objects"
 				},
 				{
-					"line": 685,
+					"line": 687,
 					"column": 4,
 					"label": "Destructuring Arrays"
 				},
 				{
-					"line": 734,
+					"line": 736,
 					"column": 23,
 					"label": "Coding Challenge #1"
 				},
 				{
-					"line": 838,
+					"line": 840,
 					"column": 23,
 					"label": "Coding Challenge #2"
 				},
 				{
-					"line": 918,
+					"line": 920,
 					"column": 4,
 					"label": "Coding Challenge #3"
 				},
 				{
-					"line": 979,
+					"line": 981,
 					"column": 4,
 					"label": "Coding Challenge #4"
 				}
