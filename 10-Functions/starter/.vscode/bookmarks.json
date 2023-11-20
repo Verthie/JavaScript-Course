@@ -37,6 +37,11 @@
 					"line": 244,
 					"column": 4,
 					"label": "Coding Challenge #1"
+				},
+				{
+					"line": 396,
+					"column": 4,
+					"label": "Immediately Invoked Function Expressions (IIFE)"
 				}
 			]
 		}

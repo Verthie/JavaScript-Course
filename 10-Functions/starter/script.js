@@ -349,6 +349,7 @@ arr2 = [1, 5, 3, 9, 6, 1];
 */
 
 //:. Jonas attempt
+/*
 const poll = {
   question: "What is your favourite programming language?",
   options: ["0: JavaScript", "1: Python", "2: Rust", "3:C++"],
@@ -391,3 +392,33 @@ poll.displayResults.call({ answers: [5, 2, 3] }, "string");
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
 // [5, 2, 3]
 // [1, 5, 3, 9, 6, 1]
+*/
+
+//: Immediately Invoked Function Expressions (IIFE)
+const runOnce = function () {
+  console.log("This will never run again");
+};
+runOnce();
+//:@ If we only call the function once then it will never run again, but we can still call this function later in the code so it's not what we want
+
+//:. IIFE
+(function () {
+  console.log("This will never run again");
+  const isPrivate = 23;
+})();
+
+// console.log(isPrivate);
+
+(() => console.log("This will ALSO never run again"))();
+
+//:? IIFE jest funkcją, która jest wywoływana tylko raz i znika. Jest używana do tworzenia nowego zakresu (scope), dzięki czemu możemy bezpiecznie definiować zmienne wewnątrz niego, nie martwiąc się o kolizje nazw.
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+
+//:? W ES6 mamy bloki, które tworzą nowy zakres, tak więc nie potrzebujemy już IIFE do tworzenia nowych zakresów. IIFE nadal może być wykorzystywane w celu tworzenia funkcji, które muszą być wywołane tylko raz.
+
+console.log(isPrivate);
+console.log(notPrivate);
