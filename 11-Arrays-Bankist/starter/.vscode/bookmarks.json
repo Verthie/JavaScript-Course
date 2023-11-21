@@ -12,6 +12,11 @@
 					"line": 121,
 					"column": 4,
 					"label": "The new at method"
+				},
+				{
+					"line": 138,
+					"column": 27,
+					"label": "Looping Arrays: forEach"
 				}
 			]
 		}
