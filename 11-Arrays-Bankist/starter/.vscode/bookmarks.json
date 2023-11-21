@@ -7,6 +7,11 @@
 					"line": 77,
 					"column": 4,
 					"label": "Simple Array Methods"
+				},
+				{
+					"line": 121,
+					"column": 4,
+					"label": "The new at method"
 				}
 			]
 		}
