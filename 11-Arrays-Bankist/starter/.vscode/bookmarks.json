@@ -4,19 +4,24 @@
 			"path": "script.js",
 			"bookmarks": [
 				{
-					"line": 77,
+					"line": 79,
 					"column": 4,
 					"label": "Simple Array Methods"
 				},
 				{
-					"line": 121,
+					"line": 123,
 					"column": 4,
 					"label": "The new at method"
 				},
 				{
-					"line": 138,
+					"line": 140,
 					"column": 27,
 					"label": "Looping Arrays: forEach"
+				},
+				{
+					"line": 170,
+					"column": 30,
+					"label": "forEach with Maps and Sets"
 				}
 			]
 		}
