@@ -1,0 +1,8 @@
+{
+  "name": "Section 11",
+  "dockerFile": "Dockerfile",
+  "extensions": ["ms-vscode.vscode-typescript-tslint-plugin"],
+  "settings": { "terminal.integrated.shell.linux": "/bin/bash" },
+  "forwardPorts": [3000],
+  "workspaceFolder": "/11-Arrays-Bankist/starter"
+}
