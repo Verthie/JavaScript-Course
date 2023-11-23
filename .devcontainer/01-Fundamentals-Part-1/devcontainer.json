@@ -1,5 +1,5 @@
 {
-  "name": "section1",
+  "name": "section-1",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "extensions": [
     "formulahendry.auto-close-tag",
