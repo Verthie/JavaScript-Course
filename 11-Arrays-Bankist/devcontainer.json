@@ -1,5 +1,5 @@
 {
-  "name": "my-project-devcontainer",
+  "name": "11Sectiontest",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "extensions": [
     "formulahendry.auto-close-tag",
@@ -17,6 +17,5 @@
     "ritwickdey.LiveServer",
     "PKief.material-icon-theme",
     "esbenp.prettier-vscode"
-  ],
-  "workspaceFolder": "../11-Arrays-Bankist/starter"
+  ]
 }
