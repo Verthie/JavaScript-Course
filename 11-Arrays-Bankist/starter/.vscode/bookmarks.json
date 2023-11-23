@@ -4,17 +4,17 @@
 			"path": "script.js",
 			"bookmarks": [
 				{
-					"line": 78,
-					"column": 4,
+					"line": 79,
+					"column": 24,
 					"label": "Simple Array Methods"
 				},
 				{
-					"line": 122,
-					"column": 4,
+					"line": 123,
+					"column": 21,
 					"label": "The new at method"
 				},
 				{
-					"line": 139,
+					"line": 140,
 					"column": 27,
 					"label": "Looping Arrays: forEach"
 				},
