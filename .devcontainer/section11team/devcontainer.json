@@ -16,10 +16,5 @@
     "esbenp.prettier-vscode"
   ],
   "recommendations": ["ms-ceintl.vscode-language-pack-pl"],
-  "workspaceFolder": "/workspaces/JavaScript-Course/11-Arrays-Bankist/starter/",
-  "settings": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "locale": "en-US"
-  }
+  "workspaceFolder": "/workspaces/JavaScript-Course/11-Arrays-Bankist/starter/"
 }
