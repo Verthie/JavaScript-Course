@@ -1,4 +1,6 @@
 {
+  "name": "my-project-devcontainer",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
   "extensions": ["formulahendry.auto-close-tag", 
     "formulahendry.auto-rename-tag", 
     "aaron-bond.better-comments",
@@ -14,6 +16,6 @@
     "ritwickdey.LiveServer",
     "PKief.material-icon-theme",
     "esbenp.prettier-vscode"
-      ]
+      ],
   "workspaceFolder": "/11-Arrays-Bankist/starter"
 }
