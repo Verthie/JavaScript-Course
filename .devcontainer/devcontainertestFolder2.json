@@ -1,5 +1,5 @@
 {
-  "name": "my-project-devcontainer",
+  "name": "another-title",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "extensions": [
     "formulahendry.auto-close-tag",
