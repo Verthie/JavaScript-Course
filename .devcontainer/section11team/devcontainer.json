@@ -18,5 +18,6 @@
     "PKief.material-icon-theme",
     "esbenp.prettier-vscode"
   ],
-  "workspaceFolder": "/workspaces/JavaScript-Course/11-Arrays-Bankist/starter/"
+  "workspaceFolder": "/workspaces/JavaScript-Course/11-Arrays-Bankist/starter/",
+  "locale": "en-US"
 }
