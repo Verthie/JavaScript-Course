@@ -16,5 +16,9 @@
     "esbenp.prettier-vscode"
   ],
   "workspaceFolder": "/workspaces/JavaScript-Course/01-Fundamentals-Part-1/starter/",
-  "locale": "en-US"
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "locale": "en-US"
+  }
 }

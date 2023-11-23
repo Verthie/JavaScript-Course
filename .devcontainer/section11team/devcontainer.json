@@ -16,5 +16,9 @@
     "esbenp.prettier-vscode"
   ],
   "workspaceFolder": "/workspaces/JavaScript-Course/11-Arrays-Bankist/starter/",
-  "locale": "en-US"
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "locale": "en-US"
+  }
 }
