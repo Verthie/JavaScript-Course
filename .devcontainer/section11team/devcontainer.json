@@ -15,6 +15,5 @@
     "PKief.material-icon-theme",
     "esbenp.prettier-vscode"
   ],
-  "recommendations": ["ms-ceintl.vscode-language-pack-pl"],
   "workspaceFolder": "/workspaces/JavaScript-Course/11-Arrays-Bankist/starter/"
 }
