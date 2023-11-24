@@ -118,7 +118,6 @@ console.log([...arr, ...arr2]); // To samo
 
 //:. JOIN
 console.log(letters.join(" - "));
-
 */
 
 //: The new at method
