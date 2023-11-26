@@ -4,24 +4,34 @@
 			"path": "script.js",
 			"bookmarks": [
 				{
-					"line": 79,
+					"line": 63,
+					"column": 5,
+					"label": "Creating DOM Elements"
+				},
+				{
+					"line": 105,
 					"column": 24,
 					"label": "Simple Array Methods"
 				},
 				{
-					"line": 122,
+					"line": 148,
 					"column": 4,
 					"label": "The new at method"
 				},
 				{
-					"line": 139,
+					"line": 165,
 					"column": 27,
 					"label": "Looping Arrays: forEach"
 				},
 				{
-					"line": 169,
+					"line": 195,
 					"column": 4,
 					"label": "forEach with Maps and Sets"
+				},
+				{
+					"line": 214,
+					"column": 23,
+					"label": "Coding Challenge #1"
 				}
 			]
 		}
