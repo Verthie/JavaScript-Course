@@ -85,6 +85,20 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+//: Computing Usernames
+
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map((name) => name[0])
+      .join("");
+  });
+};
+createUsernames(accounts);
+console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -97,7 +111,7 @@ const currencies = new Map([
 ]); 
 */
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -223,7 +237,7 @@ currenciesUnique.forEach(function (value, _, map) {
 //:? map, filter, reduce - są metodami wyższego rzędu, ponieważ przyjmują funkcję zwrotną jako argument
 
 //: The map Method
-
+/* 
 const eurToUsd = 1.1;
 
 const movementsUSD = movements.map(function (mov) {
@@ -249,6 +263,7 @@ const movementsDescriptions = movements.map(
     )}`
 );
 console.log(movementsDescriptions);
+*/
 
 //: Coding Challenge #1
 /* 
