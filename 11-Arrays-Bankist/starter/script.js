@@ -212,6 +212,16 @@ currenciesUnique.forEach(function (value, _, map) {
 });
 */
 
+//: Data Transformations: map, filter, reduce
+
+//:& map jest podobne do forEach, ale zwraca nową tablicę, zawierającą wyniki wywołania funkcji zwrotnej dla każdego elementu tablicy, gdzie forEach wykonuje jedynie operacje na elementach tablicy
+
+//:& filter - zwraca nową tablicę zawierającą elementy, dla których funkcja zwrotna zwróciła wartość true
+
+//:& reduce - zwraca pojedynczą wartość obliczoną na podstawie elementów tablicy
+
+//:? map, filter, reduce - są metodami wyższego rzędu, ponieważ przyjmują funkcję zwrotną jako argument
+
 //: Coding Challenge #1
 /* 
 Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners 
@@ -238,15 +248,14 @@ Hints: Use tools from all lectures in this section so far
 
 🐊 GOOD LUCK
 */
-
+/* 
 const checkDogs = function (dogsJulia, dogsKate) {
   const shallowJulia = dogsJulia.slice(1, dogsJulia.length - 2);
-  /* 
-  Solution using the splice method:
-  const shallowJulia = dogsJulia.slice();
-  shallowJulia.splice(0, 1);
-  shallowJulia.splice(-2);
-  */
+
+  // Solution using the splice method:
+  // const shallowJulia = dogsJulia.slice();
+  // shallowJulia.splice(0, 1);
+  // shallowJulia.splice(-2);
 
   const bothArrays = [...shallowJulia, ...dogsKate];
   bothArrays.forEach(function (dog, i) {
@@ -262,7 +271,8 @@ const dataOneKate = [4, 1, 15, 8, 3];
 const dataTwoJulia = [9, 16, 6, 8, 3];
 const dataTwoKate = [10, 5, 6, 1, 4];
 
-console.log("======================DATA 1======================");
+console.log("======================DATA1======================");
 checkDogs(dataOneJulia, dataOneKate);
-console.log("======================DATA 2======================");
+console.log("======================DATA2======================");
 checkDogs(dataTwoJulia, dataTwoKate);
+*/

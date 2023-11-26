@@ -24,12 +24,7 @@
 					"label": "Looping Arrays: forEach"
 				},
 				{
-					"line": 195,
-					"column": 4,
-					"label": "forEach with Maps and Sets"
-				},
-				{
-					"line": 214,
+					"line": 224,
 					"column": 23,
 					"label": "Coding Challenge #1"
 				}
