@@ -24,7 +24,22 @@
 					"label": "Looping Arrays: forEach"
 				},
 				{
+					"line": 193,
+					"column": 4,
+					"label": "forEach with Maps and Sets"
+				},
+				{
+					"line": 214,
+					"column": 45,
+					"label": "Data Transformations: map, filter, reduce"
+				},
+				{
 					"line": 224,
+					"column": 4,
+					"label": "The map Method"
+				},
+				{
+					"line": 252,
 					"column": 23,
 					"label": "Coding Challenge #1"
 				}

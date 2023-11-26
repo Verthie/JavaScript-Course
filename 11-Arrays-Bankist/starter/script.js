@@ -97,7 +97,7 @@ const currencies = new Map([
 ]); 
 */
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -221,6 +221,34 @@ currenciesUnique.forEach(function (value, _, map) {
 //:& reduce - zwraca pojedynczą wartość obliczoną na podstawie elementów tablicy
 
 //:? map, filter, reduce - są metodami wyższego rzędu, ponieważ przyjmują funkcję zwrotną jako argument
+
+//: The map Method
+
+const eurToUsd = 1.1;
+
+const movementsUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+  // return 23;
+});
+
+// arrow function of the above
+const movementsUSDarr = movements.map((mov) => mov * eurToUsd);
+
+console.log(movements);
+console.log(movementsUSD);
+console.log(movementsUSDarr);
+
+const movementsUSDfor = [];
+for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+console.log(movementsUSDfor);
+
+const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? "deposited" : "withdrew"} ${Math.abs(
+      mov
+    )}`
+);
+console.log(movementsDescriptions);
 
 //: Coding Challenge #1
 /* 
