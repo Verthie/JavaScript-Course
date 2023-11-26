@@ -223,20 +223,46 @@ old.
 Your tasks:
 Create a function 'checkDogs', which accepts 2 arrays of dog's ages 
 ('dogsJulia' and 'dogsKate'), and does the following things:
-1. Julia found out that the owners of the first and the last two dogs actually have 
-cats, not dogs! So create a shallow copy of Julia's array, and remove the cat 
-ages from that copied array (because it's a bad practice to mutate function 
-parameters)
+1. Julia found out that the owners of the first and the last two dogs actually have cats, not dogs! So create a shallow copy of Julia's array, and remove the cat ages from that copied array (because it's a bad practice to mutate function parameters)
 2. Create an array with both Julia's (corrected) and Kate's data
-3. For each remaining dog, log to the console whether it's an adult ("Dog number 1 
-is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy 🐊")
+3. For each remaining dog, log to the console whether it's an adult ("Dog number 1 is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy 🐊")
 4. Run the function for both test datasets
 
 Test data:
-§ Data 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
-§ Data 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
+§ Data 1: Julia's data [3, 5, 2, 12, 7],
+Kate's data [4, 1, 15, 8, 3]
+§ Data 2: Julia's data [9, 16, 6, 8, 3],
+Kate's data [10, 5, 6, 1, 4]
 
 Hints: Use tools from all lectures in this section so far 
 
 🐊 GOOD LUCK
 */
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const shallowJulia = dogsJulia.slice(1, dogsJulia.length - 2);
+  /* 
+  Solution using the splice method:
+  const shallowJulia = dogsJulia.slice();
+  shallowJulia.splice(0, 1);
+  shallowJulia.splice(-2);
+  */
+
+  const bothArrays = [...shallowJulia, ...dogsKate];
+  bothArrays.forEach(function (dog, i) {
+    const ageCheck =
+      dog < 3 ? "still a puppy" : `an adult, and is ${dog} years old`;
+    const message = `Dog number ${i + 1} is ${ageCheck}`;
+    console.log(message);
+  });
+};
+
+const dataOneJulia = [3, 5, 2, 12, 7];
+const dataOneKate = [4, 1, 15, 8, 3];
+const dataTwoJulia = [9, 16, 6, 8, 3];
+const dataTwoKate = [10, 5, 6, 1, 4];
+
+console.log("======================DATA 1======================");
+checkDogs(dataOneJulia, dataOneKate);
+console.log("======================DATA 2======================");
+checkDogs(dataTwoJulia, dataTwoKate);
