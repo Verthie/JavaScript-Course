@@ -9,42 +9,47 @@
 					"label": "Creating DOM Elements"
 				},
 				{
-					"line": 87,
+					"line": 88,
 					"column": 4,
 					"label": "Computing Usernames"
 				},
 				{
-					"line": 119,
+					"line": 120,
 					"column": 24,
 					"label": "Simple Array Methods"
 				},
 				{
-					"line": 162,
+					"line": 163,
 					"column": 4,
 					"label": "The new at method"
 				},
 				{
-					"line": 179,
+					"line": 180,
 					"column": 27,
 					"label": "Looping Arrays: forEach"
 				},
 				{
-					"line": 207,
+					"line": 208,
 					"column": 4,
 					"label": "forEach with Maps and Sets"
 				},
 				{
-					"line": 228,
+					"line": 229,
 					"column": 45,
 					"label": "Data Transformations: map, filter, reduce"
 				},
 				{
-					"line": 238,
+					"line": 239,
 					"column": 4,
 					"label": "The map Method"
 				},
 				{
-					"line": 267,
+					"line": 268,
+					"column": 4,
+					"label": "The filter Method"
+				},
+				{
+					"line": 285,
 					"column": 23,
 					"label": "Coding Challenge #1"
 				}
