@@ -100,6 +100,13 @@ const createUsernames = function (accs) {
 createUsernames(accounts);
 console.log(accounts);
 
+const displayBalance = function (movements) {
+  const calculateBalance = movements.reduce((acc, cur) => acc + cur, 0);
+  // labelBalance.innerHTML = calculateBalance;
+  labelBalance.textContent = `${calculateBalance} EUR`;
+};
+displayBalance(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -267,7 +274,7 @@ console.log(movementsDescriptions);
 */
 
 //: The filter Method
-
+/* 
 const deposits = movements.filter(function (mov) {
   return mov > 0;
 });
@@ -280,6 +287,33 @@ console.log(depositsFor);
 
 const withdrawals = movements.filter((mov) => mov < 0);
 console.log(withdrawals);
+*/
+
+//: The reduce Method
+
+console.log(movements);
+
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+// console.log(balance);
+
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+// Maximum value
+const maxim = movements.reduce(
+  (max, cur) => (max > cur ? max : cur),
+  movements[0]
+);
+console.log(maxim);
+
+//:? accumulator mozna porownac do akamulatora ladowanego elektrycznie, jak on akumuluje elektrycznosc tak accumulator akumuluje wartosci
 
 //: Coding Challenge #1
 /* 

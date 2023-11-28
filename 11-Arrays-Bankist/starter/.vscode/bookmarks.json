@@ -14,42 +14,42 @@
 					"label": "Computing Usernames"
 				},
 				{
-					"line": 120,
+					"line": 127,
 					"column": 24,
 					"label": "Simple Array Methods"
 				},
 				{
-					"line": 163,
+					"line": 170,
 					"column": 4,
 					"label": "The new at method"
 				},
 				{
-					"line": 180,
+					"line": 187,
 					"column": 27,
 					"label": "Looping Arrays: forEach"
 				},
 				{
-					"line": 208,
+					"line": 215,
 					"column": 4,
 					"label": "forEach with Maps and Sets"
 				},
 				{
-					"line": 229,
+					"line": 236,
 					"column": 45,
 					"label": "Data Transformations: map, filter, reduce"
 				},
 				{
-					"line": 239,
+					"line": 246,
 					"column": 4,
 					"label": "The map Method"
 				},
 				{
-					"line": 268,
+					"line": 275,
 					"column": 4,
 					"label": "The filter Method"
 				},
 				{
-					"line": 285,
+					"line": 319,
 					"column": 23,
 					"label": "Coding Challenge #1"
 				}
