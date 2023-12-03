@@ -4,37 +4,67 @@
 			"path": "script.js",
 			"bookmarks": [
 				{
-					"line": 215,
+					"line": 63,
+					"column": 25,
+					"label": "Creating DOM Elements"
+				},
+				{
+					"line": 88,
+					"column": 23,
+					"label": "Computing Usernames"
+				},
+				{
+					"line": 151,
+					"column": 24,
+					"label": "Simple Array Methods"
+				},
+				{
+					"line": 194,
+					"column": 4,
+					"label": "The new at method"
+				},
+				{
+					"line": 211,
+					"column": 4,
+					"label": "Looping Arrays: forEach"
+				},
+				{
+					"line": 241,
 					"column": 4,
 					"label": "forEach with Maps and Sets"
 				},
 				{
-					"line": 236,
+					"line": 262,
 					"column": 4,
 					"label": "Data Transformations: map, filter, reduce"
 				},
 				{
-					"line": 246,
+					"line": 272,
 					"column": 4,
 					"label": "The map Method"
 				},
 				{
-					"line": 275,
+					"line": 301,
 					"column": 4,
 					"label": "The filter Method"
 				},
 				{
-					"line": 291,
+					"line": 317,
 					"column": 4,
 					"label": "The reduce Method"
 				},
 				{
-					"line": 317,
+					"line": 343,
+					"column": 35,
+					"label": "The Magic of Chaining Functions"
+				},
+				{
+					"line": 358,
 					"column": 4,
 					"label": "Coding Challenge #1"
 				},
 				{
-					"line": 372,
+					"line": 413,
 					"column": 4,
 					"label": "Coding challenge #2"
 				}

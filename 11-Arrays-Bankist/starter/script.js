@@ -75,7 +75,7 @@ const displayMovements = function (movements) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov}€</div>
       </div>
     `;
 
@@ -88,6 +88,39 @@ displayMovements(account1.movements);
 
 //: Computing Usernames
 
+const displayBalance = function (movements) {
+  const calculateBalance = movements.reduce((acc, cur) => acc + cur, 0);
+  // labelBalance.innerHTML = calculateBalance;
+  labelBalance.textContent = `${calculateBalance}€`;
+};
+displayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const outcomes = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)}€`;
+
+  // const interest = movements
+  //   .filter((mov) => mov > 0)
+  //   .reduce((acc, mov) => acc + mov * 0.012, 0);
+  const interest = movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => (deposit * 1.2) / 100)
+    .filter((int, i, arr) => {
+      console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+calcDisplaySummary(account1.movements);
+
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -99,13 +132,6 @@ const createUsernames = function (accs) {
 };
 createUsernames(accounts);
 console.log(accounts);
-
-const displayBalance = function (movements) {
-  const calculateBalance = movements.reduce((acc, cur) => acc + cur, 0);
-  // labelBalance.innerHTML = calculateBalance;
-  labelBalance.textContent = `${calculateBalance} EUR`;
-};
-displayBalance(account1.movements);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -313,7 +339,22 @@ const maxim = movements.reduce(
 );
 console.log(maxim);
 
-//:? accumulator można porównać do akamulatora ładowanego elektrycznie, jak on akumuluje elektryczność tak accumulator akumuluje wartości
+//:? accumulator można porównać do akamulatora ładowanego elektrycznie. Jak akumulator akumuluje elektryczność tak accumulator akumuluje wartości
+
+//: The Magic of Chaining Functions
+
+const eurToUsd = 1.1;
+const totalDepositsUSD = movements
+  .filter((mov) => mov > 0)
+  .map((mov, i, arr) => {
+    // console.log(arr);
+    return mov * eurToUsd;
+  })
+  // .map((mov) => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD);
+
+//:? Metody mogą być łączone dopóki poprzednia zwraca w wyniku nową tablicę (po metodzie reduce() nie można łączyć kolejnych metod)
 
 //: Coding Challenge #1
 /* 
@@ -368,7 +409,7 @@ console.log("======================DATA1======================");
 checkDogs(dataOneJulia, dataOneKate);
 console.log("======================DATA2======================");
 checkDogs(dataTwoJulia, dataTwoKate);
- */
+*/
 
 //: Coding Challenge #2
 /* 
@@ -390,7 +431,7 @@ Test data:
 § Data 2: [16, 6, 10, 5, 6, 1, 4]
 GOOD LUCK 😀
 */
-
+/* 
 const calcAverageHumanAge = function (ages) {
   const inHumanYears = ages.map((dogAge) =>
     dogAge > 2 ? 16 + dogAge * 4 : 2 * dogAge
@@ -409,3 +450,4 @@ const calcAverageHumanAge = function (ages) {
 
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+*/
