@@ -54,22 +54,27 @@
 					"label": "The reduce Method"
 				},
 				{
-					"line": 343,
+					"line": 344,
 					"column": 35,
 					"label": "The Magic of Chaining Functions"
 				},
 				{
-					"line": 358,
+					"line": 360,
+					"column": 19,
+					"label": "The find Method"
+				},
+				{
+					"line": 380,
 					"column": 4,
 					"label": "Coding Challenge #1"
 				},
 				{
-					"line": 413,
+					"line": 435,
 					"column": 4,
 					"label": "Coding challenge #2"
 				},
 				{
-					"line": 454,
+					"line": 476,
 					"column": 4,
 					"label": "Coding Challenge #3"
 				}

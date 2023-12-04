@@ -316,7 +316,7 @@ console.log(withdrawals);
 */
 
 //: The reduce Method
-
+/* 
 console.log(movements);
 
 // const balance = movements.reduce(function (acc, cur, i, arr) {
@@ -340,9 +340,10 @@ const maxim = movements.reduce(
 console.log(maxim);
 
 //:? accumulator można porównać do akamulatora ładowanego elektrycznie. Jak akumulator akumuluje elektryczność tak accumulator akumuluje wartości
+*/
 
 //: The Magic of Chaining Functions
-
+/* 
 const eurToUsd = 1.1;
 const totalDepositsUSD = movements
   .filter((mov) => mov > 0)
@@ -355,6 +356,27 @@ const totalDepositsUSD = movements
 console.log(totalDepositsUSD);
 
 //:? Metody mogą być łączone dopóki poprzednia zwraca w wyniku nową tablicę (po metodzie reduce() nie można łączyć kolejnych metod)
+*/
+
+//: The find Method
+const firstWithdrawal = movements.find((mov) => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
+
+//:& find - zwraca pierwszą wartosć z tablicy, która spełnia podany warunek
+
+console.log(accounts);
+
+//:. Finding object based on its property
+const account = accounts.find((acc) => acc.owner === "Jessica Davis");
+console.log(account);
+
+// implementation using for-of loop
+let daAccount = {};
+for (const acc of accounts) {
+  if (acc.owner === "Jessica Davis") daAccount = acc;
+}
+console.log(daAccount);
 
 //: Coding Challenge #1
 /* 
@@ -463,7 +485,7 @@ Test data:
 
 GOOD LUCK 😀
 */
-
+/* 
 const calcAverageHumanAge = (ages) =>
   ages
     .map((dogAge) => (dogAge > 2 ? 16 + dogAge * 4 : 2 * dogAge))
@@ -472,3 +494,4 @@ const calcAverageHumanAge = (ages) =>
 
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+*/
