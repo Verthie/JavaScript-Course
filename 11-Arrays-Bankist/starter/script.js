@@ -87,10 +87,10 @@ const displayMovements = function (movements) {
 
 //: Computing Usernames
 
-const displayBalance = function (movements) {
-  const calculateBalance = movements.reduce((acc, cur) => acc + cur, 0);
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, cur) => acc + cur, 0);
   // labelBalance.innerHTML = calculateBalance;
-  labelBalance.textContent = `${calculateBalance}€`;
+  labelBalance.textContent = `${acc.balance}€`;
 };
 
 const calcDisplaySummary = function (movements) {
@@ -130,6 +130,17 @@ const createUsernames = function (accs) {
 createUsernames(accounts);
 // console.log(accounts);
 
+const updateUI = function (acc) {
+  // Display movements
+  displayMovements(acc.movements);
+
+  // Display balance
+  calcDisplayBalance(acc);
+
+  // Display summary
+  calcDisplaySummary(acc.movements);
+};
+
 // Event handler
 let currentAccount;
 
@@ -149,15 +160,60 @@ btnLogin.addEventListener("click", function (e) {
     }`;
     containerApp.style.opacity = 100;
 
-    // Display movements
-    displayMovements(currentAccount.movements);
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = "";
+    inputLoginPin.blur();
 
-    // Display balance
-    displayBalance(currentAccount.movements);
-
-    // Display summary
-    calcDisplaySummary(currentAccount.movements);
+    // Update UI
+    updateUI(currentAccount);
   }
+});
+
+btnTransfer.addEventListener("click", function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(
+    (acc) => acc.username === inputTransferTo.value
+  );
+  inputTransferAmount.value = inputTransferTo.value = "";
+
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    // Doing the transfer
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+});
+
+btnClose.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (
+    currentAccount.username === inputCloseUsername.value &&
+    currentAccount.pin === Number(inputClosePin.value)
+  ) {
+    const index = accounts.findIndex(
+      (acc) => acc.username === currentAccount.username
+    );
+    console.log(index);
+    //:& findIndex - działa jak metoda find lecz zamiast elementu zwraca jego index
+    //:@ indexOF(23) - indexOf to prostsza wersja metody findIndex, która nie pozwala na skomplikowane warunki, jedyne co robi to szuka podanego elementu w tablicy
+
+    // Delete account
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+
+  inputCloseUsername.value = inputClosePin.value = "";
 });
 
 /////////////////////////////////////////////////
