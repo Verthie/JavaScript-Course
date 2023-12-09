@@ -145,7 +145,6 @@ const updateUI = function (acc) {
 let currentAccount;
 
 btnLogin.addEventListener("click", function (e) {
-  // Prevent form from submitting
   e.preventDefault();
 
   currentAccount = accounts.find(
@@ -167,6 +166,9 @@ btnLogin.addEventListener("click", function (e) {
     // Update UI
     updateUI(currentAccount);
   }
+
+  //:& e.preventDefault() - zapobiega zgłaszaniu formularza po naciśnięciu przycisku co jest domyślną akcją wykonywaną przy elementach typu 'form'
+  //:? robimy to ponieważ domyślnie akcja ta skutkuje w odświeżeniu całej strony i restarcie aplikacji
 });
 
 btnTransfer.addEventListener("click", function (e) {
@@ -190,6 +192,25 @@ btnTransfer.addEventListener("click", function (e) {
     // Update UI
     updateUI(currentAccount);
   }
+});
+
+btnLoan.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  const canTakeLoan = currentAccount.movements.some(
+    (mov) => mov >= amount * 0.1
+  );
+
+  if (amount && canTakeLoan) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = "";
 });
 
 btnClose.addEventListener("click", function (e) {
@@ -443,23 +464,50 @@ console.log(totalDepositsUSD);
 
 //: The find Method
 const firstWithdrawal = movements.find((mov) => mov < 0);
-console.log(movements);
-console.log(firstWithdrawal);
+// console.log(movements);
+// console.log(firstWithdrawal);
 
 //:& find - zwraca pierwszą wartosć z tablicy, która spełnia podany warunek
 
-console.log(accounts);
+// console.log(accounts);
 
 //:. Finding object based on its property
 const account = accounts.find((acc) => acc.owner === "Jessica Davis");
-console.log(account);
+// console.log(account);
 
 // implementation using for-of loop
 let daAccount = {};
 for (const acc of accounts) {
   if (acc.owner === "Jessica Davis") daAccount = acc;
 }
-console.log(daAccount);
+// console.log(daAccount);
+
+//: some and every
+console.log(movements);
+
+// EQUALITY
+console.log(movements.includes(-130));
+
+//:. SOME - CONDITION
+console.log(movements.some((mov) => mov === -130));
+
+const anyDeposits = movements.some((mov) => mov > 0);
+console.log(anyDeposits);
+
+//:& some - sprawdza czy warunek jest prawdziwy dla przynajmniej jednego elementu w tablicy po czym zwraca true lub false
+
+//:. EVERY
+console.log(movements.every((mov) => mov > 0));
+console.log(account4.movements.every((mov) => mov > 0));
+
+//:& every - sprawdza czy warunek jest prawdziwy dla wszystkich elementów w tablicy po czym zwraca true lub false
+
+//:. Seperate callback
+const deposit = (mov) => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
+// Może być wykorzystywane żeby nie powtarzać tego samego kodu
 
 //: Coding Challenge #1
 /* 
