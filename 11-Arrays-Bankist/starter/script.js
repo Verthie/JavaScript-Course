@@ -168,7 +168,7 @@ btnLogin.addEventListener("click", function (e) {
   }
 
   //:& e.preventDefault() - zapobiega zgłaszaniu formularza po naciśnięciu przycisku co jest domyślną akcją wykonywaną przy elementach typu 'form'
-  //:? robimy to ponieważ domyślnie akcja ta skutkuje w odświeżeniu całej strony i restarcie aplikacji
+  //:? umieszczamy to ponieważ domyślnie akcja ta skutkuje w odświeżeniu całej strony i restarcie aplikacji
 });
 
 btnTransfer.addEventListener("click", function (e) {
@@ -366,13 +366,13 @@ currenciesUnique.forEach(function (value, _, map) {
 
 //: Data Transformations: map, filter, reduce
 
-//:& map jest podobne do forEach, ale zwraca nową tablicę, zawierającą wyniki wywołania funkcji zwrotnej dla każdego elementu tablicy, gdzie forEach wykonuje jedynie operacje na elementach tablicy
+//:& map() - jest podobne do forEach, ale zwraca nową tablicę, zawierającą wyniki wywołania funkcji zwrotnej dla każdego elementu tablicy, gdzie forEach wykonuje jedynie operacje na elementach tablicy
 
-//:& filter - zwraca nową tablicę zawierającą elementy, dla których funkcja zwrotna zwróciła wartość true
+//:& filter() - zwraca nową tablicę zawierającą elementy, dla których funkcja zwrotna zwróciła wartość true
 
-//:& reduce - zwraca pojedynczą wartość obliczoną na podstawie elementów tablicy
+//:& reduce() - zwraca pojedynczą wartość obliczoną na podstawie elementów tablicy
 
-//:? map, filter, reduce - są metodami wyższego rzędu, ponieważ przyjmują funkcję zwrotną jako argument
+//:? map(), filter(), reduce() - są metodami wyższego rzędu, ponieważ przyjmują funkcję zwrotną jako argument
 
 //: The map Method
 /* 
@@ -463,11 +463,12 @@ console.log(totalDepositsUSD);
 */
 
 //: The find Method
+/* 
 const firstWithdrawal = movements.find((mov) => mov < 0);
 // console.log(movements);
 // console.log(firstWithdrawal);
 
-//:& find - zwraca pierwszą wartosć z tablicy, która spełnia podany warunek
+//:& find() - zwraca pierwszą wartosć z tablicy, która spełnia podany warunek
 
 // console.log(accounts);
 
@@ -481,8 +482,10 @@ for (const acc of accounts) {
   if (acc.owner === "Jessica Davis") daAccount = acc;
 }
 // console.log(daAccount);
+*/
 
 //: some and every
+/* 
 console.log(movements);
 
 // EQUALITY
@@ -494,13 +497,13 @@ console.log(movements.some((mov) => mov === -130));
 const anyDeposits = movements.some((mov) => mov > 0);
 console.log(anyDeposits);
 
-//:& some - sprawdza czy warunek jest prawdziwy dla przynajmniej jednego elementu w tablicy po czym zwraca true lub false
+//:& some() - sprawdza czy warunek jest prawdziwy dla przynajmniej jednego elementu w tablicy po czym zwraca true lub false
 
 //:. EVERY
 console.log(movements.every((mov) => mov > 0));
 console.log(account4.movements.every((mov) => mov > 0));
 
-//:& every - sprawdza czy warunek jest prawdziwy dla wszystkich elementów w tablicy po czym zwraca true lub false
+//:& every() - sprawdza czy warunek jest prawdziwy dla wszystkich elementów w tablicy po czym zwraca true lub false
 
 //:. Seperate callback
 const deposit = (mov) => mov > 0;
@@ -508,6 +511,35 @@ console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 // Może być wykorzystywane żeby nie powtarzać tego samego kodu
+*/
+
+//: flat and flatMap
+
+//:. flat
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(1)); //going 1 level deep
+console.log(arrDeep.flat(2)); //going 2 levels deep
+
+const overallBalance = accounts
+  .map((acc) => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov);
+console.log(overallBalance);
+
+//:& flat() - usuwa zagnieżdżone tablice i 'spłaszcza' całą tablice
+
+//:. flatMap
+const overallBalance2 = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce((acc, mov) => acc + mov);
+console.log(overallBalance2);
+
+//:& flatMap() - łączy funkcjonalność metod flat oraz map, powstała gdyż są one często używane razem, tak więc funkcja ta istnieje jedynie w ramach optymalizacji
+
+//:? Trzeba pamiętać że flatMap() wchodzi jedynie na głębokość 1 poziomu, jeżeli wymagane jest zejście w głębsze poziomy trzeba zastosować metodę flat()
 
 //: Coding Challenge #1
 /* 
