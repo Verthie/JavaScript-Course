@@ -554,20 +554,20 @@ console.log(overallBalance2);
 */
 
 //: Sorting Arrays
-
+/* 
 //:. Strings
 const owners = ["Jonas", "Zach", "Adam", "Martha"];
-console.log(owners.sort());
-console.log(owners);
+// console.log(owners.sort());
+// console.log(owners);
 
 //:& sort() - konwertuje elementy tablicy na stringi, a następnie sortuje tablice po stringach alfabetycznie. Metoda ta mutuje oryginalną tablice
 
 //:. Numbers
-console.log(movements);
+// console.log(movements);
 // console.log(movements.sort()); // przez to że liczby zostają przekonwertowane na stringi a następnie sortowane to kolejność wygląda tak: -1, -2, -3, 1, 2, 3, ...
 
-//:? Jeżeli sort() otrzyma od funkcji zwrotnej wartość większą niż 0 przy porównaniu dwóch liczb to zamieni je miejscami, jeżeli mniejszą niż 0 to pozostawi je w miejscu
-//:? pozwala to na stworzenie warunków dzięki którym funkcja sort będzie wiedziała że ma zmienić miejsca danych wartości, jak na przykład w przypadku liczb całkowitych
+//:? Jeżeli sort() otrzyma od funkcji zwrotnej wartość większą niż 0 to zamieni wartości miejscami, jeżeli mniejszą niż 0 to pozostawi je w miejscu
+//:? pozwala to na stworzenie warunków dzięki którym funkcja sort będzie wiedziała że ma zmienić miejsca danych wartości, jak w przypadku liczb całkowitych
 // return < 0 => A, B (keep order)
 // return > 0 => B, A (switch order)
 
@@ -577,7 +577,7 @@ console.log(movements);
 //   if (a < b) return -1;
 // });
 movements.sort((a, b) => a - b);
-console.log(movements);
+// console.log(movements);
 
 //:. Descending
 // movements.sort((a, b) => {
@@ -585,7 +585,53 @@ console.log(movements);
 //   if (a < b) return 1;
 // });
 movements.sort((a, b) => b - a);
-console.log(movements);
+// console.log(movements);
+*/
+
+//: More Ways of Creating and Filling Arrays
+const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+//:. Empty arrays + fill method
+const x = new Array(7); // Creating an array with 7 empty slots
+console.log(x);
+//:@ console.log(x.map(() => 5)); // this method doesn't work that's why there is the fill() method
+// x.fill(1);
+// x.fill(1, 3); // starts filling up at index 3 to the end
+x.fill(1, 3, 5); // starts filling up at index 3 and ends at 5
+console.log(x);
+
+arr.fill(23, 2, 6);
+console.log(arr);
+
+//:& fill() - zapełnia wszystkie miejsca tablicy taką samą wartością, można również wybrać miejsca od których funkcja powinna zacząć i skończyć wypełniać
+
+//:. Array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+const hundredRandomDices = Array.from({ length: 100 }, () =>
+  Math.floor(Math.random() * 6)
+);
+console.log(hundredRandomDices);
+
+//:& from() - tworzy tablice z iterowanego obiektu, proces tworzenia tablic tą metodą jest podobny do sposobu działania map
+//:& '_' - throwaway variable
+
+//:. Getting movements from UI
+labelBalance.addEventListener("click", function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll(".movements__value"),
+    (el) => Number(el.textContent.replace("€", ""))
+  );
+
+  console.log(movementsUI);
+
+  // const movementsUI2 = [...document.querySelectorAll(".movements__value")];
+});
 
 //: Coding Challenge #1
 /* 
