@@ -63,11 +63,13 @@ const inputClosePin = document.querySelector(".form__input--pin");
 
 //: Creating DOM Elements
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = "";
   //:& innerHTML - zwraca lub ustawia HTML dla danego elementu
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
 
     const html = `
@@ -211,6 +213,14 @@ btnLoan.addEventListener("click", function (e) {
   }
 
   inputLoanAmount.value = "";
+});
+
+let sorted = false;
+btnSort.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 btnClose.addEventListener("click", function (e) {
@@ -443,7 +453,7 @@ const maxim = movements.reduce(
 );
 console.log(maxim);
 
-//:? accumulator można porównać do akamulatora ładowanego elektrycznie. Jak akumulator akumuluje elektryczność tak accumulator akumuluje wartości
+//:? accumulator (acc) można porównać do akamulatora ładowanego elektrycznie. Jak akumulator akumuluje elektryczność tak accumulator akumuluje wartości
 */
 
 //: The Magic of Chaining Functions
@@ -516,6 +526,7 @@ console.log(movements.filter(deposit));
 //: flat and flatMap
 
 //:. flat
+/* 
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 console.log(arr.flat());
 
@@ -540,6 +551,41 @@ console.log(overallBalance2);
 //:& flatMap() - łączy funkcjonalność metod flat oraz map, powstała gdyż są one często używane razem, tak więc funkcja ta istnieje jedynie w ramach optymalizacji
 
 //:? Trzeba pamiętać że flatMap() wchodzi jedynie na głębokość 1 poziomu, jeżeli wymagane jest zejście w głębsze poziomy trzeba zastosować metodę flat()
+*/
+
+//: Sorting Arrays
+
+//:. Strings
+const owners = ["Jonas", "Zach", "Adam", "Martha"];
+console.log(owners.sort());
+console.log(owners);
+
+//:& sort() - konwertuje elementy tablicy na stringi, a następnie sortuje tablice po stringach alfabetycznie. Metoda ta mutuje oryginalną tablice
+
+//:. Numbers
+console.log(movements);
+// console.log(movements.sort()); // przez to że liczby zostają przekonwertowane na stringi a następnie sortowane to kolejność wygląda tak: -1, -2, -3, 1, 2, 3, ...
+
+//:? Jeżeli sort() otrzyma od funkcji zwrotnej wartość większą niż 0 przy porównaniu dwóch liczb to zamieni je miejscami, jeżeli mniejszą niż 0 to pozostawi je w miejscu
+//:? pozwala to na stworzenie warunków dzięki którym funkcja sort będzie wiedziała że ma zmienić miejsca danych wartości, jak na przykład w przypadku liczb całkowitych
+// return < 0 => A, B (keep order)
+// return > 0 => B, A (switch order)
+
+//:. Ascending
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+//:. Descending
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (a < b) return 1;
+// });
+movements.sort((a, b) => b - a);
+console.log(movements);
 
 //: Coding Challenge #1
 /* 
