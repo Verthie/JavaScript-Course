@@ -589,6 +589,7 @@ movements.sort((a, b) => b - a);
 */
 
 //: More Ways of Creating and Filling Arrays
+/* 
 const arr = [1, 2, 3, 4, 5, 6, 7];
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
@@ -632,6 +633,68 @@ labelBalance.addEventListener("click", function () {
 
   // const movementsUI2 = [...document.querySelectorAll(".movements__value")];
 });
+*/
+
+//: Array Methods Practice
+
+//:. Summing all of the deposits made to the bank (from all accounts)
+const bankDepositSum = accounts
+  .flatMap((acc) => acc.movements)
+  .filter((mov) => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0);
+
+// console.log(bankDepositSum);
+
+//:. How many deposits there have been with at least 1000 muny
+const numDeposits = accounts
+  .flatMap((acc) => acc.movements)
+  .filter((mov) => mov >= 1000).length;
+
+const numDeposits2 = accounts
+  .flatMap((acc) => acc.movements)
+  // .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+
+const numDeposits3 = accounts
+  .flatMap((acc) => acc.movements)
+  .filter((mov) => mov >= 1000)
+  .reduce((_count, _cur, index) => index + 1);
+
+// console.log(numDeposits);
+// console.log(numDeposits2);
+// console.log(numDeposits3);
+
+//:. Create an object that contains the sums of deposits and withdrawals
+const { deposits, withdrawals } = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+      sums[cur > 0 ? "deposits" : "withdrawals"] += cur;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(deposits, withdrawals);
+
+//:. Create a simple function to convert any string to a title case (all words in the sentence are capitalised expect for some of them)
+// this is a nice title => This Is a Nice Title
+const convertTitleCase = function (title) {
+  const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
+
+  const exceptions = ["a", "an", "and", "the", "but", "or", "on", "in", "with"];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(" ")
+    .map((word) => (exceptions.includes(word) ? word : capitalize(word)))
+    .join(" ");
+  return capitalize(titleCase);
+};
+console.log(convertTitleCase("this is a nice title"));
+console.log(convertTitleCase("this is a LONG title but not too long"));
+console.log(convertTitleCase("and here is another title with an EXAMPLE"));
 
 //: Coding Challenge #1
 /* 
