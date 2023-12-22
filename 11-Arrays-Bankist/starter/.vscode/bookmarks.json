@@ -1,0 +1,114 @@
+{
+	"files": [
+		{
+			"path": "script.js",
+			"bookmarks": [
+				{
+					"line": 63,
+					"column": 4,
+					"label": "Creating DOM Elements"
+				},
+				{
+					"line": 89,
+					"column": 4,
+					"label": "Computing Usernames"
+				},
+				{
+					"line": 265,
+					"column": 4,
+					"label": "Simple Array Methods"
+				},
+				{
+					"line": 308,
+					"column": 4,
+					"label": "The new at method"
+				},
+				{
+					"line": 325,
+					"column": 4,
+					"label": "Looping Arrays: forEach"
+				},
+				{
+					"line": 355,
+					"column": 4,
+					"label": "forEach with Maps and Sets"
+				},
+				{
+					"line": 376,
+					"column": 4,
+					"label": "Data Transformations: map, filter, reduce"
+				},
+				{
+					"line": 386,
+					"column": 4,
+					"label": "The map Method"
+				},
+				{
+					"line": 415,
+					"column": 4,
+					"label": "The filter Method"
+				},
+				{
+					"line": 431,
+					"column": 4,
+					"label": "The reduce Method"
+				},
+				{
+					"line": 458,
+					"column": 4,
+					"label": "The Magic of Chaining Functions"
+				},
+				{
+					"line": 474,
+					"column": 4,
+					"label": "The find Method"
+				},
+				{
+					"line": 496,
+					"column": 4,
+					"label": "some and every"
+				},
+				{
+					"line": 525,
+					"column": 4,
+					"label": "flat and flatMap"
+				},
+				{
+					"line": 555,
+					"column": 4,
+					"label": "Sorting Arrays"
+				},
+				{
+					"line": 592,
+					"column": 4,
+					"label": "More Ways of Creating and Filling Arrays"
+				},
+				{
+					"line": 640,
+					"column": 4,
+					"label": "Array Methods Practice"
+				},
+				{
+					"line": 702,
+					"column": 4,
+					"label": "Coding Challenge #1"
+				},
+				{
+					"line": 761,
+					"column": 4,
+					"label": "Coding Challenge #2"
+				},
+				{
+					"line": 802,
+					"column": 4,
+					"label": "Coding Challenge #3"
+				},
+				{
+					"line": 824,
+					"column": 4,
+					"label": "Coding Challenge #4"
+				}
+			]
+		}
+	]
+}
