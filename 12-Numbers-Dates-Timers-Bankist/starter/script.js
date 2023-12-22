@@ -164,7 +164,7 @@ btnLogin.addEventListener("click", function (e) {
   );
   console.log(currentAccount);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.alue) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(" ")[0]
@@ -182,7 +182,7 @@ btnLogin.addEventListener("click", function (e) {
 
 btnTransfer.addEventListener("click", function (e) {
   e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
+  const amount = +inputTransferAmoun.value;
   const receiverAcc = accounts.find(
     (acc) => acc.username === inputTransferTo.value
   );
@@ -206,7 +206,7 @@ btnTransfer.addEventListener("click", function (e) {
 btnLoan.addEventListener("click", function (e) {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  const amount = +inputLoanAmoun.value;
 
   if (
     amount > 0 &&
@@ -226,7 +226,7 @@ btnClose.addEventListener("click", function (e) {
 
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAcount.pin
   ) {
     const index = accounts.findIndex(
       (acc) => acc.username === currentAccount.username
@@ -254,3 +254,50 @@ btnSort.addEventListener("click", function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+//: Converting and Checking Numbers
+console.log(23 === 23.0);
+
+// Base 10 - 0 to 9 | 1/10 = 0.1 | 3/10 = 3.333333
+// Binary base 2 - 0, 1
+console.log(0.1 + 0.2);
+console.log(0.1 + 0.2 === 0.3);
+
+// Conversion
+console.log(Number("23"));
+console.log(+"23");
+
+//:& Możemy przekonwertować string na liczbe poprzez umieszczenie znaku plus (+) przed stringiem, działa to ponieważ JS zastosuje konwersje typu (type coercion) i automatycznie przekonwertuje wszystkie zmienne na liczby
+
+// Parsing
+console.log(Number.parseInt("30px", 10)); // => 30
+console.log(Number.parseInt("e23", 10)); // => NaN
+
+//:& parseInt - pozbywa się niepotrzebnych symboli, które nie są liczbami, pod warunkiem że parametr zaczyna się od liczby
+
+console.log(Number.parseInt("  2.5rem  ")); // => 2
+console.log(Number.parseFloat("  2.5rem  ")); // => 2.5
+
+//:& parseFloat - działa jak parseInt lecz uwzględnia liczby po przecinku
+
+// console.log(parseFloat("  2.5rem  "));
+
+// Check if value is NaN
+console.log(Number.isNaN(20)); // => false
+console.log(Number.isNaN("20")); // => false
+console.log(Number.isNaN(+"20X")); // => true
+console.log(Number.isNaN(23 / 0)); // => false
+
+//:& isNaN - sprawdza czy podana wartość jest NaN (Not a Number) i na tej bazie zwraca true lub false
+
+// Checking if value is a number
+console.log(Number.isFinite(20)); // => true
+console.log(Number.isFinite("20")); // => false
+console.log(Number.isFinite(+"20X")); // => false
+console.log(Number.isFinite(23 / 0)); // => false
+
+//:& isFinite - sprawdza czy podana wartość jest liczbą po czym zwraca true lub false
+
+console.log(Number.isInteger(23)); // => true
+console.log(Number.isInteger(23.0)); // => true
+console.log(Number.isInteger(23 / 0)); // => false
