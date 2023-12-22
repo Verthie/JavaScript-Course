@@ -94,7 +94,7 @@ const displayMovements = function (movements, sort = false) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
 
@@ -104,19 +104,19 @@ const displayMovements = function (movements, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
   const out = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter((mov) => mov > 0)
@@ -126,7 +126,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 
 const createUsernames = function (accs) {
@@ -164,7 +164,7 @@ btnLogin.addEventListener("click", function (e) {
   );
   console.log(currentAccount);
 
-  if (currentAccount?.pin === +inputLoginPin.alue) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(" ")[0]
@@ -206,7 +206,7 @@ btnTransfer.addEventListener("click", function (e) {
 btnLoan.addEventListener("click", function (e) {
   e.preventDefault();
 
-  const amount = +inputLoanAmoun.value;
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (
     amount > 0 &&
@@ -256,6 +256,7 @@ btnSort.addEventListener("click", function (e) {
 // LECTURES
 
 //: Converting and Checking Numbers
+/* 
 console.log(23 === 23.0);
 
 // Base 10 - 0 to 9 | 1/10 = 0.1 | 3/10 = 3.333333
@@ -263,13 +264,13 @@ console.log(23 === 23.0);
 console.log(0.1 + 0.2);
 console.log(0.1 + 0.2 === 0.3);
 
-// Conversion
+//:. Conversion
 console.log(Number("23"));
 console.log(+"23");
 
 //:& Możemy przekonwertować string na liczbe poprzez umieszczenie znaku plus (+) przed stringiem, działa to ponieważ JS zastosuje konwersje typu (type coercion) i automatycznie przekonwertuje wszystkie zmienne na liczby
 
-// Parsing
+//:. Parsing
 console.log(Number.parseInt("30px", 10)); // => 30
 console.log(Number.parseInt("e23", 10)); // => NaN
 
@@ -282,7 +283,7 @@ console.log(Number.parseFloat("  2.5rem  ")); // => 2.5
 
 // console.log(parseFloat("  2.5rem  "));
 
-// Check if value is NaN
+//:. Check if value is NaN
 console.log(Number.isNaN(20)); // => false
 console.log(Number.isNaN("20")); // => false
 console.log(Number.isNaN(+"20X")); // => true
@@ -290,7 +291,7 @@ console.log(Number.isNaN(23 / 0)); // => false
 
 //:& isNaN - sprawdza czy podana wartość jest NaN (Not a Number) i na tej bazie zwraca true lub false
 
-// Checking if value is a number
+//:. Checking if value is a number
 console.log(Number.isFinite(20)); // => true
 console.log(Number.isFinite("20")); // => false
 console.log(Number.isFinite(+"20X")); // => false
@@ -301,3 +302,61 @@ console.log(Number.isFinite(23 / 0)); // => false
 console.log(Number.isInteger(23)); // => true
 console.log(Number.isInteger(23.0)); // => true
 console.log(Number.isInteger(23 / 0)); // => false
+*/
+
+//: Math and Rounding
+
+//:. Square, Square and Cubic Root
+console.log(Math.sqrt(25));
+console.log(25 ** (1 / 2));
+console.log(8 ** (1 / 3));
+
+//:. Max & Min value
+console.log(Math.max(5, 18, 23, 11, 2));
+console.log(Math.max(5, 18, "23", 11, 2));
+console.log(Math.max(5, 18, "23px", 11, 2));
+
+console.log(Math.min(5, 18, 23, 11, 2));
+
+//:. PI and Circle Radius
+console.log(Math.PI);
+console.log(Math.PI * Number.parseFloat("10px") ** 2);
+
+//:. Rand
+console.log(Math.trunc(Math.random() * 6) + 1);
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1) + min;
+// 0...1 -> 0...(max - min) -> min...max
+
+console.log(randomInt(10, 20));
+
+//:& random() - zwraca losową liczbę z przedziału od 0 do 1
+
+//:. Rounding integers
+console.log(Math.round(23.3));
+console.log(Math.round(23.9));
+
+console.log(Math.ceil(23.3));
+console.log(Math.ceil(23.9));
+
+console.log(Math.floor(23.3));
+console.log(Math.floor("23.9"));
+
+console.log(Math.trunc(23.3));
+
+console.log(Math.trunc(-23.3));
+console.log(Math.floor(-23.3));
+
+//:& trunc() - usuwa wszystkie liczby po przecinku
+//:& round() - zaokrągla liczby do najbliższej całkowitej
+//:& ceil() - zaokrągla liczby w górę
+//:& floor() - zaokrągla liczby w dół
+
+//:. Rounding decimals
+console.log((2.7).toFixed(0));
+console.log((2.7).toFixed(3));
+console.log((2.345).toFixed(2));
+console.log(+(2.345).toFixed(2)); // konwersja na liczbe
+
+//:& toFixed() - zaokrągla liczby do podanej ilości miejsc po przecinku i zwraca w postaci string'a
