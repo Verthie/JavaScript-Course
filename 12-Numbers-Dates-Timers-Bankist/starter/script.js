@@ -394,7 +394,7 @@ labelBalance.addEventListener("click", function () {
 */
 
 //: Numeric Seperators
-
+/* 
 // 287,460,000,000
 const diameter = 287_460_000_000;
 console.log(diameter);
@@ -414,5 +414,43 @@ console.log(PI);
 
 console.log(Number("230_000")); // => NaN
 console.log(parseInt("230_000")); // => 230
-
+ 
 //:? Seperatory numeryczne (_) pozwalają na zwiększenie czytelności liczb, nie wpływając na ich wartość
+*/
+
+//: Working with BigInt
+
+console.log(2 ** 53 - 1); //:? The biggest number javascript can safely represent
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+
+console.log(34254385458943857839247839242389n);
+//:& Liczby zakończone literą n traktowane są w javascript jako BigInt
+
+console.log(BigInt(34254385458943857839247839242389));
+//:& BigInt - funkcja konwertująca podaną wartość na BigInt (z jakiegoś powodu nie zwraca dokładnej wartości przy dużych liczbach)
+
+//:. Operations
+console.log(10000n + 10000n);
+console.log(362897324819659237461982397461987n * 10000000n);
+// console.log(Math.sqrt(16n)) can't calculate roots of BigInts
+
+const huge = 458332940283484328483242332n;
+const num = 23;
+console.log(huge * BigInt(num));
+
+//:. Exceptions
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(typeof 20n);
+console.log(20n == 20);
+console.log(20n == "20");
+
+console.log(huge + " is REALLY big!!!");
+
+//:. Divisions
+console.log(11n / 3n);
+console.log(10 / 3);
