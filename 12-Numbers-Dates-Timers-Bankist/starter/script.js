@@ -419,7 +419,7 @@ console.log(parseInt("230_000")); // => 230
 */
 
 //: Working with BigInt
-
+/* 
 console.log(2 ** 53 - 1); //:? The biggest number javascript can safely represent
 console.log(Number.MAX_SAFE_INTEGER);
 console.log(2 ** 53 + 1);
@@ -454,3 +454,40 @@ console.log(huge + " is REALLY big!!!");
 //:. Divisions
 console.log(11n / 3n);
 console.log(10 / 3);
+*/
+
+//: Creating Dates
+
+//:. Create a date
+const now = new Date();
+console.log(now);
+
+console.log(new Date("Aug 02 2023 03:20"));
+console.log(new Date("December 24, 2015"));
+console.log(new Date(account1.movementsDates[0]));
+
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // months go from 0 to 11: 10 => 'Nov'
+console.log(new Date(2037, 10, 31)); //:? => Dec 01 (Javascript autocorrects the date)
+
+console.log(new Date(0)); //:& 0 - ilość milisekund od początku powstania czasu UNIX
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); //:& Konwertowanie z dni do milisekund (3 dni w milisekundach)
+
+// Working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
+console.log(future.getTime()); //:& getTime() - pobieranie timestamp'a z daty
+
+console.log(new Date(21422569800000));
+
+console.log(Date.now()); //:& Logowanie timestamp'a na bieżącą datę
+
+future.setFullYear(2040); // Zmiana/ustawienie właściwości daty
+console.log(future);
