@@ -24,6 +24,7 @@ const account1 = {
     '2020-05-27T17:01:17.194Z',
     '2020-07-11T23:36:17.929Z',
     '2020-07-12T10:51:36.790Z',
+    NormalNormalNormalNormalNormalNormalNormalNormal,
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -81,6 +82,21 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+const formatMovementDate = function (date) {
+  const calcDaysPassed = (date1, date2) => Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+  const daysPassed = Math.round(calcDaysPassed(date, new Date()));
+
+  if (daysPassed === 0) return 'Today';
+  if (daysPassed === 1) return 'Yesterday';
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  else {
+    const day = `${date.getDate()}`.padStart(2, 0);
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+};
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -90,10 +106,7 @@ const displayMovements = function (acc, sort = false) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const date = new Date(acc.movementsDates[i]);
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    const displayDate = `${day}/${month}/${year}`;
+    const displayDate = formatMovementDate(date);
 
     const html = `
       <div class="movements__row">
@@ -476,7 +489,7 @@ console.log(new Date(2037, 10, 31)); //:? => Dec 01 (Javascript autocorrects the
 console.log(new Date(0)); //:& 0 - ilość milisekund od początku powstania czasu UNIX
 console.log(new Date(3 * 24 * 60 * 60 * 1000)); //:& Konwertowanie z dni do milisekund (3 dni w milisekundach)
 
-// Working with dates
+//:. Working with dates
 const future = new Date(2037, 10, 19, 15, 23);
 console.log(future);
 console.log(future.getFullYear());
@@ -495,4 +508,15 @@ console.log(Date.now()); //:& Logowanie timestamp'a na bieżącą datę
 
 future.setFullYear(2040); // Zmiana/ustawienie właściwości daty
 console.log(future);
+*/
+
+//: Operations with dates
+/* 
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(+future);
+
+const calcDaysPassed = (date1, date2) => Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+
+const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14));
+console.log(days1);
 */
