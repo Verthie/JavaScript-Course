@@ -255,17 +255,18 @@ btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
   const amount = Math.floor(inputLoanAmount.value);
-  const now = new Date();
 
   if (amount > 0 && currentAccount.movements.some((mov) => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    // Add transfer date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // Add transfer date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
   }
   inputLoanAmount.value = '';
 });
@@ -551,7 +552,7 @@ console.log(days1);
 //:? Intl documentation -> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl
 
 //: Internationalizing Numbers (Intl)
-
+/* 
 const num = 3884764.23;
 
 const options = {
@@ -565,3 +566,23 @@ console.log('US:        ', new Intl.NumberFormat('en-US', options).format(num));
 console.log('Germany:        ', new Intl.NumberFormat('de-DE', options).format(num));
 console.log('Syria:        ', new Intl.NumberFormat('ar-SY', options).format(num));
 console.log(navigator.language, new Intl.NumberFormat(navigator.language, options).format(num));
+*/
+
+//: Timers: setTimeout and setInterval
+
+//:. setTimeout
+const ingredients = ['olives', 'spinach'];
+const pizzaTimer = setTimeout((ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`), 3000, ...ingredients);
+console.log('Waiting...');
+
+if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+
+//:& setTimeout - wywołuje funkcję po określonym czasie (w milisekundach)
+
+//:. setInterval
+setInterval(function () {
+  const now = new Date();
+  console.log(now);
+}, 1000);
+
+//:& setInterval - wywołuje funkcję co określony czas (w milisekundach)
