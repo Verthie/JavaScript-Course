@@ -71,3 +71,55 @@ document.querySelector('.btn--close-cookie').addEventListener('click', function 
   message.remove();
   // message.parentElement.removeChild(message);
 });
+
+//:. Styles
+message.style.backgroundColor = '#37383d'; // defining inline style - backgroundColor
+message.style.width = '120%';
+
+console.log(message.style.color); // color is defined in a stylesheet
+console.log(message.style.backgroundColor); // backgroundColor is defined manually
+
+//:? We can only log an inline style - a style that we set manually ourselves. We can't access styles that are hidden in a class, or that are defined in a stylesheet.
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+//:& getComputedStyle() - returns the final CSS value of a property, after applying all stylesheets, and resolving any basic computation
+
+message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+//:& setProperty() - sets the value of a CSS variable. The first argument is the name of the variable, and the second argument is the value we want to set it to.
+
+//:. Attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.className);
+console.log(logo.designer);
+
+logo.alt = 'Beautiful minimalist logo';
+
+//:. Non-standard
+console.log(logo.designer);
+console.log(logo.getAttribute('designer'));
+logo.setAttribute('company', 'Bankist');
+
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+
+const link = document.querySelector('.nav__link--btn');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+//:. Data attributes
+console.log(logo.dataset.versionNumber);
+
+//:. Classes
+logo.classList.add('c', 'j');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c');
+logo.classList.contains('c');
+
+//:. Don't use - it overwrites all the existing classes and allows only one class to exist at a time
+logo.className = 'jonas';
