@@ -135,6 +135,7 @@ btnScrollTo.addEventListener('click', function (e) {
 
   /* 
   console.log(e.target.getBoundingClientRect());
+  //:& e.target - the element that the event was fired on (in this case the button)
   //:& getBoundingClientRect() - returns the size of an element and its position relative to the viewport
 
   console.log('Current scroll (X/Y)', window.screenX, window.screenY);
@@ -159,7 +160,7 @@ btnScrollTo.addEventListener('click', function (e) {
 });
 
 //: Types of events and event handlers
-
+/* 
 const h1 = document.querySelector('h1');
 
 const alertH1 = function (e) {
@@ -176,3 +177,43 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 // h1.onmouseenter = function (e) {
 //   alert('addEventListener: Great! You are reading the heading :D');
 // };
+*/
+
+//: Event propagation in practice
+
+// rgb(255,255,255)
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () => `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('LINK', e.target, e.currentTarget);
+
+  console.log(e.currentTarget === this);
+  //:& e.currentTarget is the same as this keyword, both point to the element on which the EventListener is attached to.
+
+  //:. Stop propagation
+  // e.stopPropagation();
+  //:& stopPropagation() - prevents further propagation of the current event in the capturing and bubbling phases
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('CONTAINER', e.target, e.currentTarget);
+});
+
+document.querySelector('.nav').addEventListener(
+  'click',
+  function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('NAV', e.target, e.currentTarget);
+  }
+  //:@ true
+  //:& true - event capturing phase (not used anymore), false - event bubbling phase (default)
+);
+
+//:? Event propagation - when an event happens on a particular element, it first runs the handlers on that element, then on its parent and all the way up on previous ancestors.
+//:? So when we click on the link, the event first happens on the link element(.nav__link), then bubbles up to the parent element(.nav__links), and so on.Clicking on parent element won't trigger the event on the child element.
+
+//:? In all three handlers the e.target is always the same, because it logs the element where the 'click' action happened
