@@ -33,7 +33,7 @@ document.addEventListener('keydown', function (e) {
 });
 
 //: Selecting, creating and deleting elements
-
+/* 
 //:. Selecting elements
 console.log(document.documentElement);
 console.log(document.head);
@@ -123,3 +123,36 @@ logo.classList.contains('c');
 
 //:. Don't use - it overwrites all the existing classes and allows only one class to exist at a time
 logo.className = 'jonas';
+*/
+
+//: Implement smooth scrolling
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+  //:& getBoundingClientRect() - returns the size of an element and its position relative to the viewport
+
+  console.log('Current scroll (X/Y)', window.screenX, window.screenY);
+  //:& window.screenX / Y - returns the horizontal/vertical coordinate of the window (browser - np. firefox) relative to the screen (monitor)
+
+  console.log('height/width viewport', document.documentElement.clientHeight, document.documentElement.clientWidth);
+  //:& clientHeight / Width - returns the height/width of an element (including padding)
+
+  //:. Scrolling
+  // window.scrollTo(s1coords.left + window.screenX, s1coords.top + window.screenY);
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.screenX,
+  //   top: s1coords.top + window.screenY,
+  //   behavior: 'smooth',
+  // });
+  //:& scrollTo() - scrolls to a particular set of coordinates in the document
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+  //:& scrollIntoView() - scrolls to a particular element in the document
+});
