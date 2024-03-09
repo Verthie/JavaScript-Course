@@ -5,7 +5,6 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
 
 ///////////////////////////////////////
 // Modal window
@@ -35,11 +34,11 @@ document.addEventListener('keydown', function (e) {
 });
 
 //: Button scrolling
+/*
 btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect();
   console.log(s1coords);
 
-  /* 
   console.log(e.target.getBoundingClientRect());
   //:& e.target - the element that the event was fired on (in this case the button)
   //:& getBoundingClientRect() - returns the size of an element and its position relative to the viewport
@@ -49,7 +48,6 @@ btnScrollTo.addEventListener('click', function (e) {
 
   console.log('height/width viewport', document.documentElement.clientHeight, document.documentElement.clientWidth);
   //:& clientHeight / Width - returns the height/width of an element (including padding)
-  */
 
   //:. Scrolling
   // window.scrollTo(s1coords.left + window.screenX, s1coords.top + window.screenY);
@@ -64,6 +62,7 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
   //:& scrollIntoView() - scrolls to a particular element in the document
 });
+*/
 
 //: Page navigation
 // document.querySelectorAll('.nav__link').forEach(function (el) {
@@ -241,3 +240,35 @@ document.querySelector('.nav').addEventListener(
 
 //:? In all three handlers the e.target is always the same, because it logs the element where the 'click' action happened
 */
+
+//: DOM Traversing
+
+const h1 = document.querySelector('h1');
+
+// Going downwards: child
+console.log(h1.querySelectorAll('.highlight')); // selecting elements with class highlight, that are children of the h1 element
+console.log(h1.childNodes);
+console.log(h1.children); // returns HTMLCollection of all the children of the h1 element
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'orangered';
+
+// Going upwards: parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+h1.closest('h1').style.background = 'var(--gradient-primary)';
+
+//:& closest() - returns the closest ancestor of the current element (or the current element itself) which matches the specified selector or group of selectors. Basically it's the opposite of querySelector - it starts from the element itself and then travels up the DOM tree.
+
+// Going sideways: siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children);
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = 'scale(0.5)';
+});
