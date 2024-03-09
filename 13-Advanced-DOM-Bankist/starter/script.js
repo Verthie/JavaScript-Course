@@ -1,12 +1,14 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -30,6 +32,61 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
   }
+});
+
+//: Button scrolling
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  /* 
+  console.log(e.target.getBoundingClientRect());
+  //:& e.target - the element that the event was fired on (in this case the button)
+  //:& getBoundingClientRect() - returns the size of an element and its position relative to the viewport
+
+  console.log('Current scroll (X/Y)', window.screenX, window.screenY);
+  //:& window.screenX / Y - returns the horizontal/vertical coordinate of the window (browser - np. firefox) relative to the screen (monitor)
+
+  console.log('height/width viewport', document.documentElement.clientHeight, document.documentElement.clientWidth);
+  //:& clientHeight / Width - returns the height/width of an element (including padding)
+  */
+
+  //:. Scrolling
+  // window.scrollTo(s1coords.left + window.screenX, s1coords.top + window.screenY);
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.screenX,
+  //   top: s1coords.top + window.screenY,
+  //   behavior: 'smooth',
+  // });
+  //:& scrollTo() - scrolls to a particular set of coordinates in the document
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+  //:& scrollIntoView() - scrolls to a particular element in the document
+});
+
+//: Page navigation
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+// 1. Add event listener to common parent element
+// 2. Determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  //:. Matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+  //:? Matching strategy - when we have a lot of elements that we want to add the same event listener to, we can use the matching strategy to determine which element originated the event
 });
 
 //: Selecting, creating and deleting elements
@@ -125,40 +182,6 @@ logo.classList.contains('c');
 logo.className = 'jonas';
 */
 
-//: Implement smooth scrolling
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-
-btnScrollTo.addEventListener('click', function (e) {
-  const s1coords = section1.getBoundingClientRect();
-  console.log(s1coords);
-
-  /* 
-  console.log(e.target.getBoundingClientRect());
-  //:& e.target - the element that the event was fired on (in this case the button)
-  //:& getBoundingClientRect() - returns the size of an element and its position relative to the viewport
-
-  console.log('Current scroll (X/Y)', window.screenX, window.screenY);
-  //:& window.screenX / Y - returns the horizontal/vertical coordinate of the window (browser - np. firefox) relative to the screen (monitor)
-
-  console.log('height/width viewport', document.documentElement.clientHeight, document.documentElement.clientWidth);
-  //:& clientHeight / Width - returns the height/width of an element (including padding)
-  */
-
-  //:. Scrolling
-  // window.scrollTo(s1coords.left + window.screenX, s1coords.top + window.screenY);
-
-  // window.scrollTo({
-  //   left: s1coords.left + window.screenX,
-  //   top: s1coords.top + window.screenY,
-  //   behavior: 'smooth',
-  // });
-  //:& scrollTo() - scrolls to a particular set of coordinates in the document
-
-  section1.scrollIntoView({ behavior: 'smooth' });
-  //:& scrollIntoView() - scrolls to a particular element in the document
-});
-
 //: Types of events and event handlers
 /* 
 const h1 = document.querySelector('h1');
@@ -180,7 +203,7 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 */
 
 //: Event propagation in practice
-
+/* 
 // rgb(255,255,255)
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -209,7 +232,7 @@ document.querySelector('.nav').addEventListener(
     this.style.backgroundColor = randomColor();
     console.log('NAV', e.target, e.currentTarget);
   }
-  //:@ true
+  // true
   //:& true - event capturing phase (not used anymore), false - event bubbling phase (default)
 );
 
@@ -217,3 +240,4 @@ document.querySelector('.nav').addEventListener(
 //:? So when we click on the link, the event first happens on the link element(.nav__link), then bubbles up to the parent element(.nav__links), and so on.Clicking on parent element won't trigger the event on the child element.
 
 //:? In all three handlers the e.target is always the same, because it logs the element where the 'click' action happened
+*/
