@@ -134,7 +134,10 @@ const handleHover = function (e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
+//:? Passing argument into handler - We can't pass an argument directly into an event handler, so we use the bind method to create a copy of the handler function with the argument already set, then inside the function we refer to the argument by using the this keyword.
+
 //: Sticky navigation
+/* 
 const initialCoords = section1.getBoundingClientRect();
 console.log(initialCoords);
 
@@ -144,8 +147,45 @@ window.addEventListener('scroll', function (e) {
   if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
 });
+*/
 
-//:? Passing argument into handler - We can't pass an argument directly into an event handler, so we use the bind method to create a copy of the handler function with the argument already set, then inside the function we refer to the argument by using the this keyword.
+//: Sticky navigation: Intersection Observer API
+/* 
+const obsCallback = function (entries, observer) {
+  entries.forEach((entry) => {
+    console.log(entry);
+  });
+};
+
+const obsOptions = {
+  root: null, // setting the checking element to viewport
+  threshold: [0, 0.2], // setting the visibility percentage of target between 0% and 20%
+};
+//:? root - an element that is used for checking visibility of the target, basically the root (in this case: viewport) needs to intersect with the specified target (section1) for the callback to be executed
+//:? threshold - a value between 0 and 1 that specifies at what percentage of the target's visibility the observer's callback should be executed
+
+const observer = new IntersectionObserver(obsCallback, obsOptions);
+observer.observe(section1);
+*/
+
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+// console.log(navHeight);
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0, // when zero percent of header is visible trigger callback
+  rootMargin: `-${navHeight}px`, // offset by the height of navbar upward from the target
+});
+headerObserver.observe(header);
 
 //: Selecting, creating and deleting elements
 /* 
