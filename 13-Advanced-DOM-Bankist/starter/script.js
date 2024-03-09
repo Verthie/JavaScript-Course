@@ -5,10 +5,11 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+const nav = document.querySelector('.nav');
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
-const nav = document.querySelector('.nav');
 
 ///////////////////////////////////////
 // Modal window
@@ -113,7 +114,7 @@ tabsContainer.addEventListener('click', function (e) {
   document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
 });
 
-// Menu fade animation
+//: Menu fade animation
 const handleHover = function (e) {
   console.log(this);
 
@@ -129,9 +130,20 @@ const handleHover = function (e) {
   }
 };
 
-// Passing "argument" into handler
+//:. Passing "argument" into handler
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+//: Sticky navigation
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+
+window.addEventListener('scroll', function (e) {
+  // console.log(window.scrollY);
+
+  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
 
 //:? Passing argument into handler - We can't pass an argument directly into an event handler, so we use the bind method to create a copy of the handler function with the argument already set, then inside the function we refer to the argument by using the this keyword.
 
