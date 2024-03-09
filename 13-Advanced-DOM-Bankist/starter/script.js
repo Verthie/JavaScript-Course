@@ -88,6 +88,31 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   //:? Matching strategy - when we have a lot of elements that we want to add the same event listener to, we can use the matching strategy to determine which element originated the event
 });
 
+//: Tabbed component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  // console.log(clicked)
+
+  //:. Guard clause
+  if (!clicked) return;
+  //:? Guard clause - a conditional statement that returns early from the function, if a condition is true
+
+  //:. Remove active classes
+  tabs.forEach((t) => t.classList.remove('operations__tab--active'));
+  tabsContent.forEach((c) => c.classList.remove('operations__content--active'));
+
+  //:. Active tab
+  clicked.classList.add('operations__tab--active');
+
+  //:. Activate content area
+  // console.log(clicked.dataset.tab);
+  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
+});
+
 //: Selecting, creating and deleting elements
 /* 
 //:. Selecting elements
@@ -242,7 +267,7 @@ document.querySelector('.nav').addEventListener(
 */
 
 //: DOM Traversing
-
+/* 
 const h1 = document.querySelector('h1');
 
 // Going downwards: child
@@ -272,3 +297,4 @@ console.log(h1.parentElement.children);
 [...h1.parentElement.children].forEach(function (el) {
   if (el !== h1) el.style.transform = 'scale(0.5)';
 });
+*/
