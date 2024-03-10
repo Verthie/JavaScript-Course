@@ -134,7 +134,7 @@ const handleHover = function (e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
-//:? Passing argument into handler - We can't pass an argument directly into an event handler, so we use the bind method to create a copy of the handler function with the argument already set, then inside the function we refer to the argument by using the this keyword.
+//:? Passing argument into handler - we can't pass an argument directly into an event handler, so we use the bind method to create a copy of the handler function with the argument already set, then inside the function we refer to the argument by using the this keyword.
 
 //: Sticky navigation
 /* 
@@ -502,3 +502,25 @@ console.log(h1.parentElement.children);
   if (el !== h1) el.style.transform = 'scale(0.5)';
 });
 */
+
+//: Lifecycle DOM events
+
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('HTML parsed and DOM tree built');
+});
+
+//:& DOMContentLoaded event - fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
+
+document.addEventListener('load', function (e) {
+  console.log('Page fully loaded', e);
+});
+
+//:& load event - fires when the whole page has loaded, including all dependent resources such as stylesheets, images, and subframes
+
+// window.addEventListener('beforeunload', function (e) {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// });
+
+//:& beforeunload event - fires when the document is about to be unloaded. This event allows you to display a message in a confirmation dialog box to inform the user whether they want to stay or leave the current page
