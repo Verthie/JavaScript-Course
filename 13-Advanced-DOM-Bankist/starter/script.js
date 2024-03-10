@@ -238,49 +238,84 @@ const imgObserver = new IntersectionObserver(loadImg, {
 imgTargets.forEach((img) => imgObserver.observe(img));
 
 //: Slider
-const slides = document.querySelectorAll('.slide');
-const btnLeft = document.querySelector('.slider__btn--left');
-const btnRight = document.querySelector('.slider__btn--right');
+const slider = function () {
+  const slides = document.querySelectorAll('.slide');
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
+  const dotContainer = document.querySelector('.dots');
 
-let curSlide = 0;
-const maxSlide = slides.length;
+  let curSlide = 0;
+  const maxSlide = slides.length;
 
-// const slider = document.querySelector('.slider');
-// slider.style.transform = 'scale(0.4) translateX(-800px)';
-// slider.style.overflow = 'visible';
+  //: Functions
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML('beforeend', `<button class="dots__dot" data-slide="${i}"></button>`);
+    });
+  };
 
-const goToSlide = function (slide) {
-  slides.forEach((s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`));
-  //:& translateX() - moves the element along the x-axis by the specified distance
+  const activateDot = function (slide) {
+    document.querySelectorAll('.dots__dot').forEach((dot) => dot.classList.remove('dots__dot--active'));
 
-  //:? The slides are moved by the percentage we get from multiplication of the iterator and the current slide number. The first slide has iterator 0, so if the current slide was 0 then the slide would be moved by 0% (100 * 0), the second has iterator 1 so it would be moved by 100%, the third by 200% and so on. In case the current slide was 1 then the first slide would be moved by -100%, the second by 0% and the third by 100%.
+    document.querySelector(`.dots__dot[data-slide="${slide}"]`).classList.add('dots__dot--active');
+  };
+
+  //:. Slide movement
+  const goToSlide = function (slide) {
+    slides.forEach((s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`));
+    //:& translateX() - moves the element along the x-axis by the specified distance
+
+    //:? The slides are moved by the percentage we get from multiplication of the iterator and the current slide number. The first slide has iterator 0, so if the current slide was 0 then the slide would be moved by 0% (100 * 0), the second has iterator 1 so it would be moved by 100%, the third by 200% and so on. In case the current slide was 1 then the first slide would be moved by -100%, the second by 0% and the third by 100%.
+  };
+
+  const nextSlide = function () {
+    if (curSlide === maxSlide - 1) {
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
+
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+
+  const prevSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+    } else {
+      curSlide--;
+    }
+
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+
+  const init = function () {
+    goToSlide(0); // setting the initial position of the slides
+    createDots(); // creating dot elements
+    activateDot(0); // setting the initial active dot
+  };
+  init();
+
+  //: Event handlers
+  btnRight.addEventListener('click', nextSlide);
+  btnLeft.addEventListener('click', prevSlide);
+
+  document.addEventListener('keydown', function (e) {
+    // console.log(e)
+    if (e.key === 'ArrowLeft') prevSlide();
+    e.key === 'ArrowRight' && nextSlide();
+  });
+
+  dotContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dots__dot')) {
+      const { slide } = e.target.dataset;
+      goToSlide(slide);
+      activateDot(slide);
+    }
+  });
 };
-goToSlide(0); // setting the initial position of the slides
-
-//: Next slide
-
-const nextSlide = function () {
-  if (curSlide === maxSlide - 1) {
-    curSlide = 0;
-  } else {
-    curSlide++;
-  }
-
-  goToSlide(curSlide);
-};
-
-const prevSlide = function () {
-  if (curSlide === 0) {
-    curSlide = maxSlide - 1;
-  } else {
-    curSlide--;
-  }
-
-  goToSlide(curSlide);
-};
-
-btnRight.addEventListener('click', nextSlide);
-btnLeft.addEventListener('click', prevSlide);
+slider();
 
 //: Selecting, creating and deleting elements
 /* 
