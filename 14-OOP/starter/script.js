@@ -1,14 +1,28 @@
 'use strict';
 
-//:& classes - in object oriented programming (OOP) a class is a blueprint for creating objects, providing initial values for state (member variables or properties), and implementations of behavior (member functions or methods).
-//:& instance - an object created from a class.
+// Constructor function always start with a capital letter
+// Arrow function won't work as constructor function because it dosn't have its own 'this' keyword
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
 
-//:* Class is a blueprint for making a house, and the house is an instance of the class.
+  // Never do this - if there were a lot of instances created each would have to copy this method and that would be bad for performance
+  // this.calcAge = function () {
+  //   console.log(2037 - this.birthYear);
+  // };
+};
 
-//:? JavaScript does NOT support real classes like other programming languages. JavaScript classes are just a syntax sugar over the existing prototype-based inheritance.
+const jonas = new Person('Jonas', 1991);
+console.log(jonas); // => Person {firstname: "Jonas", birthYear: 1991}
 
-//:& Abstraction - hiding the complexity and only showing the essential features of the object. It helps to reduce the complexity of the system and also improves the maintainability of the system.
-//:& Encapsulation - keeping properties and methods private inside a class so they are not accessible from outside the class, only exposing them through a public interface (API). It's a protective barrier that keeps the data safe within the class (prevent from outside interference and misuse).
-//:& Inheritance - a mechanism that allows a class to inherit properties and methods from another class. It helps to eliminate redundant code.
-//:* For example, admin class can inherit from user class, because admin is also a user.
-//:& Polymorphism - the ability to present the same interface for different data types. It allows a method to do different things based on the object that it is acting upon by allowing a child class to overwrite a method it inherited from its parent class.
+// Steps:
+// 1. New {} is created
+// 2. function is called, this = {}
+// 3. {} linked to prototype
+// 4. function automatically return {}
+
+const matilda = new Person('Matilda', 2017);
+const jack = new Person('Jack', 1975);
+console.log(matilda, jack);
+
+console.log(jonas instanceof Person); // => true

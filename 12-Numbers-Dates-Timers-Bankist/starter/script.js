@@ -359,14 +359,14 @@ console.log(+"23");
 console.log(Number.parseInt("30px", 10)); // => 30
 console.log(Number.parseInt("e23", 10)); // => NaN
 
-//:& parseInt - pozbywa się niepotrzebnych symboli, które nie są liczbami, pod warunkiem że parametr zaczyna się od liczby
+//:& parseInt - pozbywa się niepotrzebnych symboli, które nie są liczbami, pod warunkiem że string zaczyna się od liczby
 
-console.log(Number.parseInt("  2.5rem  ")); // => 2
-console.log(Number.parseFloat("  2.5rem  ")); // => 2.5
+console.log(Number.parseInt("2.5rem")); // => 2
+console.log(Number.parseFloat("2.5rem")); // => 2.5
 
 //:& parseFloat - działa jak parseInt lecz uwzględnia liczby po przecinku
 
-// console.log(parseFloat("  2.5rem  "));
+// console.log(parseFloat("2.5rem"));
 
 //:. Check if value is NaN
 console.log(Number.isNaN(20)); // => false
@@ -433,10 +433,10 @@ console.log(Math.trunc(23.3));
 console.log(Math.trunc(-23.3));
 console.log(Math.floor(-23.3));
 
-//:& trunc() - usuwa wszystkie liczby po przecinku
-//:& round() - zaokrągla liczby do najbliższej całkowitej
-//:& ceil() - zaokrągla liczby w górę
-//:& floor() - zaokrągla liczby w dół
+//:& trunc() - usuwa wszystkie cyfry po przecinku
+//:& round() - zaokrągla do najbliższej całkowitej
+//:& ceil() - zaokrągla w górę
+//:& floor() - zaokrągla w dół
 
 //:. Rounding decimals
 console.log((2.7).toFixed(0));
@@ -444,13 +444,13 @@ console.log((2.7).toFixed(3));
 console.log((2.345).toFixed(2));
 console.log(+(2.345).toFixed(2)); // konwersja na liczbe
 
-//:& toFixed() - zaokrągla liczby do podanej ilości miejsc po przecinku i zwraca w postaci string'a
+//:& toFixed() - zaokrągla do podanej ilości miejsc po przecinku i zwraca w postaci string'a
 */
 
 //: The Remainder (Modulo) Operator
 /* 
 console.log(5 % 2); // Reszta z dzielenia 5 przez 2 => 1
-console.log(5 / 2);
+console.log(5 / 2); // => 2.5
 
 console.log(8 % 3);
 console.log(8 / 3);
@@ -478,7 +478,7 @@ labelBalance.addEventListener("click", function () {
 //:? Ilekroć czynność trzeba wykonać co któryś raz, warto korzystać z operatora reszty
 */
 
-//: Numeric Seperators
+//: Numeric Separators
 /* 
 // 287,460,000,000
 const diameter = 287_460_000_000;
@@ -500,7 +500,7 @@ console.log(PI);
 console.log(Number("230_000")); // => NaN
 console.log(parseInt("230_000")); // => 230
  
-//:? Seperatory numeryczne (_) pozwalają na zwiększenie czytelności liczb, nie wpływając na ich wartość
+//:? Separatory numeryczne (_) pozwalają na zwiększenie czytelności liczb, nie wpływając na ich wartość
 */
 
 //: Working with BigInt
@@ -579,7 +579,7 @@ console.log(future);
 */
 
 //: Operations with dates
-/* 
+
 const future = new Date(2037, 10, 19, 15, 23);
 console.log(+future);
 
@@ -587,7 +587,6 @@ const calcDaysPassed = (date1, date2) => Math.abs(date2 - date1) / (1000 * 60 * 
 
 const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14));
 console.log(days1);
-*/
 
 //:? Intl documentation -> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl
 
@@ -606,16 +605,19 @@ console.log('US:        ', new Intl.NumberFormat('en-US', options).format(num));
 console.log('Germany:        ', new Intl.NumberFormat('de-DE', options).format(num));
 console.log('Syria:        ', new Intl.NumberFormat('ar-SY', options).format(num));
 console.log(navigator.language, new Intl.NumberFormat(navigator.language, options).format(num));
+
+const now = new Date();
+console.log(new Intl.DateTimeFormat('pl-PL').format(now));
 */
 
 //: Timers: setTimeout and setInterval
-/* 
+
 //:. setTimeout
 const ingredients = ['olives', 'spinach'];
 const pizzaTimer = setTimeout((ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`), 3000, ...ingredients);
 console.log('Waiting...');
 
-if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+if (ingredients.includes('tomato')) clearTimeout(pizzaTimer);
 
 //:& setTimeout - wywołuje funkcję po określonym czasie (w milisekundach)
 
@@ -626,4 +628,3 @@ setInterval(function () {
 }, 1000);
 
 //:& setInterval - wywołuje funkcję co określony czas (w milisekundach)
-*/

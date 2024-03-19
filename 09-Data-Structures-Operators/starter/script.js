@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
 //: Enchanced Objects literals
-const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 const openingHours = {
   [weekdays[3]]: {
@@ -20,11 +20,11 @@ const openingHours = {
 
 // Data needed for first part of the section
 const restaurant = {
-  name: "Classico Italiano",
-  location: "Via Angelo Tavanti 23, Firenze, Italy",
-  categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
-  starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
-  mainMenu: ["Pizza", "Pasta", "Risotto"],
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
   // ES6 enhanced object literals
   openingHours,
@@ -33,16 +33,12 @@ const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  orderDelivery({ starterIndex = 1, mainIndex = 0, time = "20:00", address }) {
-    console.log(
-      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-    );
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+    console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
   },
 
   orderPasta(ing1, ing2, ing3) {
-    console.log(
-      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
-    );
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`);
   },
 
   orderPizza(mainIngredient, ...otherIngredients) {
@@ -355,7 +351,7 @@ console.log(ordersSet.has("Bread"));
 ordersSet.add("Garlic Bread");
 ordersSet.add("Garlic Bread");
 ordersSet.delete("Risotto");
-// ordersSet.clear();
+ordersSet.clear();
 console.log(ordersSet);
 
 for (const order of ordersSet) console.log(order);
@@ -377,6 +373,12 @@ console.log(new Set("jonasschmedtmann").size);
 //:? Basically konwertujemy obiekt lub właściwości obiektu na tablice i iterujemy po nich za pomocą for-of loop
 
 //:. Property NAMES
+const openingHours = {
+  thu: { open: 12, close: 22 },
+  fri: { open: 11, close: 23 },
+  sat: { open: 0, close: 24 },
+};
+
 const properties = Object.keys(openingHours);
 console.log(properties);
 
@@ -519,6 +521,11 @@ console.log(undefined || 0 || "" || "Hello" || 23 || null);
 
 //:& OR operator (||) - zwraca pierwszą prawdę lub ostatni fałsz
 
+const restaurant = {
+  starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread"],
+  mainMenu: ["Pizza", "Pasta", "Risotto"],
+}
+
 restaurant.numGuests = 23;
 const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
 console.log(guests1);
@@ -561,7 +568,13 @@ const [pizza, , risotto, ...otherFood] = [
 console.log(pizza, risotto, otherFood);
 
 //:. Objects
-const { sat, ...weekdays } = restaurant.openingHours;
+const openingHours = {
+  sat: { open: 12, close: 22 },
+  mon: { open: 11, close: 23 },
+  tue: { open: 0, close: 24 },
+};
+
+const { sat, ...weekdays } = openingHours;
 console.log(weekdays);
 
 // 2) Functions
@@ -650,6 +663,14 @@ restaurant.orderDelivery({
   address: "Via del Sole, 21",
   starterIndex: 2,
 });
+
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
+  mainMenu: ["Pizza", "Pasta", "Risotto"],
+}
 
 const { name, openingHours, categories } = restaurant;
 console.log(name, openingHours, categories);
@@ -765,39 +786,15 @@ GOOD LUCK 😀
 */
 
 const game = {
-  team1: "Bayern Munich",
-  team2: "Borrussia Dortmund",
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
   players: [
-    [
-      "Neuer",
-      "Pavard",
-      "Martinez",
-      "Alaba",
-      "Davies",
-      "Kimmich",
-      "Goretzka",
-      "Coman",
-      "Muller",
-      "Gnarby",
-      "Lewandowski",
-    ],
-    [
-      "Burki",
-      "Schulz",
-      "Hummels",
-      "Akanji",
-      "Hakimi",
-      "Weigl",
-      "Witsel",
-      "Hazard",
-      "Brandt",
-      "Sancho",
-      "Gotze",
-    ],
+    ['Neuer', 'Pavard', 'Martinez', 'Alaba', 'Davies', 'Kimmich', 'Goretzka', 'Coman', 'Muller', 'Gnarby', 'Lewandowski'],
+    ['Burki', 'Schulz', 'Hummels', 'Akanji', 'Hakimi', 'Weigl', 'Witsel', 'Hazard', 'Brandt', 'Sancho', 'Gotze'],
   ],
-  score: "4:0",
-  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
-  date: "Nov 9th, 2037",
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
   odds: {
     team1: 1.33,
     x: 3.25,
@@ -937,17 +934,17 @@ GOOD LUCK 😀
 */
 
 const gameEvents = new Map([
-  [17, "⚽ GOAL"],
-  [36, "🔁 Substitution"],
-  [47, "⚽ GOAL"],
-  [61, "🔁 Substitution"],
-  [64, "🔶 Yellow card"],
-  [69, "🔴 Red card"],
-  [70, "🔁 Substitution"],
-  [72, "🔁 Substitution"],
-  [76, "⚽ GOAL"],
-  [80, "⚽ GOAL"],
-  [92, "🔶 Yellow card"],
+  [17, '⚽ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '🔶 Yellow card'],
 ]);
 
 /*

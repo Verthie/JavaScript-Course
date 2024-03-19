@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -6,28 +6,28 @@
 
 // Data
 const account1 = {
-  owner: "Jonas Schmedtmann",
+  owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
   pin: 1111,
 };
 
 const account2 = {
-  owner: "Jessica Davis",
+  owner: 'Jessica Davis',
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
 };
 
 const account3 = {
-  owner: "Steven Thomas Williams",
+  owner: 'Steven Thomas Williams',
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3333,
 };
 
 const account4 = {
-  owner: "Sarah Smith",
+  owner: 'Sarah Smith',
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
@@ -36,52 +36,50 @@ const account4 = {
 const accounts = [account1, account2, account3, account4];
 
 // Elements
-const labelWelcome = document.querySelector(".welcome");
-const labelDate = document.querySelector(".date");
-const labelBalance = document.querySelector(".balance__value");
-const labelSumIn = document.querySelector(".summary__value--in");
-const labelSumOut = document.querySelector(".summary__value--out");
-const labelSumInterest = document.querySelector(".summary__value--interest");
-const labelTimer = document.querySelector(".timer");
+const labelWelcome = document.querySelector('.welcome');
+const labelDate = document.querySelector('.date');
+const labelBalance = document.querySelector('.balance__value');
+const labelSumIn = document.querySelector('.summary__value--in');
+const labelSumOut = document.querySelector('.summary__value--out');
+const labelSumInterest = document.querySelector('.summary__value--interest');
+const labelTimer = document.querySelector('.timer');
 
-const containerApp = document.querySelector(".app");
-const containerMovements = document.querySelector(".movements");
+const containerApp = document.querySelector('.app');
+const containerMovements = document.querySelector('.movements');
 
-const btnLogin = document.querySelector(".login__btn");
-const btnTransfer = document.querySelector(".form__btn--transfer");
-const btnLoan = document.querySelector(".form__btn--loan");
-const btnClose = document.querySelector(".form__btn--close");
-const btnSort = document.querySelector(".btn--sort");
+const btnLogin = document.querySelector('.login__btn');
+const btnTransfer = document.querySelector('.form__btn--transfer');
+const btnLoan = document.querySelector('.form__btn--loan');
+const btnClose = document.querySelector('.form__btn--close');
+const btnSort = document.querySelector('.btn--sort');
 
-const inputLoginUsername = document.querySelector(".login__input--user");
-const inputLoginPin = document.querySelector(".login__input--pin");
-const inputTransferTo = document.querySelector(".form__input--to");
-const inputTransferAmount = document.querySelector(".form__input--amount");
-const inputLoanAmount = document.querySelector(".form__input--loan-amount");
-const inputCloseUsername = document.querySelector(".form__input--user");
-const inputClosePin = document.querySelector(".form__input--pin");
+const inputLoginUsername = document.querySelector('.login__input--user');
+const inputLoginPin = document.querySelector('.login__input--pin');
+const inputTransferTo = document.querySelector('.form__input--to');
+const inputTransferAmount = document.querySelector('.form__input--amount');
+const inputLoanAmount = document.querySelector('.form__input--loan-amount');
+const inputCloseUsername = document.querySelector('.form__input--user');
+const inputClosePin = document.querySelector('.form__input--pin');
 
 //: Creating DOM Elements
 
 const displayMovements = function (movements, sort = false) {
-  containerMovements.innerHTML = "";
+  containerMovements.innerHTML = '';
   //:& innerHTML - zwraca lub ustawia HTML dla danego elementu
 
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
   movs.forEach(function (mov, i) {
-    const type = mov > 0 ? "deposit" : "withdrawal";
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
       <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
+        <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
         <div class="movements__value">${mov}€</div>
       </div>
     `;
 
-    containerMovements.insertAdjacentHTML("afterbegin", html);
+    containerMovements.insertAdjacentHTML('afterbegin', html);
 
     //:& insertAdjacentHTML - wstawia kod HTML w określonym miejscu w stosunku do elementu
   });
@@ -96,14 +94,10 @@ const calcDisplayBalance = function (acc) {
 };
 
 const calcDisplaySummary = function (movements) {
-  const incomes = movements
-    .filter((mov) => mov > 0)
-    .reduce((acc, mov) => acc + mov, 0);
+  const incomes = movements.filter((mov) => mov > 0).reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const outcomes = movements
-    .filter((mov) => mov < 0)
-    .reduce((acc, mov) => acc + mov, 0);
+  const outcomes = movements.filter((mov) => mov < 0).reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(outcomes)}€`;
 
   // const interest = movements
@@ -124,9 +118,9 @@ const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
       .toLowerCase()
-      .split(" ")
+      .split(' ')
       .map((name) => name[0])
-      .join("");
+      .join('');
   });
 };
 createUsernames(accounts);
@@ -146,23 +140,19 @@ const updateUI = function (acc) {
 // Event handler
 let currentAccount;
 
-btnLogin.addEventListener("click", function (e) {
+btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
 
-  currentAccount = accounts.find(
-    (acc) => acc.username === inputLoginUsername.value
-  );
+  currentAccount = accounts.find((acc) => acc.username === inputLoginUsername.value);
   console.log(currentAccount);
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and message
-    labelWelcome.textContent = `Welcome back, ${
-      currentAccount.owner.split(" ")[0]
-    }`;
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
     containerApp.style.opacity = 100;
 
     // Clear input fields
-    inputLoginUsername.value = inputLoginPin.value = "";
+    inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
     // Update UI
@@ -173,20 +163,13 @@ btnLogin.addEventListener("click", function (e) {
   //:? umieszczamy to ponieważ domyślnie akcja ta skutkuje w odświeżeniu całej strony i restarcie aplikacji
 });
 
-btnTransfer.addEventListener("click", function (e) {
+btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
   const amount = Number(inputTransferAmount.value);
-  const receiverAcc = accounts.find(
-    (acc) => acc.username === inputTransferTo.value
-  );
-  inputTransferAmount.value = inputTransferTo.value = "";
+  const receiverAcc = accounts.find((acc) => acc.username === inputTransferTo.value);
+  inputTransferAmount.value = inputTransferTo.value = '';
 
-  if (
-    amount > 0 &&
-    receiverAcc &&
-    currentAccount.balance >= amount &&
-    receiverAcc?.username !== currentAccount.username
-  ) {
+  if (amount > 0 && receiverAcc && currentAccount.balance >= amount && receiverAcc?.username !== currentAccount.username) {
     // Doing the transfer
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
@@ -196,13 +179,11 @@ btnTransfer.addEventListener("click", function (e) {
   }
 });
 
-btnLoan.addEventListener("click", function (e) {
+btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
   const amount = Number(inputLoanAmount.value);
-  const canTakeLoan = currentAccount.movements.some(
-    (mov) => mov >= amount * 0.1
-  );
+  const canTakeLoan = currentAccount.movements.some((mov) => mov >= amount * 0.1);
 
   if (amount && canTakeLoan) {
     // Add movement
@@ -212,27 +193,22 @@ btnLoan.addEventListener("click", function (e) {
     updateUI(currentAccount);
   }
 
-  inputLoanAmount.value = "";
+  inputLoanAmount.value = '';
 });
 
 let sorted = false;
-btnSort.addEventListener("click", function (e) {
+btnSort.addEventListener('click', function (e) {
   e.preventDefault();
 
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
 
-btnClose.addEventListener("click", function (e) {
+btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
-  if (
-    currentAccount.username === inputCloseUsername.value &&
-    currentAccount.pin === Number(inputClosePin.value)
-  ) {
-    const index = accounts.findIndex(
-      (acc) => acc.username === currentAccount.username
-    );
+  if (currentAccount.username === inputCloseUsername.value && currentAccount.pin === Number(inputClosePin.value)) {
+    const index = accounts.findIndex((acc) => acc.username === currentAccount.username);
     console.log(index);
     //:& findIndex - działa jak metoda find lecz zamiast elementu zwraca jego index
     //:@ indexOF(23) - indexOf to prostsza wersja metody findIndex, która nie pozwala na skomplikowane warunki, jedyne co robi to szuka podanego elementu w tablicy
@@ -244,7 +220,7 @@ btnClose.addEventListener("click", function (e) {
     containerApp.style.opacity = 0;
   }
 
-  inputCloseUsername.value = inputClosePin.value = "";
+  inputCloseUsername.value = inputClosePin.value = '';
 });
 
 /////////////////////////////////////////////////
@@ -557,14 +533,16 @@ console.log(overallBalance2);
 /* 
 //:. Strings
 const owners = ["Jonas", "Zach", "Adam", "Martha"];
-// console.log(owners.sort());
-// console.log(owners);
+console.log(owners.sort());
+console.log(owners);
 
 //:& sort() - konwertuje elementy tablicy na stringi, a następnie sortuje tablice po stringach alfabetycznie. Metoda ta mutuje oryginalną tablice
 
 //:. Numbers
-// console.log(movements);
-// console.log(movements.sort()); // przez to że liczby zostają przekonwertowane na stringi a następnie sortowane to kolejność wygląda tak: -1, -2, -3, 1, 2, 3, ...
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+console.log(movements);
+console.log(movements.sort()); // przez to że liczby zostają przekonwertowane na stringi a następnie sortowane to kolejność wygląda tak: -1, -2, -3, 1, 2, 3, ...
 
 //:. Sorting elements theory (usage below)
 // return < 0 => A, B (keep order)
@@ -598,7 +576,7 @@ console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 //:. Empty arrays + fill method
 const x = new Array(7); // Creating an array with 7 empty slots
 console.log(x);
-//:@ console.log(x.map(() => 5)); // this method doesn't work that's why there is the fill() method
+console.log(x.map(() => 5)); // this method doesn't work that's why there is the fill() method
 // x.fill(1);
 // x.fill(1, 3); // starts filling up at index 3 to the end
 x.fill(1, 3, 5); // starts filling up at index 3 and ends at 5
@@ -876,10 +854,10 @@ GOOD LUCK 😀
 */
 
 const dogs = [
-  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
-  { weight: 8, curFood: 200, owners: ["Matilda"] },
-  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
-  { weight: 32, curFood: 340, owners: ["Michael"] },
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
 
 //:. Task 1
@@ -898,34 +876,24 @@ console.log(dogs);
 // const [sarahsDog] = dogs.filter((dog) => dog.owners === dogOwners);
 
 //:& Better solutions (guy's)
-const sarahsDog = dogs.find((dog) => dog.owners.includes("Sarah"));
+const sarahsDog = dogs.find((dog) => dog.owners.includes('Sarah'));
 
 // console.log(sarahsDog);
 
-console.log(
-  `Sarah's dog is eating too ${
-    sarahsDog.curFood > sarahsDog.recommendedFood ? "much" : "little"
-  }`
-);
+console.log(`Sarah's dog is eating too ${sarahsDog.curFood > sarahsDog.recommendedFood ? 'much' : 'little'}`);
 
 //:. Task 3
-const ownersEatTooMuch = dogs
-  .filter((dog) => dog.curFood > dog.recommendedFood)
-  .flatMap((dog) => dog.owners);
+const ownersEatTooMuch = dogs.filter((dog) => dog.curFood > dog.recommendedFood).flatMap((dog) => dog.owners);
 
 console.log(ownersEatTooMuch);
 
-const ownersEatTooLittle = dogs
-  .filter((dog) => dog.curFood < dog.recommendedFood)
-  .flatMap((dog) => dog.owners);
+const ownersEatTooLittle = dogs.filter((dog) => dog.curFood < dog.recommendedFood).flatMap((dog) => dog.owners);
 
 console.log(ownersEatTooLittle);
 
 //:. Task 4
 const tellOwnersEat = function (arr) {
-  return `${arr.join(" and ")}'s dogs eat too ${
-    arr === ownersEatTooMuch ? "much" : "little"
-  }!`;
+  return `${arr.join(' and ')}'s dogs eat too ${arr === ownersEatTooMuch ? 'much' : 'little'}!`;
 };
 
 console.log(tellOwnersEat(ownersEatTooMuch));
@@ -935,9 +903,7 @@ console.log(tellOwnersEat(ownersEatTooLittle));
 console.log(dogs.some((dog) => dog.curFood === dog.recommendedFood));
 
 //:. Task 6
-const checkOkDiet = (dog) =>
-  dog.curFood > dog.recommendedFood * 0.9 &&
-  dog.curFood < dog.recommendedFood * 1.1;
+const checkOkDiet = (dog) => dog.curFood > dog.recommendedFood * 0.9 && dog.curFood < dog.recommendedFood * 1.1;
 
 console.log(dogs.some(checkOkDiet));
 
@@ -945,8 +911,6 @@ console.log(dogs.some(checkOkDiet));
 console.log(dogs.filter(checkOkDiet));
 
 //:. Task 8
-const dogsSorted = dogs
-  .slice()
-  .sort((a, b) => a.recommendedFood - b.recommendedFood);
+const dogsSorted = dogs.slice().sort((a, b) => a.recommendedFood - b.recommendedFood);
 
 console.log(dogsSorted);

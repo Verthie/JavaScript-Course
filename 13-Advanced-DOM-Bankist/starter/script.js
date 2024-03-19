@@ -134,7 +134,7 @@ const handleHover = function (e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
-//:? Passing argument into handler - we can't pass an argument directly into an event handler, so we use the bind method to create a copy of the handler function with the argument already set, then inside the function we refer to the argument by using the this keyword.
+//:? Passing argument into handler - we can't pass an argument directly into an event handler, so we use the bind method to create a copy of the handler function with the argument already set, then inside the function we refer to the argument by using the 'this' keyword.
 
 //: Sticky navigation
 /* 
@@ -161,6 +161,7 @@ const obsOptions = {
   root: null, // setting the checking element to viewport
   threshold: [0, 0.2], // setting the visibility percentage of target between 0% and 20%
 };
+//:& IntersectionObserver - a constructor that creates a new IntersectionObserver object, which lets us know when an observed element enters or exits the viewport
 //:? root - an element that is used for checking visibility of the target, basically the root (in this case: viewport) needs to intersect with the specified target (section1) for the callback to be executed
 //:? threshold - a value between 0 and 1 that specifies at what percentage of the target's visibility the observer's callback should be executed
 
@@ -340,6 +341,10 @@ message.classList.add('cookie-message');
 // message.textContent = 'We use cookied for improved functionality and analitics.'
 message.innerHTML = 'We use cookied for improved functionality and analitics. <button class="btn btn--close-cookie">Got it!</button>';
 
+//:& createElement() - creates a new element with the specified name 
+//:& textContent - sets the text content of the specified node, and all its descendants 
+//:& innerHTML - sets the HTML content of the specified element 
+
 header.prepend(message);
 header.append(message); //:? In this case message was already prepended so appending only moved the existing element to the last position in the DOM
 
@@ -351,11 +356,16 @@ header.append(message); //:? In this case message was already prepended so appen
 // header.before(message);
 // header.after(message);
 
+//:& before() - adds element before the parent element 
+//:& after() - adds element after the parent element
+
 //:. Delete elements
 document.querySelector('.btn--close-cookie').addEventListener('click', function () {
   message.remove();
   // message.parentElement.removeChild(message);
 });
+
+//:& remove() - removes the element from the DOM 
 
 //:. Styles
 message.style.backgroundColor = '#37383d'; // defining inline style - backgroundColor
@@ -406,7 +416,7 @@ logo.classList.remove('c', 'j');
 logo.classList.toggle('c');
 logo.classList.contains('c');
 
-//:. Don't use - it overwrites all the existing classes and allows only one class to exist at a time
+//:@ Don't use - it overwrites all the existing classes and allows only one class to exist at a time
 logo.className = 'jonas';
 */
 
@@ -465,7 +475,7 @@ document.querySelector('.nav').addEventListener(
 );
 
 //:? Event propagation - when an event happens on a particular element, it first runs the handlers on that element, then on its parent and all the way up on previous ancestors.
-//:? So when we click on the link, the event first happens on the link element(.nav__link), then bubbles up to the parent element(.nav__links), and so on.Clicking on parent element won't trigger the event on the child element.
+//:? So when we click on the link, the event first happens on the link element (.nav__link), then bubbles up to the parent element (.nav__links) and so on.Clicking on parent element won't trigger the event on the child element.
 
 //:? In all three handlers the e.target is always the same, because it logs the element where the 'click' action happened
 */
@@ -474,14 +484,14 @@ document.querySelector('.nav').addEventListener(
 /* 
 const h1 = document.querySelector('h1');
 
-// Going downwards: child
+//:. Going downwards: child
 console.log(h1.querySelectorAll('.highlight')); // selecting elements with class highlight, that are children of the h1 element
 console.log(h1.childNodes);
 console.log(h1.children); // returns HTMLCollection of all the children of the h1 element
 h1.firstElementChild.style.color = 'white';
 h1.lastElementChild.style.color = 'orangered';
 
-// Going upwards: parents
+//:. Going upwards: parents
 console.log(h1.parentNode);
 console.log(h1.parentElement);
 
@@ -490,7 +500,7 @@ h1.closest('h1').style.background = 'var(--gradient-primary)';
 
 //:& closest() - returns the closest ancestor of the current element (or the current element itself) which matches the specified selector or group of selectors. Basically it's the opposite of querySelector - it starts from the element itself and then travels up the DOM tree.
 
-// Going sideways: siblings
+//:. Going sideways: siblings
 console.log(h1.previousElementSibling);
 console.log(h1.nextElementSibling);
 

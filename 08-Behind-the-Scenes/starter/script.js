@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 //:* Basically about how scope, functions, primitives and objects operate in JS
 
@@ -25,9 +25,13 @@ function calcAge(birthYear) {
         return a + b;
       }
     }
+
     // console.log(str);
-    console.log(millenial); //:? can be accessed outside of the function because 'var' was used to define it - that's why we should avoid it
-    // console.log(add(2, 3)); //:? works when strict mode is disabled, it shouldn't work based on the scope - that's why strict mode should always be enabled
+    console.log(millenial);
+    //:? can be accessed outside of the function because 'var' was used to define it - that's why we should avoid it
+
+    // console.log(add(2, 3));
+    //:? works when strict mode is disabled, it shouldn't work based on the scope - that's why strict mode should always be enabled
     console.log(output);
   }
 
@@ -132,11 +136,15 @@ const jonas = {
     console.log(2037 - this.year); //:? this === jonas -- the calcAge function's object is jonas
 
     // Solution 1
-    // const self = this; // self or that //:? in order to call the object in lower level we assign variable to it within calcAge function
+    // const self = this; // self or that
+    //:? in order to call the object in lower level we assign variable to it within calcAge function
+
     // const isMillenial = function () {
     //   console.log(self); //:? self === jonas
     //   console.log(self.year >= 1981 && self.year <= 1996);
-    //   // console.log(this.year >= 1981 && this.year <= 1996); //:? this === undefined -- this only responds to the object in the same level
+
+    //   // console.log(this.year >= 1981 && this.year <= 1996);
+    //:? this === undefined -- this only responds to the object in the same level
     // };
     // isMillenial();
 
@@ -174,42 +182,42 @@ addArrow(2, 5, 8);
 */
 
 // Primitive types
-let lastName = "Williams";
+let lastName = 'Williams';
 let oldLastName = lastName; //:? both variables refer to the same address with value "Williams"
-lastName = "Davis"; //:? now variable lastName refers to a different address with value "Davis"
+lastName = 'Davis'; //:? now variable lastName refers to a different address with value "Davis"
 console.log(lastName, oldLastName); //:? both variables refer to different addresses which refer to different values
 
 // Reference types //:* important
 const jessica = {
-  firstName: "Jessica",
-  lastName: "Williams",
+  firstName: 'Jessica',
+  lastName: 'Williams',
   age: 27,
 };
 
 const marriedJessica = jessica; //:? Both variables refer to the same address, the address points to the reference for the object, we don't create new object just pass the reference
-marriedJessica.lastName = "Davis"; //:? The value is passed to the reference, not directly to the object - because of that change of value happens in the same object for both variables
+marriedJessica.lastName = 'Davis'; //:? The value is passed to the reference, not directly to the object - because of that change of value happens in the same object for both variables
 
-console.log("Before marriage:", jessica);
-console.log("After marriage:", marriedJessica);
+console.log('Before marriage:', jessica);
+console.log('After marriage:', marriedJessica);
 
 // marriedJessica = {};
 
 // Copying objects
 const jessica2 = {
-  firstName: "Jessica",
-  lastName: "Williams",
+  firstName: 'Jessica',
+  lastName: 'Williams',
   age: 27,
-  family: ["Alice", "Bob"],
+  family: ['Alice', 'Bob'],
 };
 
 const jessicaCopy = Object.assign({}, jessica2); //:? assigning the jessica2 object to the new empty object, then applying it to the jessicaCopy variable
-jessicaCopy.lastName = "Davis"; //:? change happens only in the jessicaCopy object
+jessicaCopy.lastName = 'Davis'; //:? change happens only in the jessicaCopy object
 
-jessicaCopy.family.push("Mary");
-jessicaCopy.family.push("John");
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
 
-console.log("Before marriage: ", jessica2);
-console.log("After marriage: ", jessicaCopy); //:? The array is the same in both objects since assigning works only for first-level parameters
+console.log('Before marriage: ', jessica2);
+console.log('After marriage: ', jessicaCopy); //:? The array is the same in both objects since assigning works only for first-level parameters
 
 //:? array is simmilar to object, it is a reference type so the changes were passed to the reference of the array and not directly to the array
 
