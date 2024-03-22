@@ -1,7 +1,7 @@
 'use strict';
 
 //: Constructor Functions and the new Operator
-/* 
+
 const Person = function (firstName, birthYear) {
   this.firstName = firstName;
   this.birthYear = birthYear;
@@ -26,7 +26,13 @@ const jack = new Person('Jack', 1975);
 console.log(matilda, jack);
 
 console.log(jonas instanceof Person); // => true
-*/
+
+Person.hey = function () {
+  console.log('Hey there 👋');
+};
+
+Person.hey(); // => 'Hey there 👋'
+// jonas.hey(); // => Error
 
 //: Prototypes
 /* 
@@ -86,6 +92,7 @@ console.dir((x) => x + 1);
 // };
 
 //:. class declaration
+
 class PersonCl {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
@@ -114,6 +121,12 @@ class PersonCl {
   get fullName() {
     return this._fullName;
   }
+
+  // Static method
+  static hey() {
+    console.log('Hey there 👋');
+    console.log(this);
+  }
 }
 
 const jessica = new PersonCl('Jessica Davis', 1996);
@@ -136,8 +149,10 @@ jessica.greet();
 const walter = new PersonCl('Walter White', 1965);
 console.log(walter.fullName); // => "Walter white"
 
-//: Setters and Getters
+PersonCl.hey(); // => 'Hey there 👋'
 
+//: Setters and Getters
+/* 
 const account = {
   owner: 'jonas',
   movements: [200, 530, 120, 300],
@@ -155,6 +170,9 @@ console.log(account.latest); // => 300
 
 account.latest = 50;
 console.log(account.movements); // => [200, 530, 120, 300, 50]
+*/
+
+//: Static Methods
 
 //: Coding Challenge #1
 /* 
