@@ -1,7 +1,7 @@
 'use strict';
 
 //: Constructor Functions and the new Operator
-
+/* 
 const Person = function (firstName, birthYear) {
   this.firstName = firstName;
   this.birthYear = birthYear;
@@ -34,6 +34,7 @@ Person.hey = function () {
 
 Person.hey(); // => 'Hey there 👋'
 // jonas.hey(); // => Error
+*/
 
 //: Prototypes
 /* 
@@ -200,6 +201,48 @@ const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1979);
 sarah.calcAge(); // => 58
 
+//: Inheritance Between "Classes"
+
+//:. Constructor Functions
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// Linking prototypes
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student('Mike', 2020, 'Coumputer Science');
+mike.introduce(); // => 'My name is Mike and I study Computer Science'
+mike.calcAge(); // => 17
+
+console.log(mike.__proto__); // => Object {introduce: introduce()}
+console.log(mike.__proto__.__proto__); // => Object {calcAge: calcAge()}
+
+console.log(mike instanceof Student); // => true
+console.log(mike instanceof Person); // => true
+console.log(mike instanceof Object); // => true
+
+// console.dir(Student.prototype.constructor);
+// => Person(firstName, birthYear)
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
+// => Student(firstName, birthYear, course)
+
 //: Coding Challenge #1
 /* 
 Your tasks:
@@ -253,9 +296,7 @@ converts it to km/h before storing the value, by multiplying the input by 1.6)
 methods, and with the getter and setter.
 Test data:
 § Data car 1: 'Ford' going at 120 km/h
-
 GOOD LUCK 😀
-*/
 
 class CarCl {
   constructor(make, speed) {
@@ -290,3 +331,4 @@ ford.accelerate(); // 140 km/h
 ford.break(); // 135k m/h
 ford.speedUs = 50; // speedUs set to 50 mi/h
 console.log(ford.speed); // => 80 km/h (50 * 1.6)
+*/
