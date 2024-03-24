@@ -582,7 +582,7 @@ class CarCl {
   }
 
   set speedUS(speed) {
-    return this = speed * 1.6;
+    this.speed = speed * 1.6;
   }
 }
 
