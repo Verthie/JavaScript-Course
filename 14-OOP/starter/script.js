@@ -617,3 +617,4 @@ rivian.accelerate(); // => Rivian going at 150 km/h, with a charge of 89
 rivian.accelerate(); // => Rivian going at 170 km/h, with a charge of 88
 
 rivian.accelerate().brake().brake().accelerate().accelerate().accelerate().brake().chargeBattery(90).accelerate();
+console.log(rivian.speedUS);
