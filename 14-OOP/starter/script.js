@@ -317,7 +317,7 @@ jay.calcAge(); // => 27
 */
 
 //: Another Class Example
-
+/* 
 class Account {
   // 1) Public fields (instances)
   locale = navigator.language;
@@ -392,6 +392,7 @@ Account.helper(); // => 'Helper'
 
 acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
 console.log(acc1.getMovements()); // => [250, -140, 1000, 300, 500, -35, 25000, -4000]
+*/
 
 //: Coding Challenge #1
 /* 
@@ -510,12 +511,12 @@ const Car = function (make, speed) {
 
 Car.prototype.accelerate = function () {
   this.speed += 10;
-  console.log(`${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}`);
+  console.log(`${this.make} going at ${this.speed} km/h`);
 };
 
 Car.prototype.brake = function () {
   this.speed -= 10;
-  console.log(`${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}`);
+  console.log(`${this.make} going at ${this.speed} km/h`);
 };
 
 const EV = function (make, speed, charge) {
@@ -544,3 +545,75 @@ tesla.chargeBattery(90);
 tesla.accelerate(); // => Tesla going at 150 km/h, with a charge of 89
 tesla.accelerate(); // => Tesla going at 170 km/h, with a charge of 88
 */
+
+//: Coding Challenge #4
+/*
+Your tasks:
+1. Re-create Challenge #3, but this time using ES6 classes: create an 'EVCl'
+child class of the 'CarCl' class
+2. Make the 'charge' property private
+3. Implement the ability to chain the 'accelerate' and 'chargeBattery'
+methods of this class, and also update the 'brake' method in the 'CarCl'
+class. Then experiment with chaining!
+Test data:
+§ Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%
+GOOD LUCK 😀
+*/
+
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} going at ${this.speed} km/h`);
+  }
+
+  brake() {
+    this.speed -= 10;
+    console.log(`${this.make} going at ${this.speed} km/h`);
+    return this;
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    return this = speed * 1.6;
+  }
+}
+
+class EVCl extends CarCl {
+  #charge;
+
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(`${this.make} going at ${this.speed} km/h, with a charge of ${this.#charge}`);
+    return this;
+  }
+}
+
+const rivian = new EVCl('Rivian', 120, 23);
+// console.log(rivian.#charge);
+
+rivian.accelerate(); // => Rivian going at 140 km/h, with a charge of 22
+rivian.brake(); // => Rivian going at 130 km/h, with a charge of 22
+rivian.chargeBattery(90);
+rivian.accelerate(); // => Rivian going at 150 km/h, with a charge of 89
+rivian.accelerate(); // => Rivian going at 170 km/h, with a charge of 88
+
+rivian.accelerate().brake().brake().accelerate().accelerate().accelerate().brake().chargeBattery(90).accelerate();
