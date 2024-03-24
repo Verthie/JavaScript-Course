@@ -283,7 +283,7 @@ martha.calcAge(); // => 35
 */
 
 //:. Object.create
-
+/* 
 const PersonProto = {
   calcAge() {
     console.log(2037 - this.birthYear);
@@ -314,6 +314,58 @@ const jay = Object.create(StudentProto);
 jay.init('Jay', 2010, 'Computer Science');
 jay.introduce(); // => 'My name is Jay and I study Computer Science'
 jay.calcAge(); // => 27
+*/
+
+//: Another Class Example
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this._pin = pin;
+    // Protected property
+    this._movements = [];
+    this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner}`);
+  }
+
+  // Public interface
+  getMovements() {
+    return this._movements;
+  }
+
+  deposit(val) {
+    this._movements.push(val);
+  }
+
+  withdraw(val) {
+    this.deposit(-val);
+  }
+
+  _approveLoan(val) {
+    return true;
+  }
+
+  requestLoan(val) {
+    if (this._approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved`);
+    }
+  }
+}
+
+const acc1 = new Account('Jonas', 'EUR', 1111); // 'Thanks for opening an account, Jonas'
+console.log(acc1); // => Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(0), locale: 'en-GB'}
+
+// acc1._movements.push(250);
+// acc1._movements.push(-140);
+acc1.deposit(250);
+acc1.withdraw(140);
+acc1.requestLoan(1000);
+console.log(acc1.getMovements()); // => [250, -140, 1000]
+
+console.log(acc1.pin);
 
 //: Coding Challenge #1
 /* 
