@@ -249,7 +249,7 @@ console.dir(Student.prototype.constructor);
 */
 
 //:. ES6 Classes
-
+/* 
 class PersonCl {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
@@ -280,6 +280,40 @@ class StudentCl extends PersonCl {
 const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
 martha.introduce(); // => 'My name is Martha Jones and I study Computer Science'
 martha.calcAge(); // => 35
+*/
+
+//:. Object.create
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const StudentProto = Object.create(PersonProto);
+
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.calcAge = function () {
+  console.log(`I'm ${2037 - this.birthYear} years old, but as a student I feel more like ${2037 - this.birthYear + 10}`);
+};
+
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentProto);
+jay.init('Jay', 2010, 'Computer Science');
+jay.introduce(); // => 'My name is Jay and I study Computer Science'
+jay.calcAge(); // => 27
 
 //: Coding Challenge #1
 /* 
