@@ -3,6 +3,29 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
+const renderCountry = function (data, className = '') {
+  const html = `
+  <article class="country ${className}">
+    <img class="country__img" src="${data.flags.svg}" />
+      <div class="country__data">
+        <h3 class="country__name">${data.name.common}</h3>
+        <h4 class="country__region">${data.region}</h4>
+        <p class="country__row"><span>👫</span>${(+data.population / 1000000).toFixed(1)} mln people</p>
+        <p class="country__row"><span>🗣️</span>${Object.values(data.languages)[0]}</p>
+        <p class="country__row"><span>💰</span>${Object.keys(data.currencies)[0]}</p>
+      </div>
+  </article>
+  `;
+
+  countriesContainer.insertAdjacentHTML('beforeend', html);
+  // countriesContainer.style.opacity = 1; // sent to finally() method
+};
+
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  // countriesContainer.style.opacity = 1; // sent to finally() method
+};
+
 ///////////////////////////////////////
 //: First AJAX Call: XMLHttpRequest
 /* 
@@ -38,24 +61,6 @@ getCountryData('portugal');
 */
 
 //: Callback hell
- 
-const renderCountry = function (data, className = '') {
-  const html = `
-  <article class="country ${className}">
-    <img class="country__img" src="${data.flags.svg}" />
-      <div class="country__data">
-        <h3 class="country__name">${data.name.common}</h3>
-        <h4 class="country__region">${data.region}</h4>
-        <p class="country__row"><span>👫</span>${(+data.population / 1000000).toFixed(1)} mln people</p>
-        <p class="country__row"><span>🗣️</span>${Object.values(data.languages)[0]}</p>
-        <p class="country__row"><span>💰</span>${Object.keys(data.currencies)[0]}</p>
-      </div>
-  </article>
-  `;
-
-  countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
-};
 
 /*
 const getCountryNeighbour = function (country) {
@@ -101,32 +106,38 @@ request.send(); //:? sending the request to the API
 */
 
 //: Consuming Promises
+/* 
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then(function (response) {
+      console.log(response);
+      return response.json(); //:? in order to read the data from the data from the response json() needs to be called on response which also returns a promise
+    })
+    .then(function (data) {
+      console.log(data);
+      renderCountry(data[0]);
+    });
+};
 
-// const getCountryData = function (country) {
-//   fetch(`https://restcountries.com/v3.1/name/${country}`)
-//     .then(function (response) {
-//       console.log(response);
-//       return response.json(); //:? in order to read the data from the data from the response json() needs to be called on response which also returns a promise
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//       renderCountry(data[0]);
-//     });
-// };
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then((response) => response.json())
+    .then((data) => renderCountry(data[0]));
+};
 
-// const getCountryData = function (country) {
-//   fetch(`https://restcountries.com/v3.1/name/${country}`)
-//     .then((response) => response.json())
-//     .then((data) => renderCountry(data[0]));
-// };
+getCountryData('poland');
+*/
 
-// getCountryData('poland');
+//: Chaining Promises and Handling Rejected Promises
 
 const getCountryData = function (country) {
   // Country 1
   fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then((response) => response.json())
-    .then((data) => {
+    .then(
+      response => response.json()
+      // err => alert(err)
+    )
+    .then(data => {
       renderCountry(data[0]);
 
       const neighbour = data[0].borders?.[0];
@@ -136,8 +147,18 @@ const getCountryData = function (country) {
       // Country 2
       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
     })
-    .then((response) => response.json())
-    .then((data) => renderCountry(data[0], 'neighbour'));
+    .then(response => response.json())
+    .then(data => renderCountry(data[0], 'neighbour'))
+    .catch(err => {
+      console.error(`${err} 💥💥💥`);
+      renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+      // no matter the result, whether it renders an error (promise rejected) or a country (promise fulfilled), opacity needs to be 1 so it's visible
+    });
 };
 
-getCountryData('poland');
+btn.addEventListener('click', function () {
+  getCountryData('poland');
+});
