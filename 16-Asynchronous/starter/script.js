@@ -94,10 +94,13 @@ getCountryNeighbour('poland');
 */
 
 //: Promises and the Fetch API
+/* 
+const request = new XMLHttpRequest();
+request.open('GET', `https://restcountries.com/v3.1/name/${country}`); //:? getting the API to which the request will be send
+request.send(); //:? sending the request to the API
+*/
 
-// const request = new XMLHttpRequest();
-// request.open('GET', `https://restcountries.com/v3.1/name/${country}`); //:? getting the API to which the request will be send
-// request.send(); //:? sending the request to the API
+//: Consuming Promises
 
 // const getCountryData = function (country) {
 //   fetch(`https://restcountries.com/v3.1/name/${country}`)
@@ -111,10 +114,30 @@ getCountryNeighbour('poland');
 //     });
 // };
 
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then((response) => response.json())
+//     .then((data) => renderCountry(data[0]));
+// };
+
+// getCountryData('poland');
+
 const getCountryData = function (country) {
+  // Country 1
   fetch(`https://restcountries.com/v3.1/name/${country}`)
     .then((response) => response.json())
-    .then((data) => renderCountry(data[0]));
+    .then((data) => {
+      renderCountry(data[0]);
+
+      const neighbour = data[0].borders?.[0];
+
+      if (!neighbour) return;
+
+      // Country 2
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+    })
+    .then((response) => response.json())
+    .then((data) => renderCountry(data[0], 'neighbour'));
 };
 
 getCountryData('poland');
