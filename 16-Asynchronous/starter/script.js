@@ -202,7 +202,6 @@ btn.addEventListener('click', function () {
   getCountryData('poland');
 });
 
-
 //: Coding Challenge #1
 /* 
 In this challenge you will build a function 'whereAmI' which renders a country
@@ -293,7 +292,7 @@ console.log('Test end');
 */
 
 //: Building a Simple Promise
-
+/* 
 const lotteryPromise = new Promise(function (resolve, reject) {
   console.log('Lottery draw is happening 🔮');
   setTimeout(function () {
@@ -311,7 +310,7 @@ const wait = function(seconds){
   });
 }
 
-const arrWait = seconds =>
+const arrowWait = seconds =>
   new Promise(function (resolve) {
     setTimeout(resolve, seconds * 1000);
   });
@@ -321,15 +320,7 @@ wait(2)
     console.log('I waited for 2 seconds');
     return wait(1);
   })
-  .then(() => console.log('I waited for 1 seconds'));
-
-//:. Arrow function   
-// arrWait(2)
-//   .then(() => {
-//     console.log('I waited for 2 seconds (arr)');
-//     return arrWait(1);
-//   })
-//   .then(() => console.log('I waited for 1 seconds (arr)'));
+  .then(() => console.log('I waited for 1 second'));
 
 wait(1)
   .then(() => {
@@ -346,7 +337,6 @@ wait(1)
   })
   .then(() => console.log('4 second passed'));
 
-
 // setTimeout(() => {
 //   console.log('1 second passed');
 //   setTimeout(() => {
@@ -362,3 +352,146 @@ wait(1)
 
 Promise.resolve('abc').then(x => console.log(x));
 Promise.reject(new Error('Problem!')).catch(x => console.error(x));
+*/
+
+//: Promisifying the Geolocation API
+/* 
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+getPosition().then(pos => console.log(pos));
+
+const whereAmI = function () {
+  getPosition()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+
+      return fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`);
+    })
+    .then(response => {
+      if (!response.ok) throw new Error(`Problem with geocoding ${response.status}`);
+
+      return response.json();
+    })
+    .then(data => {
+      console.log(`You are in ${data.city}, ${data.countryName}`);
+      return fetch(`https://restcountries.com/v3.1/name/${data.countryName}`);
+    })
+    .then(response => {
+      if (!response.ok) throw new Error(`Problem with geocoding ${response.status}`);
+
+      return response.json();
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.log(`An error occured: ${err.message}`))
+    .finally(() => (countriesContainer.style.opacity = 1));
+};
+
+btn.addEventListener('click', whereAmI);
+*/
+/* 
+For this challenge you will actually have to watch the video! Then, build the image
+loading functionality that I just showed you on the screen.
+
+Your tasks:
+Tasks are not super-descriptive this time, so that you can figure out some stuff by
+yourself. Pretend you're working on your own 😉
+
+PART 1
+
+1. Create a function 'createImage' which receives 'imgPath' as an input.
+This function returns a promise which creates a new image (use
+document.createElement('img')) and sets the .src attribute to the
+provided image path
+
+2. When the image is done loading, append it to the DOM element with the
+'images' class, and resolve the promise. The fulfilled value should be the
+image element itself. In case there is an error loading the image (listen for
+the'error' event), reject the promise
+
+3. If this part is too tricky for you, just watch the first part of the solution
+
+PART 2
+
+4. Consume the promise using .then and also add an error handler
+
+5. After the image has loaded, pause execution for 2 seconds using the 'wait'
+function we created earlier
+
+6. After the 2 seconds have passed, hide the current image (set display CSS
+property to 'none'), and load a second image (Hint: Use the image element
+returned by the 'createImage' promise to hide the current image. You will
+need a global variable for that 😉)
+
+7. After the second image has loaded, pause execution for 2 seconds again
+
+8. After the 2 seconds have passed, hide the current image
+
+Test data: Images in the img folder. Test the error handler by passing a wrong
+image path. Set the network speed to “Fast 3G” in the dev tools Network tab,
+otherwise images load too fast
+GOOD LUCK 😀
+*/
+
+const imageContainer = document.querySelector('.images');
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement('img');
+    img.src = imgPath;
+
+    img.addEventListener('load', function () {
+      imageContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener('error', function () {
+      reject(new Error('Failed to load the image'));
+    });
+  });
+};
+
+let currentImg;
+
+createImage('/img/img-1.jpg')
+  .then(img => {
+    currentImg = img;
+    console.log('Image 1 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImage('img/img-2.jpg');
+  })
+  .then(img => {
+    currentImg = img;
+    console.log('Image 2 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImage('img/img-3.jpg');
+  })
+  .then(img => {
+    currentImg = img;
+    console.log('Image 3 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImage('img/ilajsdflkajdfs');
+  })
+  .catch(err => console.error(err));
