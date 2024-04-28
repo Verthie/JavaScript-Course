@@ -18,12 +18,12 @@ const renderCountry = function (data, className = '') {
   `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1; // sent to finally() method
+  countriesContainer.style.opacity = 1; // sent to finally() method
 };
 
 const renderError = function (msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
-  // countriesContainer.style.opacity = 1; // sent to finally() method
+  countriesContainer.style.opacity = 1; // sent to finally() method
 };
 
 ///////////////////////////////////////
@@ -168,7 +168,7 @@ getCountryData('poland');
 // };
 
 //: Throwing Errors Manually
-
+/* 
 const getJSON = function (url, errorMsg = 'Something went wrong') {
   return fetch(url).then(response => {
     if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
@@ -201,6 +201,7 @@ const getCountryData = function (country) {
 btn.addEventListener('click', function () {
   getCountryData('poland');
 });
+*/
 
 //: Coding Challenge #1
 /* 
@@ -277,7 +278,7 @@ const whereAmI = function (lat, lng) {
 whereAmI(52.508, 13.381);
 whereAmI(19.037, 72.873);
 whereAmI(-33.933, 18.474);
-*/
+ */
 
 //: The Event Loop in Practice
 /* 
@@ -440,6 +441,7 @@ otherwise images load too fast
 GOOD LUCK 😀
 */
 
+/* 
 const imageContainer = document.querySelector('.images');
 
 const wait = function (seconds) {
@@ -495,3 +497,33 @@ createImage('/img/img-1.jpg')
     return createImage('img/ilajsdflkajdfs');
   })
   .catch(err => console.error(err));
+ */
+
+//: Consuming Promises with Async/Await
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const whereAmI = async function () {
+  // Geolocation
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
+
+  // Reverse geocoding
+  const resGeo = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`);
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
+
+  // Country data
+  // fetch(`https://restcountries.com/v3.1/name/${country}`).then(res => console.log(res));
+  const res = await fetch(`https://restcountries.com/v3.1/name/${dataGeo.countryName}`);
+  const data = await res.json();
+  console.log(data);
+  renderCountry(data[0]);
+};
+
+whereAmI();
+console.log('FIRST');
