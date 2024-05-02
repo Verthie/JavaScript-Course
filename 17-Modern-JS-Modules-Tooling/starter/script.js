@@ -1,4 +1,5 @@
 // Importing module
+/* 
 // import { addToCart, totalPrice as price, tq } from './shoppingCart.js';
 // addToCart('bread', 5);
 // console.log(price, tq);
@@ -44,3 +45,37 @@ console.log(lastPost);
 
 const lastPost2 = await getLastPost();
 console.log(lastPost2);
+*/
+
+//: The Module Pattern
+
+const ShoppingCart2 = (function () {
+  const cart = [];
+  const shippingCost = 10;
+  const totalPrice = 237;
+  const totalQuantity = 23;
+
+  const addToCart = function (product, quantity) {
+    cart.push({ product, quantity });
+    console.log(`${quantity} ${product} added to cart (the shipping cost is (${shippingCost}))`);
+  };
+
+  const orderStock = function (product, quantity) {
+    cart.push({ product, quantity });
+    console.log(`${quantity} ${product} ordered from supplier`);
+  };
+
+  return {
+    addToCart,
+    cart,
+    totalPrice,
+    totalQuantity,
+  };
+})();
+
+ShoppingCart2.addToCart('apple', 4);
+ShoppingCart2.addToCart('pizza', 2);
+// addToCart can still access the variables inside the IFEE function even after it returned because of closure (it is still connected to the variables defined in its birthplace)
+
+console.log(ShoppingCart2); // => {cart: Array, totalPrice: 237, totalQuantity: 23, addToCart: f}
+console.log(ShoppingCart2.shippingCost); // => undefined
