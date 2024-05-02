@@ -48,7 +48,7 @@ console.log(lastPost2);
 */
 
 //: The Module Pattern
-
+/* 
 const ShoppingCart2 = (function () {
   const cart = [];
   const shippingCost = 10;
@@ -57,7 +57,7 @@ const ShoppingCart2 = (function () {
 
   const addToCart = function (product, quantity) {
     cart.push({ product, quantity });
-    console.log(`${quantity} ${product} added to cart (the shipping cost is (${shippingCost}))`);
+    console.log(`${quantity} ${product} added to cart (the shipping cost is ${shippingCost})`);
   };
 
   const orderStock = function (product, quantity) {
@@ -79,3 +79,15 @@ ShoppingCart2.addToCart('pizza', 2);
 
 console.log(ShoppingCart2); // => {cart: Array, totalPrice: 237, totalQuantity: 23, addToCart: f}
 console.log(ShoppingCart2.shippingCost); // => undefined
+*/
+
+//: CommonJS Modules
+
+// Export
+export.addToCart = function (product, quantity) {
+  cart.push({ product, quantity });
+  console.log(`${quantity} ${product} added to cart (the shipping cost is ${shippingCost})`);
+};
+
+// Import
+const { addToCart } = require('./shoppingCart.js');
