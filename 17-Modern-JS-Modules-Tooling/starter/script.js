@@ -75,14 +75,14 @@ const ShoppingCart2 = (function () {
 
 ShoppingCart2.addToCart('apple', 4);
 ShoppingCart2.addToCart('pizza', 2);
-// addToCart can still access the variables inside the IFEE function even after it returned because of closure (it is still connected to the variables defined in its birthplace)
+// addToCart can still access the variables inside the IFEE function even afte it returned because of closure (it is still connected to the variables defined in its birthplace)
 
 console.log(ShoppingCart2); // => {cart: Array, totalPrice: 237, totalQuantity: 23, addToCart: f}
 console.log(ShoppingCart2.shippingCost); // => undefined
 */
 
 //: CommonJS Modules
-
+/* 
 // Export
 export.addToCart = function (product, quantity) {
   cart.push({ product, quantity });
@@ -91,3 +91,22 @@ export.addToCart = function (product, quantity) {
 
 // Import
 const { addToCart } = require('./shoppingCart.js');
+*/
+
+import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+
+const state = {
+  cart: [
+    { product: 'bread', quantity: 5 },
+    { product: 'pizza', quantity: 5 },
+  ],
+  user: { loggedIn: true },
+};
+
+const stateClone = Object.assign({}, state);
+const stateDeepClone = cloneDeep(state);
+
+state.user.loggedIn = false;
+
+console.log(stateClone);
+console.log(stateDeepClone);
